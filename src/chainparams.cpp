@@ -208,9 +208,9 @@ public:
         // LUA private keys start with 't'
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128+63);
         // LUA BIP32 pubkeys start with 'xpub' (LUA defaults)
-        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x46)(0x45)(0x41)(0x52).convert_to_container<std::vector<unsigned char> >();
         // LUA BIP32 prvkeys start with 'xprv' (LUA defaults)
-        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x4E)(0x4F)(0x54)(0x48).convert_to_container<std::vector<unsigned char> >();
 
         // LUA BIP44 coin type is '243'
         nExtCoinType = 243;
