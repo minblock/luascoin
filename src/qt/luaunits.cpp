@@ -33,7 +33,7 @@ bool LUAUnits::valid(int unit)
     case LUA:
     case mLUA:
     case uLUA:
-    case duffs:
+    case capes:
         return true;
     default:
         return false;
@@ -49,7 +49,7 @@ QString LUAUnits::name(int unit)
             case LUA: return QString("LUA");
             case mLUA: return QString("mLUA");
             case uLUA: return QString::fromUtf8("μLUA");
-            case duffs: return QString("duffs");
+            case capes: return QString("capes");
             default: return QString("???");
         }
     }
@@ -60,7 +60,7 @@ QString LUAUnits::name(int unit)
             case LUA: return QString("tLUA");
             case mLUA: return QString("mtLUA");
             case uLUA: return QString::fromUtf8("μtLUA");
-            case duffs: return QString("tduffs");
+            case capes: return QString("tcapes");
             default: return QString("???");
         }
     }
@@ -75,7 +75,7 @@ QString LUAUnits::description(int unit)
             case LUA: return QString("LUA");
             case mLUA: return QString("Milli-LUA (1 / 1" THIN_SP_UTF8 "000)");
             case uLUA: return QString("Micro-LUA (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-LUA (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case capes: return QString("Ten Nano-LUA (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -86,7 +86,7 @@ QString LUAUnits::description(int unit)
             case LUA: return QString("TestLUAs");
             case mLUA: return QString("Milli-TestLUA (1 / 1" THIN_SP_UTF8 "000)");
             case uLUA: return QString("Micro-TestLUA (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-TestLUA (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case capes: return QString("Ten Nano-TestLUA (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -99,7 +99,7 @@ qint64 LUAUnits::factor(int unit)
     case LUA:  return 100000000;
     case mLUA: return 100000;
     case uLUA: return 100;
-    case duffs: return 1;
+    case capes: return 1;
     default:   return 100000000;
     }
 }
@@ -111,7 +111,7 @@ int LUAUnits::decimals(int unit)
     case LUA: return 8;
     case mLUA: return 5;
     case uLUA: return 2;
-    case duffs: return 0;
+    case capes: return 0;
     default: return 0;
     }
 }

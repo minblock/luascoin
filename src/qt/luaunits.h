@@ -60,7 +60,7 @@ public:
         LUA,
         mLUA,
         uLUA,
-        duffs
+        capes
     };
 
     enum SeparatorStyle
