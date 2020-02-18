@@ -22,7 +22,7 @@ QList<LUAUnits::Unit> LUAUnits::availableUnits()
     unitlist.append(LUA);
     unitlist.append(mLUA);
     unitlist.append(uLUA);
-    unitlist.append(duffs);
+    unitlist.append(capes);
     return unitlist;
 }
 
