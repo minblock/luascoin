@@ -201,9 +201,9 @@ public:
         vSeeds.push_back(CDNSSeedData("192.3.3.30", "193.3.3.30"));        // vFixedSeeds.clear();
         // vSeeds.clear();
 
-        // LUA addresses start with 'S'
+        // LUA addresses start with '2'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,3);
-        // LUA script addresses start with '8'
+        // LUA script addresses start with 'o-z or 2'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,2);
         // LUA private keys start with 't'
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128+63);
