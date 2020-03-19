@@ -47,7 +47,7 @@ QString LUAUnits::name(int unit)
         switch(unit)
         {
             case LUA: return QString("LUA");
-            case mLUA: return QString("mLUA");
+            case mLUA: return QString("BONEz");
             case uLUA: return QString::fromUtf8("μLUA");
             case capes: return QString("capes");
             default: return QString("???");
@@ -58,7 +58,7 @@ QString LUAUnits::name(int unit)
         switch(unit)
         {
             case LUA: return QString("tLUA");
-            case mLUA: return QString("mtLUA");
+            case mLUA: return QString("testBONES");
             case uLUA: return QString::fromUtf8("μtLUA");
             case capes: return QString("tcapes");
             default: return QString("???");
@@ -73,7 +73,7 @@ QString LUAUnits::description(int unit)
         switch(unit)
         {
             case LUA: return QString("LUA");
-            case mLUA: return QString("Milli-LUA (1 / 1" THIN_SP_UTF8 "000)");
+            case mLUA: return QString("Bonez (1 / 1" THIN_SP_UTF8 "000)");
             case uLUA: return QString("Micro-LUA (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             case capes: return QString("Ten Nano-LUA (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
@@ -84,7 +84,7 @@ QString LUAUnits::description(int unit)
         switch(unit)
         {
             case LUA: return QString("TestLUAs");
-            case mLUA: return QString("Milli-TestLUA (1 / 1" THIN_SP_UTF8 "000)");
+            case mLUA: return QString("Milli-TestBONES (1 / 1" THIN_SP_UTF8 "000)");
             case uLUA: return QString("Micro-TestLUA (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             case capes: return QString("Ten Nano-TestLUA (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
