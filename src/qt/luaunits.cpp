@@ -60,7 +60,7 @@ QString LUAUnits::name(int unit)
             case LUA: return QString("tLUA");
             case mLUA: return QString("testBONES");
             case uLUA: return QString::fromUtf8("μtLUA");
-            case capes: return QString("tcapes");
+            case capes: return QString("dances");
             default: return QString("???");
         }
     }
