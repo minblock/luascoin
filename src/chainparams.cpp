@@ -182,10 +182,7 @@ public:
         strSporkPubKey = "0406d43be70bd276010ad0ca49c6ad33564a9b8bc7f5461f97182e2f14cd0608f71e31b45112f98ff2ddca58ab9855be5bcf17fb7c71aca006cec7280da1379415";
 
         checkpointData = (CCheckpointData) {
-            boost::assign::map_list_of
-            (  0, uint256S("00000ae3580fdb24aabe091b12eabd964aed546103c3c6d1b653a203b01812c0")),
-            (  1337, uint256S("0000000225ae4330e3a60c210f7678a5313689d4fe336afba392ba482ad001f1")),
-            (  11337, uint256S("0000000209bc139dce04bb05587d253f4b9dcd3bdcba31dc8e854ec621b26623")),            
+            boost::assign::map_list_of      
             (  21337, uint256S("000000017429ba487f81086c653673bcedcc161d050b12b83afb5742fe9d6356")),            
             
             1587626569, // * UNIX timestamp of last checkpoint block
