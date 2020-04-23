@@ -120,22 +120,16 @@ public:
 
         // Deployment of DIP0001
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].bit = 1;
-        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nStartTime = 1584512039; // Oct 15th, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nTimeout = 1616074620; // Oct 15th, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nStartTime = 1584512039; // Last Month
+        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nTimeout = 1616074620; // Lastmonth Next Year
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nWindowSize = 4032;
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nThreshold = 3226; // 80% of 4032
 
         // The best chain should have at least this much work.
-        //consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000100a308553b4863b755"); // 782700
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000098a715b8673");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        //consensus.defaultAssumeValid = uint256S("0x000000000000001c172f518793c3b9e83f202284615592f87fe3506ce964dcd4"); // 782700
-
-        // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00");
-
-        // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00");
+        consensus.defaultAssumeValid = uint256S("0x0000000937a7dc9b4b9f9f285f298140a0b215e964bb008bb7d3ee41e0596509");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -189,8 +183,12 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (  0, uint256S("0000093e6f9d658353d8def21d98a5a5126a388a7c5987bce7cac4ccf5299dd0")),
-            1530264182, // * UNIX timestamp of last checkpoint block
+            (  0, uint256S("00000ae3580fdb24aabe091b12eabd964aed546103c3c6d1b653a203b01812c0")),
+            (  1337, uint256S("0000000225ae4330e3a60c210f7678a5313689d4fe336afba392ba482ad001f1")),
+            (  11337, uint256S("0000000209bc139dce04bb05587d253f4b9dcd3bdcba31dc8e854ec621b26623")),            
+            (  21337, uint256S("000000017429ba487f81086c653673bcedcc161d050b12b83afb5742fe9d6356")),            
+            
+            1587626569, // * UNIX timestamp of last checkpoint block
             0,    // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
             500        // * estimated number of transactions per day after checkpoint
