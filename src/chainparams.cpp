@@ -96,7 +96,7 @@ public:
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
         consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("0x00000854d28c0dccc6cffee11e394a64bbe7981d76030b0aa19cf319847434eb");
+        consensus.BIP34Hash = uint256S("0x00000dbf523d5e02b42181258be59f5cf779feae789efb72383b4f69e274e9bc");
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
         consensus.nZawyLwmaAveragingWindow = 65;
@@ -151,8 +151,9 @@ public:
         nDelayGetHeadersTime = 24 * 60 * 60;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1623432872, 1929953, 0x1e0ffff0, 1, 50 * COIN);
-        assert(consensus.hashGenesisBlock == uint256S("00000854d28c0dccc6cffee11e394a64bbe7981d76030b0aa19cf319847434eb"));
+        genesis = CreateGenesisBlock(1630034424, 382986, 0x1e0ffff0, 1, 50 * COIN);
+        
+        assert(consensus.hashGenesisBlock == uint256S("00000dbf523d5e02b42181258be59f5cf779feae789efb72383b4f69e274e9bc"));
         assert(genesis.hashMerkleRoot == uint256S("621d7395fb0cfa4cf6e6e5c783c620587ec4779482a3cf6193ef5e39a432f206"));
 
         vSeeds.push_back(CDNSSeedData("192.3.3.30", "193.3.3.30"));        // vFixedSeeds.clear();
