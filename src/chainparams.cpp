@@ -115,13 +115,13 @@ public:
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1587249759; // April 23, 2020
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 9999999ULL; // Feb 5th, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1630150225; //  tomorrow
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1661686225; // in 1 year   judgement day
 
         // Deployment of DIP0001
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].bit = 1;
-        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nStartTime = 1587249759; //  April 23, 2020
-        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nTimeout = 9999999ULL; // Oct 15th, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nStartTime = 1630150225; //  tomorrow
+        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nTimeout = 1661686225; // in 1 year   judgement day
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nWindowSize = 4032;
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nThreshold = 3226; // 80% of 4032
 
