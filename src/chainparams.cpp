@@ -144,7 +144,7 @@ public:
         pchMessageStart[0] = 0x4c; //L
         pchMessageStart[1] = 0x55; //U
         pchMessageStart[2] = 0x41; //A
-        pchMessageStart[3] = 0x43; //C
+        pchMessageStart[3] = 0x02; //a straightup number 2 flag
         vAlertPubKey = ParseHex("048c4ef0c2c635687f6077a742be01a05748370a24a6d5209283d727e7825bf5b259256169f638e7f845c923abe6f3b3f64177f8dd354c447fbe2ad933f457febe");
         nDefaultPort = 8808;
         nMaxTipAge = 6 * 60 * 60; // ~144 blocks behind -> 2 x fork detection time, was 24 * 60 * 60 in lua
