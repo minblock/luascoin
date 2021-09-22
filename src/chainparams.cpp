@@ -96,7 +96,7 @@ public:
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
         consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("0x00000abf4866ba7c1bf1dbf44861783e5e2f5dc16e14014e5444d9e7ac1cb29a");
+        consensus.BIP34Hash = uint256S("0x000009c4d82efa26d73d0bda6de2da301c0ce23205db900c50ec7b1733ce9728");
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
         consensus.nZawyLwmaAveragingWindow = 65;
@@ -151,7 +151,7 @@ public:
         nDelayGetHeadersTime = 24 * 60 * 60;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1632235719, 2002843, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1632287929, 2002843, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 /*
         //////////////
@@ -193,7 +193,7 @@ public:
                 }
                 std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
 */
-        assert(consensus.hashGenesisBlock == uint256S("00000abf4866ba7c1bf1dbf44861783e5e2f5dc16e14014e5444d9e7ac1cb29a"));
+        assert(consensus.hashGenesisBlock == uint256S("000009c4d82efa26d73d0bda6de2da301c0ce23205db900c50ec7b1733ce9728"));
         assert(genesis.hashMerkleRoot == uint256S("69781ad0a46b9f9ad0c69f52304ac65af5b309399784b537210348e166efc367"));
 
         vSeeds.push_back(CDNSSeedData("192.3.3.28", "193.3.3.28"));        // vFixedSeeds.clear();
