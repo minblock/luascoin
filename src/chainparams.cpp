@@ -151,7 +151,7 @@ public:
         nDelayGetHeadersTime = 24 * 60 * 60;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1632287929, 2002843, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1632287929, 106583, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 /*
         //////////////
