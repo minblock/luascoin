@@ -1,5 +1,5 @@
-#ifndef LUA_QT_TOOLSPAGE_H
-#define LUA_QT_TOOLSPAGE_H
+#ifndef LUASCOIN_QT_TOOLSPAGE_H
+#define LUASCOIN_QT_TOOLSPAGE_H
 
 #include "guiutil.h"
 #include "peertablemodel.h"

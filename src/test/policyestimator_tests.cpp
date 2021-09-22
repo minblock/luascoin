@@ -7,7 +7,7 @@
 #include "uint256.h"
 #include "util.h"
 
-#include "test/test_lua.h"
+#include "test/test_luascoin.h"
 
 #include <boost/test/unit_test.hpp>
 

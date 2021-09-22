@@ -1,0 +1,22 @@
+[Unit]
+Description=LUASCOIN's distributed currency daemon
+After=network.target
+
+[Service]
+User=luascoincore
+Group=luascoincore
+
+Type=forking
+PIDFile=/var/lib/luascoind/luascoind.pid
+ExecStart=/usr/bin/luascoind -daemon -pid=/var/lib/luascoind/luascoind.pid \
+-conf=/etc/luascoincore/luascoin.conf -datadir=/var/lib/luascoind -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

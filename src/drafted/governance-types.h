@@ -16,9 +16,9 @@ enum GovernanceObjectType {
     ValueOverride = 1, 
 
     // -------------------------------
-    // LUANetwork - is the root node
-    LUANetwork = 1000,
-    LUANetworkVariable = 1001,
+    // LUASCOINNetwork - is the root node
+    LUASCOINNetwork = 1000,
+    LUASCOINNetworkVariable = 1001,
     Category = 1002,
 
     // Actors

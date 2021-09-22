@@ -137,7 +137,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../lua.qrc"/>
+  <include location="../luascoin.qrc"/>
  </resources>
  <connections/>
 </ui>

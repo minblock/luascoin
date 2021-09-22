@@ -1,0 +1,2 @@
+usr/local/bin/luascoind usr/bin
+usr/local/bin/luascoin-cli usr/bin

@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_ALERT_H
-#define LUA_ALERT_H
+#ifndef LUASCOIN_ALERT_H
+#define LUASCOIN_ALERT_H
 
 #include "serialize.h"
 #include "sync.h"
@@ -112,4 +112,4 @@ public:
     static CAlert getAlertByHash(const uint256 &hash);
 };
 
-#endif // LUA_ALERT_H
+#endif // LUASCOIN_ALERT_H

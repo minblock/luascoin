@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_WALLETMODELTRANSACTION_H
-#define LUA_QT_WALLETMODELTRANSACTION_H
+#ifndef LUASCOIN_QT_WALLETMODELTRANSACTION_H
+#define LUASCOIN_QT_WALLETMODELTRANSACTION_H
 
 #include "walletmodel.h"
 
@@ -44,4 +44,4 @@ private:
     CAmount fee;
 };
 
-#endif // LUA_QT_WALLETMODELTRANSACTION_H
+#endif // LUASCOIN_QT_WALLETMODELTRANSACTION_H

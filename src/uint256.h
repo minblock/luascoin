@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_UINT256_H
-#define LUA_UINT256_H
+#ifndef LUASCOIN_UINT256_H
+#define LUASCOIN_UINT256_H
 
 #include <assert.h>
 #include <cstring>
@@ -185,4 +185,4 @@ public:
 };
 
 
-#endif // LUA_UINT256_H
+#endif // LUASCOIN_UINT256_H

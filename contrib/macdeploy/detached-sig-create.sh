@@ -2,7 +2,7 @@
 set -e
 
 ROOTDIR=dist
-BUNDLE="${ROOTDIR}/LUA-Qt.app"
+BUNDLE="${ROOTDIR}/LUASCOIN-Qt.app"
 CODESIGN=codesign
 TEMPDIR=sign.temp
 TEMPLIST=${TEMPDIR}/signatures.txt

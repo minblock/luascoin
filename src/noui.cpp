@@ -52,7 +52,7 @@ static void noui_InitMessage(const std::string& message)
 
 void noui_connect()
 {
-    // Connect luad signal handlers
+    // Connect luascoind signal handlers
     uiInterface.ThreadSafeMessageBox.connect(noui_ThreadSafeMessageBox);
     uiInterface.ThreadSafeQuestion.connect(noui_ThreadSafeQuestion);
     uiInterface.InitMessage.connect(noui_InitMessage);

@@ -13,11 +13,11 @@
 # but less mature coinbase spends are NOT.
 #
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 
 # Create one-input, one-output, no-fee transaction:
-class MempoolSpendCoinbaseTest(LUATestFramework):
+class MempoolSpendCoinbaseTest(LUASCOINTestFramework):
 
     def setup_network(self):
         # Just need one node for this test

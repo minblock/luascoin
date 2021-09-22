@@ -212,7 +212,7 @@ void WalletModel::updateWatchOnlyFlag(bool fHaveWatchonly)
 
 bool WalletModel::validateAddress(const QString &address)
 {
-    CLUAAddress addressParsed(address.toStdString());
+    CLUASCOINAddress addressParsed(address.toStdString());
     return addressParsed.IsValid();
 }
 
@@ -264,7 +264,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             total += subtotal;
         }
         else
-        {   // User-entered lua address / amount:
+        {   // User-entered luascoin address / amount:
             if(!validateAddress(rcp.address))
             {
                 return InvalidAddress;
@@ -276,7 +276,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             setAddress.insert(rcp.address);
             ++nAddresses;
 
-            CScript scriptPubKey = GetScriptForDestination(CLUAAddress(rcp.address.toStdString()).Get());
+            CScript scriptPubKey = GetScriptForDestination(CLUASCOINAddress(rcp.address.toStdString()).Get());
             CRecipient recipient = {scriptPubKey, rcp.amount, rcp.fSubtractFeeFromAmount};
             vecSend.push_back(recipient);
 
@@ -308,7 +308,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
         CReserveKey *keyChange = transaction.getPossibleKeyChange();
 
         if(recipients[0].fUseInstantSend && total > sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)*COIN){
-            Q_EMIT message(tr("Send Coins"), tr("Instant Send doesn't support sending values that high yet. Transactions are currently limited to %1 LUA.").arg(sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)),
+            Q_EMIT message(tr("Send Coins"), tr("Instant Send doesn't support sending values that high yet. Transactions are currently limited to %1 LUASCOIN.").arg(sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)),
                          CClientUIInterface::MSG_ERROR);
             return TransactionCreationFailed;
         }
@@ -320,7 +320,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
 
         if(recipients[0].fUseInstantSend) {
             if(newTx->GetValueOut() > sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)*COIN) {
-                Q_EMIT message(tr("Send Coins"), tr("Instant Send doesn't support sending values that high yet. Transactions are currently limited to %1 LUA.").arg(sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)),
+                Q_EMIT message(tr("Send Coins"), tr("Instant Send doesn't support sending values that high yet. Transactions are currently limited to %1 LUASCOIN.").arg(sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)),
                              CClientUIInterface::MSG_ERROR);
                 return TransactionCreationFailed;
             }
@@ -375,7 +375,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
                 rcp.paymentRequest.SerializeToString(&value);
                 newTx->vOrderForm.push_back(make_pair(key, value));
             }
-            else if (!rcp.message.isEmpty()) // Message from normal lua:URI (lua:XyZ...?message=example)
+            else if (!rcp.message.isEmpty()) // Message from normal luascoin:URI (luascoin:XyZ...?message=example)
             {
                 newTx->vOrderForm.push_back(make_pair("Message", rcp.message.toStdString()));
             }
@@ -400,7 +400,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
         if (!rcp.paymentRequest.IsInitialized())
         {
             std::string strAddress = rcp.address.toStdString();
-            CTxDestination dest = CLUAAddress(strAddress).Get();
+            CTxDestination dest = CLUASCOINAddress(strAddress).Get();
             std::string strLabel = rcp.label.toStdString();
             {
                 LOCK(wallet->cs_wallet);
@@ -520,7 +520,7 @@ static void NotifyAddressBookChanged(WalletModel *walletmodel, CWallet *wallet,
         const CTxDestination &address, const std::string &label, bool isMine,
         const std::string &purpose, ChangeType status)
 {
-    QString strAddress = QString::fromStdString(CLUAAddress(address).ToString());
+    QString strAddress = QString::fromStdString(CLUASCOINAddress(address).ToString());
     QString strLabel = QString::fromStdString(label);
     QString strPurpose = QString::fromStdString(purpose);
 
@@ -694,7 +694,7 @@ void WalletModel::listCoins(std::map<QString, std::vector<COutput> >& mapCoins) 
         CTxDestination address;
         if(!out.fSpendable || !ExtractDestination(cout.tx->vout[cout.i].scriptPubKey, address))
             continue;
-        mapCoins[QString::fromStdString(CLUAAddress(address).ToString())].push_back(out);
+        mapCoins[QString::fromStdString(CLUASCOINAddress(address).ToString())].push_back(out);
     }
 }
 
@@ -733,7 +733,7 @@ void WalletModel::loadReceiveRequests(std::vector<std::string>& vReceiveRequests
 
 bool WalletModel::saveReceiveRequest(const std::string &sAddress, const int64_t nId, const std::string &sRequest)
 {
-    CTxDestination dest = CLUAAddress(sAddress).Get();
+    CTxDestination dest = CLUASCOINAddress(sAddress).Get();
 
     std::stringstream ss;
     ss << nId;

@@ -7,7 +7,7 @@
 #include "overviewpage.h"
 #include "ui_overviewpage.h"
 
-#include "luaunits.h"
+#include "luascoinunits.h"
 #include "clientmodel.h"
 #include "guiconstants.h"
 #include "guiutil.h"
@@ -39,7 +39,7 @@ class TxViewDelegate : public QAbstractItemDelegate
     Q_OBJECT
 public:
     TxViewDelegate(const PlatformStyle *_platformStyle, QObject *parent=nullptr):
-        QAbstractItemDelegate(parent), unit(LUAUnits::LUA),
+        QAbstractItemDelegate(parent), unit(LUASCOINUnits::LUASCOIN),
         platformStyle(_platformStyle)
     {
 
@@ -98,7 +98,7 @@ public:
             foreground = option.palette.color(QPalette::Text);
         }
         painter->setPen(foreground);
-        QString amountText = LUAUnits::floorWithUnit(unit, amount, true, LUAUnits::separatorAlways);
+        QString amountText = LUASCOINUnits::floorWithUnit(unit, amount, true, LUASCOINUnits::separatorAlways);
         if(!confirmed)
         {
             amountText = QString("[") + amountText + QString("]");
@@ -310,15 +310,15 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     currentWatchOnlyBalance = watchOnlyBalance;
     currentWatchUnconfBalance = watchUnconfBalance;
     currentWatchImmatureBalance = watchImmatureBalance;
-    ui->labelBalance->setText(LUAUnits::floorHtmlWithUnit(nDisplayUnit, balance, false, LUAUnits::separatorAlways));
-    ui->labelUnconfirmed->setText(LUAUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedBalance, false, LUAUnits::separatorAlways));
-    ui->labelImmature->setText(LUAUnits::floorHtmlWithUnit(nDisplayUnit, immatureBalance, false, LUAUnits::separatorAlways));
-    ui->labelAnonymized->setText(LUAUnits::floorHtmlWithUnit(nDisplayUnit, anonymizedBalance, false, LUAUnits::separatorAlways));
-    ui->labelTotal->setText(LUAUnits::floorHtmlWithUnit(nDisplayUnit, balance + unconfirmedBalance + immatureBalance, false, LUAUnits::separatorAlways));
-    ui->labelWatchAvailable->setText(LUAUnits::floorHtmlWithUnit(nDisplayUnit, watchOnlyBalance, false, LUAUnits::separatorAlways));
-    ui->labelWatchPending->setText(LUAUnits::floorHtmlWithUnit(nDisplayUnit, watchUnconfBalance, false, LUAUnits::separatorAlways));
-    ui->labelWatchImmature->setText(LUAUnits::floorHtmlWithUnit(nDisplayUnit, watchImmatureBalance, false, LUAUnits::separatorAlways));
-    ui->labelWatchTotal->setText(LUAUnits::floorHtmlWithUnit(nDisplayUnit, watchOnlyBalance + watchUnconfBalance + watchImmatureBalance, false, LUAUnits::separatorAlways));
+    ui->labelBalance->setText(LUASCOINUnits::floorHtmlWithUnit(nDisplayUnit, balance, false, LUASCOINUnits::separatorAlways));
+    ui->labelUnconfirmed->setText(LUASCOINUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedBalance, false, LUASCOINUnits::separatorAlways));
+    ui->labelImmature->setText(LUASCOINUnits::floorHtmlWithUnit(nDisplayUnit, immatureBalance, false, LUASCOINUnits::separatorAlways));
+    ui->labelAnonymized->setText(LUASCOINUnits::floorHtmlWithUnit(nDisplayUnit, anonymizedBalance, false, LUASCOINUnits::separatorAlways));
+    ui->labelTotal->setText(LUASCOINUnits::floorHtmlWithUnit(nDisplayUnit, balance + unconfirmedBalance + immatureBalance, false, LUASCOINUnits::separatorAlways));
+    ui->labelWatchAvailable->setText(LUASCOINUnits::floorHtmlWithUnit(nDisplayUnit, watchOnlyBalance, false, LUASCOINUnits::separatorAlways));
+    ui->labelWatchPending->setText(LUASCOINUnits::floorHtmlWithUnit(nDisplayUnit, watchUnconfBalance, false, LUASCOINUnits::separatorAlways));
+    ui->labelWatchImmature->setText(LUASCOINUnits::floorHtmlWithUnit(nDisplayUnit, watchImmatureBalance, false, LUASCOINUnits::separatorAlways));
+    ui->labelWatchTotal->setText(LUASCOINUnits::floorHtmlWithUnit(nDisplayUnit, watchOnlyBalance + watchUnconfBalance + watchImmatureBalance, false, LUASCOINUnits::separatorAlways));
 
     // only show immature (newly mined) balance if it's non-zero, so as not to complicate things
     // for the non-mining users
@@ -420,7 +420,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
     this->walletModel = model;
     if(model && model->getOptionsModel())
     {
-        // update the display unit, to not use the default ("LUA")
+        // update the display unit, to not use the default ("LUASCOIN")
         updateDisplayUnit();
         // Keep up to date with wallet
         setBalance(model->getBalance(), model->getUnconfirmedBalance(), model->getImmatureBalance(), model->getAnonymizedBalance(),
@@ -479,7 +479,7 @@ void OverviewPage::updatePrivateSendProgress()
     if(!pwalletMain) return;
 
     QString strAmountAndRounds;
-    QString strPrivateSendAmount = LUAUnits::formatHtmlWithUnit(nDisplayUnit, privateSendClient.nPrivateSendAmount * COIN, false, LUAUnits::separatorAlways);
+    QString strPrivateSendAmount = LUASCOINUnits::formatHtmlWithUnit(nDisplayUnit, privateSendClient.nPrivateSendAmount * COIN, false, LUASCOINUnits::separatorAlways);
 
     if(currentBalance == 0)
     {
@@ -487,7 +487,7 @@ void OverviewPage::updatePrivateSendProgress()
         ui->privateSendProgress->setToolTip(tr("No inputs detected"));
 
         // when balance is zero just show info from settings
-        strPrivateSendAmount = strPrivateSendAmount.remove(strPrivateSendAmount.indexOf("."), LUAUnits::decimals(nDisplayUnit) + 1);
+        strPrivateSendAmount = strPrivateSendAmount.remove(strPrivateSendAmount.indexOf("."), LUASCOINUnits::decimals(nDisplayUnit) + 1);
         strAmountAndRounds = strPrivateSendAmount + " / " + tr("%n Rounds", "", privateSendClient.nPrivateSendRounds);
 
         ui->labelAmountRounds->setToolTip(tr("No inputs detected"));
@@ -507,17 +507,17 @@ void OverviewPage::updatePrivateSendProgress()
     if(nMaxToAnonymize >= privateSendClient.nPrivateSendAmount * COIN) {
         ui->labelAmountRounds->setToolTip(tr("Found enough compatible inputs to anonymize %1")
                                           .arg(strPrivateSendAmount));
-        strPrivateSendAmount = strPrivateSendAmount.remove(strPrivateSendAmount.indexOf("."), LUAUnits::decimals(nDisplayUnit) + 1);
+        strPrivateSendAmount = strPrivateSendAmount.remove(strPrivateSendAmount.indexOf("."), LUASCOINUnits::decimals(nDisplayUnit) + 1);
         strAmountAndRounds = strPrivateSendAmount + " / " + tr("%n Rounds", "", privateSendClient.nPrivateSendRounds);
     } else {
-        QString strMaxToAnonymize = LUAUnits::formatHtmlWithUnit(nDisplayUnit, nMaxToAnonymize, false, LUAUnits::separatorAlways);
+        QString strMaxToAnonymize = LUASCOINUnits::formatHtmlWithUnit(nDisplayUnit, nMaxToAnonymize, false, LUASCOINUnits::separatorAlways);
         ui->labelAmountRounds->setToolTip(tr("Not enough compatible inputs to anonymize <span style='color:red;'>%1</span>,<br>"
                                              "will anonymize <span style='color:red;'>%2</span> instead")
                                           .arg(strPrivateSendAmount)
                                           .arg(strMaxToAnonymize));
-        strMaxToAnonymize = strMaxToAnonymize.remove(strMaxToAnonymize.indexOf("."), LUAUnits::decimals(nDisplayUnit) + 1);
+        strMaxToAnonymize = strMaxToAnonymize.remove(strMaxToAnonymize.indexOf("."), LUASCOINUnits::decimals(nDisplayUnit) + 1);
         strAmountAndRounds = "<span style='color:red;'>" +
-                QString(LUAUnits::factor(nDisplayUnit) == 1 ? "" : "~") + strMaxToAnonymize +
+                QString(LUASCOINUnits::factor(nDisplayUnit) == 1 ? "" : "~") + strMaxToAnonymize +
                 " / " + tr("%n Rounds", "", privateSendClient.nPrivateSendRounds) + "</span>";
     }
     ui->labelAmountRounds->setText(strAmountAndRounds);
@@ -748,7 +748,7 @@ void OverviewPage::togglePrivateSend(){
     if(!privateSendClient.fEnablePrivateSend){
         const CAmount nMinAmount = CPrivateSend::GetSmallestDenomination() + CPrivateSend::GetMaxCollateralAmount();
         if(currentBalance < nMinAmount){
-            QString strMinAmount(LUAUnits::formatWithUnit(nDisplayUnit, nMinAmount));
+            QString strMinAmount(LUASCOINUnits::formatWithUnit(nDisplayUnit, nMinAmount));
             QMessageBox::warning(this, tr("PrivateSend"),
                 tr("PrivateSend requires at least %1 to use.").arg(strMinAmount),
                 QMessageBox::Ok, QMessageBox::Ok);

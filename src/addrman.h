@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_ADDRMAN_H
-#define LUA_ADDRMAN_H
+#ifndef LUASCOIN_ADDRMAN_H
+#define LUASCOIN_ADDRMAN_H
 
 #include "netaddress.h"
 #include "protocol.h"
@@ -585,4 +585,4 @@ public:
 
 };
 
-#endif // LUA_ADDRMAN_H
+#endif // LUASCOIN_ADDRMAN_H

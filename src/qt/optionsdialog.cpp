@@ -3,13 +3,13 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/lua-config.h"
+#include "config/luascoin-config.h"
 #endif
 
 #include "optionsdialog.h"
 #include "ui_optionsdialog.h"
 
-#include "luaunits.h"
+#include "luascoinunits.h"
 #include "guiutil.h"
 #include "optionsmodel.h"
 
@@ -92,11 +92,11 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     }
     
     /* Theme selector */
-    ui->theme->addItem(QString("LUA-light"), QVariant("light"));
-    ui->theme->addItem(QString("LUA-light-hires"), QVariant("light-hires"));
-    ui->theme->addItem(QString("LUA-blue"), QVariant("drkblue"));
-    ui->theme->addItem(QString("LUA-Crownium"), QVariant("crownium"));
-    ui->theme->addItem(QString("LUA-traditional"), QVariant("trad"));
+    ui->theme->addItem(QString("LUASCOIN-light"), QVariant("light"));
+    ui->theme->addItem(QString("LUASCOIN-light-hires"), QVariant("light-hires"));
+    ui->theme->addItem(QString("LUASCOIN-blue"), QVariant("drkblue"));
+    ui->theme->addItem(QString("LUASCOIN-Crownium"), QVariant("crownium"));
+    ui->theme->addItem(QString("LUASCOIN-traditional"), QVariant("trad"));
     
     /* Language selector */
     QDir translations(":translations");
@@ -131,7 +131,7 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     ui->thirdPartyTxUrls->setPlaceholderText("https://example.com/tx/%s");
 #endif
 
-    ui->unit->setModel(new LUAUnits(this));
+    ui->unit->setModel(new LUASCOINUnits(this));
 
     /* Widget-to-option mapper */
     mapper = new QDataWidgetMapper(this);
@@ -196,7 +196,7 @@ void OptionsDialog::setModel(OptionsModel *model)
 void OptionsDialog::setMapper()
 {
     /* Main */
-    mapper->addMapping(ui->luaAtStartup, OptionsModel::StartAtStartup);
+    mapper->addMapping(ui->luascoinAtStartup, OptionsModel::StartAtStartup);
     mapper->addMapping(ui->threadsScriptVerif, OptionsModel::ThreadsScriptVerif);
     mapper->addMapping(ui->databaseCache, OptionsModel::DatabaseCache);
 

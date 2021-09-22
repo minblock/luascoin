@@ -7,7 +7,7 @@
 # Test ZMQ interface
 #
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 import zmq
 import binascii
@@ -21,7 +21,7 @@ try:
 except ImportError:
     import urlparse
 
-class ZMQTest (LUATestFramework):
+class ZMQTest (LUASCOINTestFramework):
 
     port = 28332
 

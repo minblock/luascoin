@@ -180,7 +180,7 @@ void Intro::pickDataDirectory()
         /* Let the user choose one */
         Intro intro;
         intro.setDataDirectory(dataDirDefaultCurrent);
-        intro.setWindowIcon(QIcon(":icons/lua"));
+        intro.setWindowIcon(QIcon(":icons/luascoin"));
 
         while(true)
         {
@@ -194,7 +194,7 @@ void Intro::pickDataDirectory()
                 TryCreateDirectory(GUIUtil::qstringToBoostPath(dataDir));
                 break;
             } catch (const fs::filesystem_error&) {
-                QMessageBox::critical(0, tr("LUA Core"),
+                QMessageBox::critical(0, tr("LUASCOIN Core"),
                     tr("Error: Specified data directory \"%1\" cannot be created.").arg(dataDir));
                 /* fall through, back to choosing screen */
             }
@@ -204,8 +204,8 @@ void Intro::pickDataDirectory()
         settings.setValue("strDataDirDefault", dataDirDefaultCurrent);
     }
     /* Only override -datadir if different from the default, to make it possible to
-     * override -datadir in the lua.conf file in the default data directory
-     * (to be consistent with luad behavior)
+     * override -datadir in the luascoin.conf file in the default data directory
+     * (to be consistent with luascoind behavior)
      */
     if(dataDir != dataDirDefaultCurrent)
         SoftSetArg("-datadir", GUIUtil::qstringToBoostPath(dataDir).string()); // use OS locale for path setting

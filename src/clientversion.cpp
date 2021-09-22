@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both luad and lua-qt, to make it harder for attackers to
+ * for both luascoind and luascoin-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("LUA Core");
+const std::string CLIENT_NAME("LUASCOIN Core");
 
 /**
  * Client version number
@@ -92,7 +92,7 @@ std::string FormatFullVersion()
 }
 
 /** 
- * Format the subversion field according to BIP 14 spec (https://github.com/lua/bips/blob/master/bip-0014.mediawiki) 
+ * Format the subversion field according to BIP 14 spec (https://github.com/luascoin/bips/blob/master/bip-0014.mediawiki) 
  */
 std::string FormatSubVersion(const std::string& name, int nClientVersion, const std::vector<std::string>& comments)
 {

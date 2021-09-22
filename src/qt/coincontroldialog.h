@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_COINCONTROLDIALOG_H
-#define LUA_QT_COINCONTROLDIALOG_H
+#ifndef LUASCOIN_QT_COINCONTROLDIALOG_H
+#define LUASCOIN_QT_COINCONTROLDIALOG_H
 
 #include "amount.h"
 
@@ -124,4 +124,4 @@ private Q_SLOTS:
     void updateLabelLocked();
 };
 
-#endif // LUA_QT_COINCONTROLDIALOG_H
+#endif // LUASCOIN_QT_COINCONTROLDIALOG_H

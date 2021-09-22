@@ -1,9 +1,9 @@
 Gitian building
 ================
 
-*Setup instructions for a Gitian build of LUA Core using a Debian VM or physical system.*
+*Setup instructions for a Gitian build of LUASCOIN Core using a Debian VM or physical system.*
 
-Gitian is the deterministic build process that is used to build the LUA
+Gitian is the deterministic build process that is used to build the LUASCOIN
 Core executables. It provides a way to be reasonably sure that the
 executables are really built from the source on GitHub. It also makes sure that
 the same, tested dependencies are used and statically built into the executable.
@@ -11,7 +11,7 @@ the same, tested dependencies are used and statically built into the executable.
 Multiple developers build the source code by following a specific descriptor
 ("recipe"), cryptographically sign the result, and upload the resulting signature.
 These results are compared and only if they match, the build is accepted and uploaded
-to lua.org.
+to luascoin.org.
 
 More independent Gitian builders are needed, which is why this guide exists.
 It is preferred you follow these steps yourself instead of using someone else's
@@ -26,7 +26,7 @@ Table of Contents
 - [Installing Gitian](#installing-gitian)
 - [Setting up the Gitian image](#setting-up-the-gitian-image)
 - [Getting and building the inputs](#getting-and-building-the-inputs)
-- [Building LUA Core](#building-lua-core)
+- [Building LUASCOIN Core](#building-luascoin-core)
 - [Building an alternative repository](#building-an-alternative-repository)
 - [Signing externally](#signing-externally)
 - [Uploading signatures](#uploading-signatures)
@@ -41,7 +41,7 @@ Debian Linux was chosen as the host distribution because it has a lightweight in
 Any kind of virtualization can be used, for example:
 - [VirtualBox](https://www.virtualbox.org/) (covered by this guide)
 - [KVM](http://www.linux-kvm.org/page/Main_Page)
-- [LXC](https://linuxcontainers.org/), see also [Gitian host docker container](https://github.com/gdm85/tenku/tree/master/docker/gitian-lua-host/README.md).
+- [LXC](https://linuxcontainers.org/), see also [Gitian host docker container](https://github.com/gdm85/tenku/tree/master/docker/gitian-luascoin-host/README.md).
 
 You can also install Gitian on actual hardware instead of using virtualization.
 
@@ -300,11 +300,11 @@ cd ..
 
 **Note**: When sudo asks for a password, enter the password for the user *debian* not for *root*.
 
-Clone the git repositories for LUA Core and Gitian.
+Clone the git repositories for LUASCOIN Core and Gitian.
 
 ```bash
 git clone https://github.com/devrandom/gitian-builder.git
-git clone https://github.com/minblock/lua
+git clone https://github.com/luascoincrypto/luascoin
 ```
 
 Setting up the Gitian image
@@ -339,16 +339,16 @@ Getting and building the inputs
 --------------------------------
 
 Follow the instructions in [doc/release-process.md](release-process.md#fetch-and-build-inputs-first-time-or-when-dependency-versions-change)
-in the LUA Core repository under 'Fetch and build inputs' to install sources which require
+in the LUASCOIN Core repository under 'Fetch and build inputs' to install sources which require
 manual intervention. Also optionally follow the next step: 'Seed the Gitian sources cache
 and offline git repositories' which will fetch the remaining files required for building
 offline.
 
-Building LUA Core
+Building LUASCOIN Core
 ----------------
 
-To build LUA Core (for Linux, OS X and Windows) just follow the steps under 'perform
-Gitian builds' in [doc/release-process.md](release-process.md#perform-gitian-builds) in the LUA Core repository.
+To build LUASCOIN Core (for Linux, OS X and Windows) just follow the steps under 'perform
+Gitian builds' in [doc/release-process.md](release-process.md#perform-gitian-builds) in the LUASCOIN Core repository.
 
 This may take some time as it will build all the dependencies needed for each descriptor.
 These dependencies will be cached after a successful build to avoid rebuilding them when possible.
@@ -363,12 +363,12 @@ tail -f var/build.log
 Output from `gbuild` will look something like
 
 ```bash
-    Initialized empty Git repository in /home/debian/gitian-builder/inputs/lua/.git/
+    Initialized empty Git repository in /home/debian/gitian-builder/inputs/luascoin/.git/
     remote: Counting objects: 57959, done.
     remote: Total 57959 (delta 0), reused 0 (delta 0), pack-reused 57958
     Receiving objects: 100% (57959/57959), 53.76 MiB | 484.00 KiB/s, done.
     Resolving deltas: 100% (41590/41590), done.
-    From https://github.com/minblock/lua
+    From https://github.com/luascoincrypto/luascoin
     ... (new tags, new branch etc)
     --- Building for precise amd64 ---
     Stopping target if it is up
@@ -394,18 +394,18 @@ and inputs.
 
 For example:
 ```bash
-URL=https://github.com/crowning-/lua.git
+URL=https://github.com/crowning-/luascoin.git
 COMMIT=b616fb8ef0d49a919b72b0388b091aaec5849b96
-./bin/gbuild --commit lua=${COMMIT} --url lua=${URL} ../lua/contrib/gitian-descriptors/gitian-linux.yml
-./bin/gbuild --commit lua=${COMMIT} --url lua=${URL} ../lua/contrib/gitian-descriptors/gitian-win.yml
-./bin/gbuild --commit lua=${COMMIT} --url lua=${URL} ../lua/contrib/gitian-descriptors/gitian-osx.yml
+./bin/gbuild --commit luascoin=${COMMIT} --url luascoin=${URL} ../luascoin/contrib/gitian-descriptors/gitian-linux.yml
+./bin/gbuild --commit luascoin=${COMMIT} --url luascoin=${URL} ../luascoin/contrib/gitian-descriptors/gitian-win.yml
+./bin/gbuild --commit luascoin=${COMMIT} --url luascoin=${URL} ../luascoin/contrib/gitian-descriptors/gitian-osx.yml
 ```
 
 Building fully offline
 -----------------------
 
 For building fully offline including attaching signatures to unsigned builds, the detached-sigs repository
-and the lua git repository with the desired tag must both be available locally, and then gbuild must be
+and the luascoin git repository with the desired tag must both be available locally, and then gbuild must be
 told where to find them. It also requires an apt-cacher-ng which is fully-populated but set to offline mode, or
 manually disabling gitian-builder's use of apt-get to update the VM build environment.
 
@@ -424,7 +424,7 @@ cd /path/to/gitian-builder
 LXC_ARCH=amd64 LXC_SUITE=precise on-target -u root apt-get update
 LXC_ARCH=amd64 LXC_SUITE=precise on-target -u root \
   -e DEBIAN_FRONTEND=noninteractive apt-get --no-install-recommends -y install \
-  $( sed -ne '/^packages:/,/[^-] .*/ {/^- .*/{s/"//g;s/- //;p}}' ../lua/contrib/gitian-descriptors/*|sort|uniq )
+  $( sed -ne '/^packages:/,/[^-] .*/ {/^- .*/{s/"//g;s/- //;p}}' ../luascoin/contrib/gitian-descriptors/*|sort|uniq )
 LXC_ARCH=amd64 LXC_SUITE=precise on-target -u root apt-get -q -y purge grub
 LXC_ARCH=amd64 LXC_SUITE=precise on-target -u root -e DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
 ```
@@ -444,12 +444,12 @@ Then when building, override the remote URLs that gbuild would otherwise pull fr
 ```bash
 
 cd /some/root/path/
-git clone https://github.com/minblock/lua-detached-sigs.git
+git clone https://github.com/luascoincrypto/luascoin-detached-sigs.git
 
-LUAPATH=/some/root/path/lua.git
-SIGPATH=/some/root/path/lua-detached-sigs.git
+LUASCOINPATH=/some/root/path/luascoin.git
+SIGPATH=/some/root/path/luascoin-detached-sigs.git
 
-./bin/gbuild --url lua=${LUAPATH},signature=${SIGPATH} ../lua/contrib/gitian-descriptors/gitian-win-signer.yml
+./bin/gbuild --url luascoin=${LUASCOINPATH},signature=${SIGPATH} ../luascoin/contrib/gitian-descriptors/gitian-win-signer.yml
 ```
 
 Signing externally
@@ -464,9 +464,9 @@ When you execute `gsign` you will get an error from GPG, which can be ignored. C
 in `gitian.sigs` to your signing machine and do
 
 ```bash
-    gpg --detach-sign ${VERSION}-linux/${SIGNER}/lua-linux-build.assert
-    gpg --detach-sign ${VERSION}-win/${SIGNER}/lua-win-build.assert
-    gpg --detach-sign ${VERSION}-osx-unsigned/${SIGNER}/lua-osx-build.assert
+    gpg --detach-sign ${VERSION}-linux/${SIGNER}/luascoin-linux-build.assert
+    gpg --detach-sign ${VERSION}-win/${SIGNER}/luascoin-win-build.assert
+    gpg --detach-sign ${VERSION}-osx-unsigned/${SIGNER}/luascoin-osx-build.assert
 ```
 
 This will create the `.sig` files that can be committed together with the `.assert` files to assert your
@@ -476,6 +476,6 @@ Uploading signatures (not yet implemented)
 ---------------------
 
 In the future it will be possible to push your signatures (both the `.assert` and `.assert.sig` files) to the
-[lua/gitian.sigs](https://github.com/minblock/gitian.sigs/) repository, or if that's not possible to create a pull
+[luascoin/gitian.sigs](https://github.com/luascoincrypto/gitian.sigs/) repository, or if that's not possible to create a pull
 request.
 There will be an official announcement when this repository is online.

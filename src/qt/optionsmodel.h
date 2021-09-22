@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_OPTIONSMODEL_H
-#define LUA_QT_OPTIONSMODEL_H
+#ifndef LUASCOIN_QT_OPTIONSMODEL_H
+#define LUASCOIN_QT_OPTIONSMODEL_H
 
 #include "amount.h"
 
@@ -13,7 +13,7 @@ QT_BEGIN_NAMESPACE
 class QNetworkProxy;
 QT_END_NAMESPACE
 
-/** Interface from Qt to configuration data structure for LUA client.
+/** Interface from Qt to configuration data structure for LUASCOIN client.
    To Qt, the options are presented as a list with the different options
    laid out vertically.
    This can be changed to a tree once the settings become sufficiently
@@ -38,7 +38,7 @@ public:
         ProxyUseTor,            // bool
         ProxyIPTor,             // QString
         ProxyPortTor,           // int
-        DisplayUnit,            // LUAUnits::Unit
+        DisplayUnit,            // LUASCOINUnits::Unit
         ThirdPartyTxUrls,       // QString
         Digits,                 // QString
         Theme,                  // QString
@@ -107,4 +107,4 @@ Q_SIGNALS:
     void hideTrayIconChanged(bool);
 };
 
-#endif // LUA_QT_OPTIONSMODEL_H
+#endif // LUASCOIN_QT_OPTIONSMODEL_H

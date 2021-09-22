@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_TRANSACTIONRECORD_H
-#define LUA_QT_TRANSACTIONRECORD_H
+#ifndef LUASCOIN_QT_TRANSACTIONRECORD_H
+#define LUASCOIN_QT_TRANSACTIONRECORD_H
 
 #include "amount.h"
 #include "uint256.h"
@@ -150,4 +150,4 @@ public:
     bool statusUpdateNeeded();
 };
 
-#endif // LUA_QT_TRANSACTIONRECORD_H
+#endif // LUASCOIN_QT_TRANSACTIONRECORD_H

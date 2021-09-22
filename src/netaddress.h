@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_NETADDRESS_H
-#define LUA_NETADDRESS_H
+#ifndef LUASCOIN_NETADDRESS_H
+#define LUASCOIN_NETADDRESS_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/lua-config.h"
+#include "config/luascoin-config.h"
 #endif
 
 #include "compat.h"
@@ -167,4 +167,4 @@ class CService : public CNetAddr
         }
 };
 
-#endif // LUA_NETADDRESS_H
+#endif // LUASCOIN_NETADDRESS_H

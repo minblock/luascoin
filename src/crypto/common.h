@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_CRYPTO_COMMON_H
-#define LUA_CRYPTO_COMMON_H
+#ifndef LUASCOIN_CRYPTO_COMMON_H
+#define LUASCOIN_CRYPTO_COMMON_H
 
 #if defined(HAVE_CONFIG_H)
-#include "lua-config.h"
+#include "luascoin-config.h"
 #endif
 
 #include <stdint.h>
@@ -63,4 +63,4 @@ void static inline WriteBE64(unsigned char* ptr, uint64_t x)
     *((uint64_t*)ptr) = htobe64(x);
 }
 
-#endif // LUA_CRYPTO_COMMON_H
+#endif // LUASCOIN_CRYPTO_COMMON_H

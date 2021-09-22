@@ -2,13 +2,13 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_UTILITYDIALOG_H
-#define LUA_QT_UTILITYDIALOG_H
+#ifndef LUASCOIN_QT_UTILITYDIALOG_H
+#define LUASCOIN_QT_UTILITYDIALOG_H
 
 #include <QDialog>
 #include <QObject>
 
-class LUAGUI;
+class LUASCOINGUI;
 class ClientModel;
 
 namespace Ui {
@@ -49,10 +49,10 @@ class ShutdownWindow : public QWidget
 
 public:
     ShutdownWindow(QWidget *parent=0, Qt::WindowFlags f=0);
-    static QWidget *showShutdownWindow(LUAGUI *window);
+    static QWidget *showShutdownWindow(LUASCOINGUI *window);
 
 protected:
     void closeEvent(QCloseEvent *event);
 };
 
-#endif // LUA_QT_UTILITYDIALOG_H
+#endif // LUASCOIN_QT_UTILITYDIALOG_H

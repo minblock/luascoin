@@ -3,11 +3,11 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 
 
-class ZapWalletTXesTest (LUATestFramework):
+class ZapWalletTXesTest (LUASCOINTestFramework):
 
     def setup_chain(self):
         print("Initializing test directory "+self.options.tmpdir)
@@ -51,18 +51,18 @@ class ZapWalletTXesTest (LUATestFramework):
         tx3 = self.nodes[0].gettransaction(txid3)
         assert_equal(tx3['txid'], txid3) #tx3 must be available (unconfirmed)
         
-        #restart luad
+        #restart luascoind
         self.nodes[0].stop()
-        luad_processes[0].wait()
+        luascoind_processes[0].wait()
         self.nodes[0] = start_node(0,self.options.tmpdir)
         
         tx3 = self.nodes[0].gettransaction(txid3)
         assert_equal(tx3['txid'], txid3) #tx must be available (unconfirmed)
         
         self.nodes[0].stop()
-        luad_processes[0].wait()
+        luascoind_processes[0].wait()
         
-        #restart luad with zapwallettxes
+        #restart luascoind with zapwallettxes
         self.nodes[0] = start_node(0,self.options.tmpdir, ["-zapwallettxes=1"])
         
         assert_raises(JSONRPCException, self.nodes[0].gettransaction, [txid3])

@@ -5,7 +5,7 @@
 #include "support/pagelocker.h"
 
 #if defined(HAVE_CONFIG_H)
-#include "config/lua-config.h"
+#include "config/luascoin-config.h"
 #endif
 
 #ifdef WIN32

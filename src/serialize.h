@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_SERIALIZE_H
-#define LUA_SERIALIZE_H
+#ifndef LUASCOIN_SERIALIZE_H
+#define LUASCOIN_SERIALIZE_H
 
 #include "compat/endian.h"
 
@@ -1055,4 +1055,4 @@ inline void SerReadWriteMany(Stream& s, int nType, int nVersion, CSerActionUnser
     ::UnserializeMany(s, nType, nVersion, args...);
 }
 
-#endif // LUA_SERIALIZE_H
+#endif // LUASCOIN_SERIALIZE_H

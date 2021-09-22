@@ -6,9 +6,9 @@
 
 #include "sendcoinsdialog.h"
 #include "ui_sendcoinsdialog.h"
-#include "luagui.h"
+#include "luascoingui.h"
 #include "addresstablemodel.h"
-#include "luaunits.h"
+#include "luascoinunits.h"
 #include "clientmodel.h"
 #include "coincontroldialog.h"
 #include "guiutil.h"
@@ -72,7 +72,7 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *platformStyle, QWidget *pa
 
     connect(ui->addButton, SIGNAL(clicked()), this, SLOT(addEntry()));
     connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
-    //LUAGUI *btcGUI = ((LUAGUI*)this->parentWidget());
+    //LUASCOINGUI *btcGUI = ((LUASCOINGUI*)this->parentWidget());
     connect(ui->openURIButton, SIGNAL(clicked()), walletview->parentWidget()->parentWidget(), SLOT(openClicked()));
     connect(ui->sendingAddressesButton, SIGNAL(clicked()), walletview,  SLOT(usedSendingAddresses()));
 
@@ -82,7 +82,7 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *platformStyle, QWidget *pa
     connect(ui->checkBoxCoinControlChange, SIGNAL(stateChanged(int)), this, SLOT(coinControlChangeChecked(int)));
     connect(ui->lineEditCoinControlChange, SIGNAL(textEdited(const QString &)), this, SLOT(coinControlChangeEdited(const QString &)));
 
-    // LUA specific
+    // LUASCOIN specific
     QSettings settings;
     if (!settings.contains("bUseDarkSend"))
         settings.setValue("bUseDarkSend", false);
@@ -276,7 +276,7 @@ void SendCoinsDialog::on_sendButton_clicked()
         recipients[0].inputType = ONLY_DENOMINATED;
         strFunds = tr("using") + " <b>" + tr("anonymous funds") + "</b>";
         QString strNearestAmount(
-            LUAUnits::formatWithUnit(
+            LUASCOINUnits::formatWithUnit(
                 model->getOptionsModel()->getDisplayUnit(), CPrivateSend::GetSmallestDenomination()));
         strFee = QString(tr(
             "(PrivateSend requires this amount to be rounded up to the nearest %1)."
@@ -329,7 +329,7 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
 
     // process prepareStatus and on error generate message shown to user
     processSendCoinsReturn(prepareStatus,
-        LUAUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), currentTransaction.getTransactionFee()));
+        LUASCOINUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), currentTransaction.getTransactionFee()));
 
     if(prepareStatus.status != WalletModel::OK) {
         fNewRecipientAllowed = true;
@@ -343,7 +343,7 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
     Q_FOREACH(const SendCoinsRecipient &rcp, currentTransaction.getRecipients())
     {
         // generate bold amount string
-        QString amount = "<b>" + LUAUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), rcp.amount);
+        QString amount = "<b>" + LUASCOINUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), rcp.amount);
         amount.append("</b> ").append(strFunds);
 
         // generate monospace address string
@@ -383,7 +383,7 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
     {
         // append fee string if a fee is required
         questionString.append("<hr /><span style='color:#aa0000;'>");
-        questionString.append(LUAUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), txFee));
+        questionString.append(LUASCOINUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), txFee));
         questionString.append("</span> ");
         questionString.append(tr("are added as transaction fee"));
         questionString.append(" ");
@@ -397,15 +397,15 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
     questionString.append("<hr />");
     CAmount totalAmount = currentTransaction.getTotalTransactionAmount() + txFee;
     QStringList alternativeUnits;
-    Q_FOREACH(LUAUnits::Unit u, LUAUnits::availableUnits())
+    Q_FOREACH(LUASCOINUnits::Unit u, LUASCOINUnits::availableUnits())
     {
         if(u != model->getOptionsModel()->getDisplayUnit())
-            alternativeUnits.append(LUAUnits::formatHtmlWithUnit(u, totalAmount));
+            alternativeUnits.append(LUASCOINUnits::formatHtmlWithUnit(u, totalAmount));
     }
 
     // Show total amount + all alternative units
     questionString.append(tr("Total Amount = <b>%1</b><br />= %2")
-        .arg(LUAUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), totalAmount))
+        .arg(LUASCOINUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), totalAmount))
         .arg(alternativeUnits.join("<br />= ")));
 
     // Limit number of displayed entries
@@ -601,7 +601,7 @@ void SendCoinsDialog::setBalance(const CAmount& balance, const CAmount& unconfir
 		    bal = balance;
 	    }
 
-        ui->labelBalance->setText(LUAUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), bal));
+        ui->labelBalance->setText(LUASCOINUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), bal));
     }
 }
 
@@ -659,7 +659,7 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn 
         msgParams.second = CClientUIInterface::MSG_ERROR;
         break;
     case WalletModel::AbsurdFee:
-        msgParams.first = tr("A fee higher than %1 is considered an absurdly high fee.").arg(LUAUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), maxTxFee));
+        msgParams.first = tr("A fee higher than %1 is considered an absurdly high fee.").arg(LUASCOINUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), maxTxFee));
         break;
     case WalletModel::PaymentRequestExpired:
         msgParams.first = tr("Payment request expired.");
@@ -748,7 +748,7 @@ void SendCoinsDialog::updateFeeMinimizedLabel()
     if (ui->radioSmartFee->isChecked())
         ui->labelFeeMinimized->setText(ui->labelSmartFee->text());
     else {
-        ui->labelFeeMinimized->setText(LUAUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), ui->customFee->value()) +
+        ui->labelFeeMinimized->setText(LUASCOINUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), ui->customFee->value()) +
             ((ui->radioCustomPerKilobyte->isChecked()) ? "/kB" : ""));
     }
 }
@@ -757,7 +757,7 @@ void SendCoinsDialog::updateMinFeeLabel()
 {
     if (model && model->getOptionsModel())
         ui->checkBoxMinimumFee->setText(tr("Pay only the required fee of %1").arg(
-            LUAUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), CWallet::GetRequiredFee(1000)) + "/kB")
+            LUASCOINUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), CWallet::GetRequiredFee(1000)) + "/kB")
         );
 }
 
@@ -771,14 +771,14 @@ void SendCoinsDialog::updateSmartFeeLabel()
     CFeeRate feeRate = mempool.estimateSmartFee(nBlocksToConfirm, &estimateFoundAtBlocks);
     if (feeRate <= CFeeRate(0)) // not enough data => minfee
     {
-        ui->labelSmartFee->setText(LUAUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(),
+        ui->labelSmartFee->setText(LUASCOINUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(),
                                                                 std::max(CWallet::fallbackFee.GetFeePerK(), CWallet::GetRequiredFee(1000))) + "/kB");
         ui->labelSmartFee2->show(); // (Smart fee not initialized yet. This usually takes a few blocks...)
         ui->labelFeeEstimation->setText("");
     }
     else
     {
-        ui->labelSmartFee->setText(LUAUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(),
+        ui->labelSmartFee->setText(LUASCOINUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(),
                                                                 std::max(feeRate.GetFeePerK(), CWallet::GetRequiredFee(1000))) + "/kB");
         ui->labelSmartFee2->hide();
         ui->labelFeeEstimation->setText(tr("Estimated to begin confirmation within %n block(s).", "", estimateFoundAtBlocks));
@@ -873,7 +873,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         CoinControlDialog::coinControl->destChange = CNoDestination();
         ui->labelCoinControlChangeLabel->setStyleSheet("QLabel{color:red;}");
 
-        CLUAAddress addr = CLUAAddress(text.toStdString());
+        CLUASCOINAddress addr = CLUASCOINAddress(text.toStdString());
 
         if (text.isEmpty()) // Nothing entered
         {
@@ -881,7 +881,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!addr.IsValid()) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid LUA address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid LUASCOIN address"));
         }
         else // Valid address
         {

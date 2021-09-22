@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_CORE_MEMUSAGE_H
-#define LUA_CORE_MEMUSAGE_H
+#ifndef LUASCOIN_CORE_MEMUSAGE_H
+#define LUASCOIN_CORE_MEMUSAGE_H
 
 #include "primitives/transaction.h"
 #include "primitives/block.h"
@@ -59,4 +59,4 @@ static inline size_t RecursiveDynamicUsage(const CBlockLocator& locator) {
     return memusage::DynamicUsage(locator.vHave);
 }
 
-#endif // LUA_CORE_MEMUSAGE_H
+#endif // LUASCOIN_CORE_MEMUSAGE_H

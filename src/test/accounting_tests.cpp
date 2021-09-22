@@ -5,7 +5,7 @@
 #include "wallet/wallet.h"
 #include "wallet/walletdb.h"
 
-#include "test/test_lua.h"
+#include "test/test_luascoin.h"
 
 #include <stdint.h>
 

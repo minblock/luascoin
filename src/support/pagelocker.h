@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_SUPPORT_PAGELOCKER_H
-#define LUA_SUPPORT_PAGELOCKER_H
+#ifndef LUASCOIN_SUPPORT_PAGELOCKER_H
+#define LUASCOIN_SUPPORT_PAGELOCKER_H
 
 #include "support/cleanse.h"
 
@@ -174,4 +174,4 @@ void UnlockObject(const T& t)
     LockedPageManager::Instance().UnlockRange((void*)(&t), sizeof(T));
 }
 
-#endif // LUA_SUPPORT_PAGELOCKER_H
+#endif // LUASCOIN_SUPPORT_PAGELOCKER_H

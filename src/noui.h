@@ -2,9 +2,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_NOUI_H
-#define LUA_NOUI_H
+#ifndef LUASCOIN_NOUI_H
+#define LUASCOIN_NOUI_H
 
 extern void noui_connect();
 
-#endif // LUA_NOUI_H
+#endif // LUASCOIN_NOUI_H

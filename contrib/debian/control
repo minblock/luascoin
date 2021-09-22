@@ -1,8 +1,8 @@
-Source: lua
+Source: luascoin
 Section: utils
 Priority: optional
-Maintainer: Holger Schinzel <holger@lua.org>
-Uploaders: Holger Schinzel <holger@lua.org>
+Maintainer: Holger Schinzel <holger@luascoin.org>
+Uploaders: Holger Schinzel <holger@luascoin.org>
 Build-Depends: debhelper,
  devscripts,
  automake,
@@ -24,45 +24,45 @@ Build-Depends: debhelper,
  libprotobuf-dev, protobuf-compiler,
  python
 Standards-Version: 3.9.2
-Homepage: https://www.lua.org/
-Vcs-Git: git://github.com/minblock/lua.git
-Vcs-Browser: https://github.com/minblock/lua
+Homepage: https://www.luascoin.org/
+Vcs-Git: git://github.com/luascoincrypto/luascoin.git
+Vcs-Browser: https://github.com/luascoincrypto/luascoin
 
-Package: luad
+Package: luascoind
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- LUA is an experimental new digital currency that enables anonymous, instant
- payments to anyone, anywhere in the world. LUA uses peer-to-peer
+ LUASCOIN is an experimental new digital currency that enables anonymous, instant
+ payments to anyone, anywhere in the world. LUASCOIN uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. LUA Core
+ and issuing money are carried out collectively by the network. LUASCOIN Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides the daemon, luad, and the CLI tool
- lua-cli to interact with the daemon.
+ This package provides the daemon, luascoind, and the CLI tool
+ luascoin-cli to interact with the daemon.
 
-Package: lua-qt
+Package: luascoin-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- LUA is an experimental new digital currency that enables anonymous, instant
- payments to anyone, anywhere in the world. LUA uses peer-to-peer
+ LUASCOIN is an experimental new digital currency that enables anonymous, instant
+ payments to anyone, anywhere in the world. LUASCOIN uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. LUA Core
+ and issuing money are carried out collectively by the network. LUASCOIN Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides LUA-Qt, a GUI for LUA based on Qt.
+ This package provides LUASCOIN-Qt, a GUI for LUASCOIN based on Qt.
 
-Package: lua-tx
+Package: luascoin-tx
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer digital currency - standalone transaction tool
- LUA is an experimental new digital currency that enables anonymous, instant
- payments to anyone, anywhere in the world. LUA uses peer-to-peer
+ LUASCOIN is an experimental new digital currency that enables anonymous, instant
+ payments to anyone, anywhere in the world. LUASCOIN uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. LUA Core
+ and issuing money are carried out collectively by the network. LUASCOIN Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides lua-tx, a command-line transaction creation
- tool which can be used without a lua daemon.  Some means of
+ This package provides luascoin-tx, a command-line transaction creation
+ tool which can be used without a luascoin daemon.  Some means of
  exchanging minimal transaction data with peers is still required.

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_DSNOTIFICATIONINTERFACE_H
-#define LUA_DSNOTIFICATIONINTERFACE_H
+#ifndef LUASCOIN_DSNOTIFICATIONINTERFACE_H
+#define LUASCOIN_DSNOTIFICATIONINTERFACE_H
 
 #include "validationinterface.h"
 
@@ -27,4 +27,4 @@ private:
     CConnman& connman;
 };
 
-#endif // LUA_DSNOTIFICATIONINTERFACE_H
+#endif // LUASCOIN_DSNOTIFICATIONINTERFACE_H

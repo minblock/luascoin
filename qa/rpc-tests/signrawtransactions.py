@@ -3,11 +3,11 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 
 
-class SignRawTransactionsTest(LUATestFramework):
+class SignRawTransactionsTest(LUASCOINTestFramework):
     """Tests transaction signing via RPC command "signrawtransaction"."""
 
     def setup_chain(self):

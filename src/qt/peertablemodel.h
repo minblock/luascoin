@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_PEERTABLEMODEL_H
-#define LUA_QT_PEERTABLEMODEL_H
+#ifndef LUASCOIN_QT_PEERTABLEMODEL_H
+#define LUASCOIN_QT_PEERTABLEMODEL_H
 
 #include "net_processing.h" // For CNodeStateStats
 #include "net.h"
@@ -80,4 +80,4 @@ private:
     QTimer *timer;
 };
 
-#endif // LUA_QT_PEERTABLEMODEL_H
+#endif // LUASCOIN_QT_PEERTABLEMODEL_H

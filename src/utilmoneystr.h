@@ -6,8 +6,8 @@
 /**
  * Money parsing/formatting utilities.
  */
-#ifndef LUA_UTILMONEYSTR_H
-#define LUA_UTILMONEYSTR_H
+#ifndef LUASCOIN_UTILMONEYSTR_H
+#define LUASCOIN_UTILMONEYSTR_H
 
 #include <stdint.h>
 #include <string>
@@ -18,4 +18,4 @@ std::string FormatMoney(const CAmount& n);
 bool ParseMoney(const std::string& str, CAmount& nRet);
 bool ParseMoney(const char* pszIn, CAmount& nRet);
 
-#endif // LUA_UTILMONEYSTR_H
+#endif // LUASCOIN_UTILMONEYSTR_H

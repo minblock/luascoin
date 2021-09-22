@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_DBWRAPPER_H
-#define LUA_DBWRAPPER_H
+#ifndef LUASCOIN_DBWRAPPER_H
+#define LUASCOIN_DBWRAPPER_H
 
 #include "clientversion.h"
 #include "serialize.h"
@@ -342,4 +342,4 @@ public:
 
 };
 
-#endif // LUA_DBWRAPPER_H
+#endif // LUASCOIN_DBWRAPPER_H

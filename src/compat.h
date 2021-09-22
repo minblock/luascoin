@@ -3,11 +3,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_COMPAT_H
-#define LUA_COMPAT_H
+#ifndef LUASCOIN_COMPAT_H
+#define LUASCOIN_COMPAT_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/lua-config.h"
+#include "config/luascoin-config.h"
 #endif
 
 #ifdef WIN32
@@ -101,4 +101,4 @@ bool static inline IsSelectableSocket(SOCKET s) {
 #endif
 }
 
-#endif // LUA_COMPAT_H
+#endif // LUASCOIN_COMPAT_H

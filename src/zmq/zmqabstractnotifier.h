@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_ZMQ_ZMQABSTRACTNOTIFIER_H
-#define LUA_ZMQ_ZMQABSTRACTNOTIFIER_H
+#ifndef LUASCOIN_ZMQ_ZMQABSTRACTNOTIFIER_H
+#define LUASCOIN_ZMQ_ZMQABSTRACTNOTIFIER_H
 
 #include "zmqconfig.h"
 
@@ -42,4 +42,4 @@ protected:
     std::string address;
 };
 
-#endif // LUA_ZMQ_ZMQABSTRACTNOTIFIER_H
+#endif // LUASCOIN_ZMQ_ZMQABSTRACTNOTIFIER_H

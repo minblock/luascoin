@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_MODALOVERLAY_H
-#define LUA_QT_MODALOVERLAY_H
+#ifndef LUASCOIN_QT_MODALOVERLAY_H
+#define LUASCOIN_QT_MODALOVERLAY_H
 
 #include <QDateTime>
 #include <QWidget>
@@ -49,4 +49,4 @@ private:
     bool foreverHidden;
 };
 
-#endif // LUA_QT_MODALOVERLAY_H
+#endif // LUASCOIN_QT_MODALOVERLAY_H

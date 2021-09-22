@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Bitcoin Gold developers
 // Copyright (c) 2017-2018 The zawy12
-// Copyright (c) 2017-2018 The LUA Core developers
+// Copyright (c) 2017-2018 The LUASCOIN Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +18,7 @@
 #include <math.h>
 
 unsigned int static DarkGravityWave(const CBlockIndex* pindexLast, const Consensus::Params& params) {
-    /* current difficulty formula, lua - DarkGravity v3, written by Evan Duffield - evan@lua.org */
+    /* current difficulty formula, luascoin - DarkGravity v3, written by Evan Duffield - evan@luascoin.org */
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
     int64_t nPastBlocks = 24;
 

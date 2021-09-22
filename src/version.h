@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_VERSION_H
-#define LUA_VERSION_H
+#ifndef LUASCOIN_VERSION_H
+#define LUASCOIN_VERSION_H
 
 /**
  * network protocol versioning
@@ -44,4 +44,4 @@ static const int SENDHEADERS_VERSION = 70201;
 //! DIP0001 was activated in this version
 static const int DIP0001_PROTOCOL_VERSION = 70208;
 
-#endif // LUA_VERSION_H
+#endif // LUASCOIN_VERSION_H

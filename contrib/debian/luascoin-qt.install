@@ -1,0 +1,6 @@
+usr/local/bin/luascoin-qt usr/bin
+share/pixmaps/luascoin32.xpm usr/share/pixmaps
+share/pixmaps/luascoin16.xpm usr/share/pixmaps
+share/pixmaps/luascoin128.png usr/share/pixmaps
+debian/luascoin-qt.desktop usr/share/applications
+debian/luascoin-qt.protocol usr/share/kde4/services/

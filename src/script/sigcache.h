@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_SCRIPT_SIGCACHE_H
-#define LUA_SCRIPT_SIGCACHE_H
+#ifndef LUASCOIN_SCRIPT_SIGCACHE_H
+#define LUASCOIN_SCRIPT_SIGCACHE_H
 
 #include "script/interpreter.h"
 
@@ -27,4 +27,4 @@ public:
     bool VerifySignature(const std::vector<unsigned char>& vchSig, const CPubKey& vchPubKey, const uint256& sighash) const;
 };
 
-#endif // LUA_SCRIPT_SIGCACHE_H
+#endif // LUASCOIN_SCRIPT_SIGCACHE_H

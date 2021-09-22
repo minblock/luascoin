@@ -198,7 +198,7 @@ class BIP9SoftForksTest(ComparisonTestFramework):
 
         # Restart all
         stop_nodes(self.nodes)
-        wait_luads()
+        wait_luascoinds()
         shutil.rmtree(self.options.tmpdir)
         self.setup_chain()
         self.setup_network()

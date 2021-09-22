@@ -5,8 +5,8 @@
 /**
  * Functionality for communicating with Tor.
  */
-#ifndef LUA_TORCONTROL_H
-#define LUA_TORCONTROL_H
+#ifndef LUASCOIN_TORCONTROL_H
+#define LUASCOIN_TORCONTROL_H
 
 #include "scheduler.h"
 
@@ -17,4 +17,4 @@ void StartTorControl(boost::thread_group& threadGroup, CScheduler& scheduler);
 void InterruptTorControl();
 void StopTorControl();
 
-#endif /* LUA_TORCONTROL_H */
+#endif /* LUASCOIN_TORCONTROL_H */

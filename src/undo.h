@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_UNDO_H
-#define LUA_UNDO_H
+#ifndef LUASCOIN_UNDO_H
+#define LUASCOIN_UNDO_H
 
 #include "compressor.h" 
 #include "consensus/consensus.h"
@@ -108,4 +108,4 @@ public:
     }
 };
 
-#endif // LUA_UNDO_H
+#endif // LUASCOIN_UNDO_H

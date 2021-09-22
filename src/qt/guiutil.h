@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_GUIUTIL_H
-#define LUA_QT_GUIUTIL_H
+#ifndef LUASCOIN_QT_GUIUTIL_H
+#define LUASCOIN_QT_GUIUTIL_H
 
 #include "amount.h"
 
@@ -30,7 +30,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the LUA Qt UI.
+/** Utility functions used by the LUASCOIN Qt UI.
  */
 namespace GUIUtil
 {
@@ -45,10 +45,10 @@ namespace GUIUtil
     void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent);
     void setupAmountWidget(QLineEdit *widget, QWidget *parent);
 
-    // Parse "lua:" URI into recipient object, return true on successful parsing
-    bool parseLUAURI(const QUrl &uri, SendCoinsRecipient *out);
-    bool parseLUAURI(QString uri, SendCoinsRecipient *out);
-    QString formatLUAURI(const SendCoinsRecipient &info);
+    // Parse "luascoin:" URI into recipient object, return true on successful parsing
+    bool parseLUASCOINURI(const QUrl &uri, SendCoinsRecipient *out);
+    bool parseLUASCOINURI(QString uri, SendCoinsRecipient *out);
+    QString formatLUASCOINURI(const SendCoinsRecipient &info);
 
     // Returns true if given address+amount meets "dust" definition
     bool isDust(const QString& address, const CAmount& amount);
@@ -114,7 +114,7 @@ namespace GUIUtil
     // Open debug.log
     void openDebugLogfile();
 	
-    // Open lua.conf
+    // Open luascoin.conf
     void openConfigfile();	
 
     // Open masternode.conf
@@ -262,4 +262,4 @@ namespace GUIUtil
 
 } // namespace GUIUtil
 
-#endif // LUA_QT_GUIUTIL_H
+#endif // LUASCOIN_QT_GUIUTIL_H

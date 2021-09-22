@@ -4,22 +4,22 @@
 
 	* means the category has an associated class
 	
-	CLUANetwork: LUA NETWORK (ROOT)
+	CLUASCOINNetwork: LUASCOIN NETWORK (ROOT)
 	has:
 		vector<CNetworkVariable> vecNetworkVariables;
-		vector<CLUAProject> vecProjects;
+		vector<CLUASCOINProject> vecProjects;
 		vector<CGovernanceObject> vecProposals;
 		vector<CBudgetContract> vecContracts;
 		vector<CBudgetUsers> vecUsers;
 
-	CLUAProject:
+	CLUASCOINProject:
 	has:
 		name
 		employees
 
 */
 
-	// LUA NETWORK (ROOT)
+	// LUASCOIN NETWORK (ROOT)
 	// 	-> NETWORK VARIABLE
 	// 		-> switch, setting
 	// 	-> CATEGORIES
@@ -49,7 +49,7 @@
 	// 			-> USER1 (only users are allowed here in this scope)
 	// 			-> USER2
 	// 		-> GROUP2 (EVO)
-	// 			-> VALUEOVERRIDE (STORE=LUADRIVE)
+	// 			-> VALUEOVERRIDE (STORE=LUASCOINDRIVE)
 	// 			-> USER1
 
 	// 	-> COMPANIES

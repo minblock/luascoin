@@ -2,7 +2,7 @@
 
 #include "cachemultimap.h"
 
-#include "test/test_lua.h"
+#include "test/test_luascoin.h"
 
 #include <algorithm>
 #include <iostream>

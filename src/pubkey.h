@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_PUBKEY_H
-#define LUA_PUBKEY_H
+#ifndef LUASCOIN_PUBKEY_H
+#define LUASCOIN_PUBKEY_H
 
 #include "hash.h"
 #include "serialize.h"
@@ -245,4 +245,4 @@ public:
     ~ECCVerifyHandle();
 };
 
-#endif // LUA_PUBKEY_H
+#endif // LUASCOIN_PUBKEY_H

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_PLATFORMSTYLE_H
-#define LUA_QT_PLATFORMSTYLE_H
+#ifndef LUASCOIN_QT_PLATFORMSTYLE_H
+#define LUASCOIN_QT_PLATFORMSTYLE_H
 
 #include <QIcon>
 #include <QPixmap>
@@ -51,5 +51,5 @@ private:
     /* ... more to come later */
 };
 
-#endif // LUA_QT_PLATFORMSTYLE_H
+#endif // LUASCOIN_QT_PLATFORMSTYLE_H
 

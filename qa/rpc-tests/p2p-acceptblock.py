@@ -5,7 +5,7 @@
 #
 
 from test_framework.mininode import *
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 import time
 from test_framework.blocktools import create_block, create_coinbase
@@ -106,11 +106,11 @@ class TestNode(NodeConnCB):
         return received_pong
 
 
-class AcceptBlockTest(LUATestFramework):
+class AcceptBlockTest(LUASCOINTestFramework):
     def add_options(self, parser):
         parser.add_option("--testbinary", dest="testbinary",
-                          default=os.getenv("LUAD", "luad"),
-                          help="luad binary to test")
+                          default=os.getenv("LUASCOIND", "luascoind"),
+                          help="luascoind binary to test")
 
     def setup_chain(self):
         initialize_chain_clean(self.options.tmpdir, 2)

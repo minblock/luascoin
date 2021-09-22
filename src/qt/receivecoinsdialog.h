@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_RECEIVECOINSDIALOG_H
-#define LUA_QT_RECEIVECOINSDIALOG_H
+#ifndef LUASCOIN_QT_RECEIVECOINSDIALOG_H
+#define LUASCOIN_QT_RECEIVECOINSDIALOG_H
 
 #include "guiutil.h"
 
@@ -27,7 +27,7 @@ QT_BEGIN_NAMESPACE
 class QModelIndex;
 QT_END_NAMESPACE
 
-/** Dialog for requesting payment of lua */
+/** Dialog for requesting payment of luascoin */
 class ReceiveCoinsDialog : public QDialog
 {
     Q_OBJECT
@@ -79,4 +79,4 @@ private Q_SLOTS:
     void updateRequestView(int);
 };
 
-#endif // LUA_QT_RECEIVECOINSDIALOG_H
+#endif // LUASCOIN_QT_RECEIVECOINSDIALOG_H

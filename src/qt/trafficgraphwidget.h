@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_TRAFFICGRAPHWIDGET_H
-#define LUA_QT_TRAFFICGRAPHWIDGET_H
+#ifndef LUASCOIN_QT_TRAFFICGRAPHWIDGET_H
+#define LUASCOIN_QT_TRAFFICGRAPHWIDGET_H
 
 #include "trafficgraphdata.h"
 
@@ -47,4 +47,4 @@ private:
     TrafficGraphData trafficGraphData;
 };
 
-#endif // LUA_QT_TRAFFICGRAPHWIDGET_H
+#endif // LUASCOIN_QT_TRAFFICGRAPHWIDGET_H

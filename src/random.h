@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_RANDOM_H
-#define LUA_RANDOM_H
+#ifndef LUASCOIN_RANDOM_H
+#define LUASCOIN_RANDOM_H
 
 #include "uint256.h"
 
@@ -74,4 +74,4 @@ public:
     }
 };
 
-#endif // LUA_RANDOM_H
+#endif // LUASCOIN_RANDOM_H

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_MERKLE
-#define LUA_MERKLE
+#ifndef LUASCOIN_MERKLE
+#define LUASCOIN_MERKLE
 
 #include <stdint.h>
 #include <vector>

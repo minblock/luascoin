@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_COINCONTROL_H
-#define LUA_COINCONTROL_H
+#ifndef LUASCOIN_COINCONTROL_H
+#define LUASCOIN_COINCONTROL_H
 
 #include "primitives/transaction.h"
 
@@ -71,4 +71,4 @@ private:
     std::set<COutPoint> setSelected;
 };
 
-#endif // LUA_COINCONTROL_H
+#endif // LUASCOIN_COINCONTROL_H

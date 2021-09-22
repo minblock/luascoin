@@ -7,10 +7,10 @@
 # Test the CHECKLOCKTIMEVERIFY (BIP65) soft-fork logic
 #
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 
-class BIP65Test(LUATestFramework):
+class BIP65Test(LUASCOINTestFramework):
 
     def setup_network(self):
         self.nodes = []

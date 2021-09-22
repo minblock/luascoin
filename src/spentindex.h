@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_SPENTINDEX_H
-#define LUA_SPENTINDEX_H
+#ifndef LUASCOIN_SPENTINDEX_H
+#define LUASCOIN_SPENTINDEX_H
 
 #include "uint256.h"
 #include "amount.h"
@@ -370,4 +370,4 @@ struct CAddressIndexIteratorHeightKey {
 };
 
 
-#endif // LUA_SPENTINDEX_H
+#endif // LUASCOIN_SPENTINDEX_H

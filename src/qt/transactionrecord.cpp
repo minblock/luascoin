@@ -63,9 +63,9 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
                 if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address))
                 {
-                    // Received by LUA Address
+                    // Received by LUASCOIN Address
                     sub.type = TransactionRecord::RecvWithAddress;
-                    sub.address = CLUAAddress(address).ToString();
+                    sub.address = CLUASCOINAddress(address).ToString();
                 }
                 else
                 {
@@ -134,8 +134,8 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 CTxDestination address;
                 if (ExtractDestination(wtx.vout[0].scriptPubKey, address))
                 {
-                    // Sent to LUA Address
-                    sub.address = CLUAAddress(address).ToString();
+                    // Sent to LUASCOIN Address
+                    sub.address = CLUASCOINAddress(address).ToString();
                 }
                 else
                 {
@@ -187,9 +187,9 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 CTxDestination address;
                 if (ExtractDestination(txout.scriptPubKey, address))
                 {
-                    // Sent to LUA Address
+                    // Sent to LUASCOIN Address
                     sub.type = TransactionRecord::SendToAddress;
-                    sub.address = CLUAAddress(address).ToString();
+                    sub.address = CLUASCOINAddress(address).ToString();
                 }
                 else
                 {

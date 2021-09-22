@@ -1,22 +1,22 @@
 Multiwallet Qt Development and Integration Strategy
 ===================================================
 
-In order to support loading of multiple wallets in lua-qt, a few changes in the UI architecture will be needed.
+In order to support loading of multiple wallets in luascoin-qt, a few changes in the UI architecture will be needed.
 Fortunately, only four of the files in the existing project are affected by this change.
 
 Two new classes have been implemented in two new .h/.cpp file pairs, with much of the functionality that was previously
-implemented in the LUAGUI class moved over to these new classes.
+implemented in the LUASCOINGUI class moved over to these new classes.
 
-The two existing files most affected, by far, are luagui.h and luagui.cpp, as the LUAGUI class will require
+The two existing files most affected, by far, are luascoingui.h and luascoingui.cpp, as the LUASCOINGUI class will require
 some major retrofitting.
 
-Only requiring some minor changes is lua.cpp.
+Only requiring some minor changes is luascoin.cpp.
 
-Finally, two new headers and source files will have to be added to lua-qt.pro.
+Finally, two new headers and source files will have to be added to luascoin-qt.pro.
 
-Changes to class LUAGUI
+Changes to class LUASCOINGUI
 ---------------------------
-The principal change to the LUAGUI class concerns the QStackedWidget instance called centralWidget.
+The principal change to the LUASCOINGUI class concerns the QStackedWidget instance called centralWidget.
 This widget owns five page views: overviewPage, transactionsPage, addressBookPage, receiveCoinsPage, and sendCoinsPage.
 
 A new class called *WalletView* inheriting from QStackedWidget has been written to handle all renderings and updates of
@@ -24,17 +24,17 @@ these page views. In addition to owning these five page views, a WalletView also
 This allows the construction of multiple WalletView objects, each rendering a distinct wallet.
 
 A second class called *WalletFrame* inheriting from QFrame has been written as a container for embedding all wallet-related
-controls into LUAGUI. At present it contains the WalletView instances for the wallets and does little more than passing on messages
-from LUAGUI to the currently selected WalletView. It is a WalletFrame instance
-that takes the place of what used to be centralWidget in LUAGUI. The purpose of this class is to allow future
-refinements of the wallet controls with minimal need for further modifications to LUAGUI, thus greatly simplifying
+controls into LUASCOINGUI. At present it contains the WalletView instances for the wallets and does little more than passing on messages
+from LUASCOINGUI to the currently selected WalletView. It is a WalletFrame instance
+that takes the place of what used to be centralWidget in LUASCOINGUI. The purpose of this class is to allow future
+refinements of the wallet controls with minimal need for further modifications to LUASCOINGUI, thus greatly simplifying
 merges while reducing the risk of breaking top-level stuff.
 
-Changes to lua.cpp
+Changes to luascoin.cpp
 ----------------------
-lua.cpp is the entry point into lua-qt, and as such, will require some minor modifications to provide hooks for
+luascoin.cpp is the entry point into luascoin-qt, and as such, will require some minor modifications to provide hooks for
 multiple wallet support. Most importantly will be the way it instantiates WalletModels and passes them to the
-singleton LUAGUI instance called window. Formerly, LUAGUI kept a pointer to a single instance of a WalletModel.
+singleton LUASCOINGUI instance called window. Formerly, LUASCOINGUI kept a pointer to a single instance of a WalletModel.
 The initial change required is very simple: rather than calling `window.setWalletModel(&walletModel);` we perform the
 following two steps:
 

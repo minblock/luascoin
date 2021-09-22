@@ -41,9 +41,9 @@ SendCoinsEntry::SendCoinsEntry(const PlatformStyle *platformStyle, QWidget *pare
     ui->deleteButton_is->setIcon(QIcon(":/icons/" + theme + "/remove"));
     ui->deleteButton_s->setIcon(QIcon(":/icons/" + theme + "/remove"));
       
-    // normal lua address field
+    // normal luascoin address field
     GUIUtil::setupAddressWidget(ui->payTo, this);
-    // just a label for displaying lua address(es)
+    // just a label for displaying luascoin address(es)
     ui->payTo_is->setFont(GUIUtil::fixedPitchFont());
 
     // Connect signals
@@ -112,7 +112,7 @@ void SendCoinsEntry::clear()
     ui->memoTextLabel_s->clear();
     ui->payAmount_s->clear();
 
-    // update the display unit, to not use the default ("LUA")
+    // update the display unit, to not use the default ("LUASCOIN")
     updateDisplayUnit();
 }
 

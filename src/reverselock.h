@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_REVERSELOCK_H
-#define LUA_REVERSELOCK_H
+#ifndef LUASCOIN_REVERSELOCK_H
+#define LUASCOIN_REVERSELOCK_H
 
 /**
  * An RAII-style reverse lock. Unlocks on construction and locks on destruction.
@@ -31,4 +31,4 @@ private:
     Lock templock;
 };
 
-#endif // LUA_REVERSELOCK_H
+#endif // LUASCOIN_REVERSELOCK_H

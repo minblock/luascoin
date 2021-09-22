@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_SYNC_H
-#define LUA_SYNC_H
+#ifndef LUASCOIN_SYNC_H
+#define LUASCOIN_SYNC_H
 
 #include "threadsafety.h"
 
@@ -280,4 +280,4 @@ public:
     }
 };
 
-#endif // LUA_SYNC_H
+#endif // LUASCOIN_SYNC_H

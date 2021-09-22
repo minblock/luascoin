@@ -1,0 +1,20 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/luascoin_bg.qm</file>
+        <file alias="de">locale/luascoin_de.qm</file>
+        <file alias="en">locale/luascoin_en.qm</file>
+        <file alias="es">locale/luascoin_es.qm</file>
+        <file alias="fi">locale/luascoin_fi.qm</file>
+        <file alias="fr">locale/luascoin_fr.qm</file>
+        <file alias="it">locale/luascoin_it.qm</file>
+        <file alias="ja">locale/luascoin_ja.qm</file>
+        <file alias="pl">locale/luascoin_pl.qm</file>
+        <file alias="pt">locale/luascoin_pt.qm</file>
+        <file alias="ru">locale/luascoin_ru.qm</file>
+        <file alias="sk">locale/luascoin_sk.qm</file>
+        <file alias="sv">locale/luascoin_sv.qm</file>
+        <file alias="vi">locale/luascoin_vi.qm</file>
+        <file alias="zh_CN">locale/luascoin_zh_CN.qm</file>
+        <file alias="zh_TW">locale/luascoin_zh_TW.qm</file>
+    </qresource>
+</RCC>

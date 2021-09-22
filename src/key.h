@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_KEY_H
-#define LUA_KEY_H
+#ifndef LUASCOIN_KEY_H
+#define LUASCOIN_KEY_H
 
 #include "pubkey.h"
 #include "serialize.h"
@@ -197,4 +197,4 @@ void ECC_Stop(void);
 /** Check that required EC support is available at runtime. */
 bool ECC_InitSanityCheck(void);
 
-#endif // LUA_KEY_H
+#endif // LUASCOIN_KEY_H

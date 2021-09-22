@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_COINCONTROLTREEWIDGET_H
-#define LUA_QT_COINCONTROLTREEWIDGET_H
+#ifndef LUASCOIN_QT_COINCONTROLTREEWIDGET_H
+#define LUASCOIN_QT_COINCONTROLTREEWIDGET_H
 
 #include <QKeyEvent>
 #include <QTreeWidget>
@@ -19,4 +19,4 @@ protected:
     virtual void keyPressEvent(QKeyEvent *event);
 };
 
-#endif // LUA_QT_COINCONTROLTREEWIDGET_H
+#endif // LUASCOIN_QT_COINCONTROLTREEWIDGET_H

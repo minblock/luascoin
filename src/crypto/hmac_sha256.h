@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_CRYPTO_HMAC_SHA256_H
-#define LUA_CRYPTO_HMAC_SHA256_H
+#ifndef LUASCOIN_CRYPTO_HMAC_SHA256_H
+#define LUASCOIN_CRYPTO_HMAC_SHA256_H
 
 #include "crypto/sha256.h"
 
@@ -29,4 +29,4 @@ public:
     void Finalize(unsigned char hash[OUTPUT_SIZE]);
 };
 
-#endif // LUA_CRYPTO_HMAC_SHA256_H
+#endif // LUASCOIN_CRYPTO_HMAC_SHA256_H

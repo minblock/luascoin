@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "netbase.h"
-#include "test/test_lua.h"
+#include "test/test_luascoin.h"
 
 #include <string>
 
@@ -75,10 +75,10 @@ bool static TestSplitHost(string test, string host, int port)
 
 BOOST_AUTO_TEST_CASE(netbase_splithost)
 {
-    BOOST_CHECK(TestSplitHost("www.lua.org", "www.lua.org", -1));
-    BOOST_CHECK(TestSplitHost("[www.lua.org]", "www.lua.org", -1));
-    BOOST_CHECK(TestSplitHost("www.lua.org:80", "www.lua.org", 80));
-    BOOST_CHECK(TestSplitHost("[www.lua.org]:80", "www.lua.org", 80));
+    BOOST_CHECK(TestSplitHost("www.luascoin.org", "www.luascoin.org", -1));
+    BOOST_CHECK(TestSplitHost("[www.luascoin.org]", "www.luascoin.org", -1));
+    BOOST_CHECK(TestSplitHost("www.luascoin.org:80", "www.luascoin.org", 80));
+    BOOST_CHECK(TestSplitHost("[www.luascoin.org]:80", "www.luascoin.org", 80));
     BOOST_CHECK(TestSplitHost("127.0.0.1", "127.0.0.1", -1));
     BOOST_CHECK(TestSplitHost("127.0.0.1:9999", "127.0.0.1", 9999));
     BOOST_CHECK(TestSplitHost("[127.0.0.1]", "127.0.0.1", -1));

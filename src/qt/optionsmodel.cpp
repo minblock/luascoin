@@ -4,12 +4,12 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/lua-config.h"
+#include "config/luascoin-config.h"
 #endif
 
 #include "optionsmodel.h"
 
-#include "luaunits.h"
+#include "luascoinunits.h"
 #include "guiutil.h"
 
 #include "amount.h"
@@ -73,7 +73,7 @@ void OptionsModel::Init(bool resetSettings)
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", LUAUnits::LUA);
+        settings.setValue("nDisplayUnit", LUASCOINUnits::LUASCOIN);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -137,10 +137,10 @@ void OptionsModel::Init(bool resetSettings)
 
     if (!settings.contains("nPrivateSendAmount")) {
         // for migration from old settings
-        if (!settings.contains("nAnonymizeLUAAmount"))
+        if (!settings.contains("nAnonymizeLUASCOINAmount"))
             settings.setValue("nPrivateSendAmount", DEFAULT_PRIVATESEND_AMOUNT);
         else
-            settings.setValue("nPrivateSendAmount", settings.value("nAnonymizeLUAAmount").toInt());
+            settings.setValue("nPrivateSendAmount", settings.value("nAnonymizeLUASCOINAmount").toInt());
     }
     if (!SoftSetArg("-privatesendamount", settings.value("nPrivateSendAmount").toString().toStdString()))
         addOverriddenOption("-privatesendamount");
@@ -199,7 +199,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in lua.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in luascoin.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())

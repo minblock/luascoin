@@ -22,5 +22,5 @@ define $(package)_stage_cmds
 endef
 
 define $(package)_postprocess_cmds
-  rm bin/isovfy bin/isoinfo bin/isodump bin/isodebug bin/devdump
+  rm bin/iluascoinfy bin/isoinfo bin/isodump bin/isodebug bin/devdump
 endef

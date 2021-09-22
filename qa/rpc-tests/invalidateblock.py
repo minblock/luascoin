@@ -7,10 +7,10 @@
 # Test InvalidateBlock code
 #
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 
-class InvalidateTest(LUATestFramework):
+class InvalidateTest(LUASCOINTestFramework):
     
         
     def setup_chain(self):

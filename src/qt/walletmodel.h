@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_WALLETMODEL_H
-#define LUA_QT_WALLETMODEL_H
+#ifndef LUASCOIN_QT_WALLETMODEL_H
+#define LUASCOIN_QT_WALLETMODEL_H
 
 #include "paymentrequestplus.h"
 #include "walletmodeltransaction.h"
@@ -98,7 +98,7 @@ public:
     }
 };
 
-/** Interface to LUA wallet from Qt view code. */
+/** Interface to LUASCOIN wallet from Qt view code. */
 class WalletModel : public QObject
 {
     Q_OBJECT
@@ -282,4 +282,4 @@ public Q_SLOTS:
     void pollBalanceChanged();
 };
 
-#endif // LUA_QT_WALLETMODEL_H
+#endif // LUASCOIN_QT_WALLETMODEL_H

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_OVERVIEWPAGE_H
-#define LUA_QT_OVERVIEWPAGE_H
+#ifndef LUASCOIN_QT_OVERVIEWPAGE_H
+#define LUASCOIN_QT_OVERVIEWPAGE_H
 
 #include "amount.h"
 
@@ -89,4 +89,4 @@ private Q_SLOTS:
     void handleOutOfSyncWarningClicks();
 };
 
-#endif // LUA_QT_OVERVIEWPAGE_H
+#endif // LUASCOIN_QT_OVERVIEWPAGE_H

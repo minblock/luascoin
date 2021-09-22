@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_INIT_H
-#define LUA_INIT_H
+#ifndef LUASCOIN_INIT_H
+#define LUASCOIN_INIT_H
 
 #include <string>
 
@@ -32,8 +32,8 @@ void PrepareShutdown();
 
 /** The help message mode determines what help message to show */
 enum HelpMessageMode {
-    HMM_LUAD,
-    HMM_LUA_QT
+    HMM_LUASCOIND,
+    HMM_LUASCOIN_QT
 };
 
 /** Help for options shared between UI and daemon (for -help) */
@@ -41,4 +41,4 @@ std::string HelpMessage(HelpMessageMode mode);
 /** Returns licensing information (for -version) */
 std::string LicenseInfo();
 
-#endif // LUA_INIT_H
+#endif // LUASCOIN_INIT_H

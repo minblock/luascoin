@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_SENDCOINSENTRY_H
-#define LUA_QT_SENDCOINSENTRY_H
+#ifndef LUASCOIN_QT_SENDCOINSENTRY_H
+#define LUASCOIN_QT_SENDCOINSENTRY_H
 
 #include "walletmodel.h"
 
@@ -17,7 +17,7 @@ namespace Ui {
 }
 
 /**
- * A single entry in the dialog for sending luas.
+ * A single entry in the dialog for sending luascoins.
  * Stacked widget, with different UIs for payment requests
  * with a strong payee identity.
  */
@@ -70,4 +70,4 @@ private:
     bool updateLabel(const QString &address);
 };
 
-#endif // LUA_QT_SENDCOINSENTRY_H
+#endif // LUASCOIN_QT_SENDCOINSENTRY_H

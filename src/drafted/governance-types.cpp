@@ -7,8 +7,8 @@ GovernanceObjectType GovernanceStringToType(std::string strType) {
     if(strType == "AllTypes") type = AllTypes;
     if(strType == "Error") type = Error;
     if(strType == "ValueOverride") type = ValueOverride;
-    if(strType == "LUANetwork") type = LUANetwork;
-    if(strType == "LUANetworkVariable") type = LUANetworkVariable;
+    if(strType == "LUASCOINNetwork") type = LUASCOINNetwork;
+    if(strType == "LUASCOINNetworkVariable") type = LUASCOINNetworkVariable;
     if(strType == "Category") type = Category;
     if(strType == "Group") type = Group;
     if(strType == "User") type = User;
@@ -28,8 +28,8 @@ std::string GovernanceTypeToString(GovernanceObjectType type) {
     if(type == AllTypes) s = "AllTypes";
     if(type == Error) s = "Error";
     if(type == ValueOverride) s = "ValueOverride";
-    if(type == LUANetwork) s = "LUANetwork";
-    if(type == LUANetworkVariable) s = "LUANetworkVariable";
+    if(type == LUASCOINNetwork) s = "LUASCOINNetwork";
+    if(type == LUASCOINNetworkVariable) s = "LUASCOINNetworkVariable";
     if(type == Category) s = "Category";
     if(type == Group) s = "Group";
     if(type == User) s = "User";

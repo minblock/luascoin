@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_VALIDATIONINTERFACE_H
-#define LUA_VALIDATIONINTERFACE_H
+#ifndef LUASCOIN_VALIDATIONINTERFACE_H
+#define LUASCOIN_VALIDATIONINTERFACE_H
 
 #include <boost/signals2/signal.hpp>
 #include <boost/shared_ptr.hpp>
@@ -76,4 +76,4 @@ struct CMainSignals {
 
 CMainSignals& GetMainSignals();
 
-#endif // LUA_VALIDATIONINTERFACE_H
+#endif // LUASCOIN_VALIDATIONINTERFACE_H

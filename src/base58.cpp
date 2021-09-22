@@ -212,13 +212,13 @@ int CBase58Data::CompareTo(const CBase58Data& b58) const
 
 namespace
 {
-class CLUAAddressVisitor : public boost::static_visitor<bool>
+class CLUASCOINAddressVisitor : public boost::static_visitor<bool>
 {
 private:
-    CLUAAddress* addr;
+    CLUASCOINAddress* addr;
 
 public:
-    CLUAAddressVisitor(CLUAAddress* addrIn) : addr(addrIn) {}
+    CLUASCOINAddressVisitor(CLUASCOINAddress* addrIn) : addr(addrIn) {}
 
     bool operator()(const CKeyID& id) const { return addr->Set(id); }
     bool operator()(const CScriptID& id) const { return addr->Set(id); }
@@ -227,29 +227,29 @@ public:
 
 } // anon namespace
 
-bool CLUAAddress::Set(const CKeyID& id)
+bool CLUASCOINAddress::Set(const CKeyID& id)
 {
     SetData(Params().Base58Prefix(CChainParams::PUBKEY_ADDRESS), &id, 20);
     return true;
 }
 
-bool CLUAAddress::Set(const CScriptID& id)
+bool CLUASCOINAddress::Set(const CScriptID& id)
 {
     SetData(Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS), &id, 20);
     return true;
 }
 
-bool CLUAAddress::Set(const CTxDestination& dest)
+bool CLUASCOINAddress::Set(const CTxDestination& dest)
 {
-    return boost::apply_visitor(CLUAAddressVisitor(this), dest);
+    return boost::apply_visitor(CLUASCOINAddressVisitor(this), dest);
 }
 
-bool CLUAAddress::IsValid() const
+bool CLUASCOINAddress::IsValid() const
 {
     return IsValid(Params());
 }
 
-bool CLUAAddress::IsValid(const CChainParams& params) const
+bool CLUASCOINAddress::IsValid(const CChainParams& params) const
 {
     bool fCorrectSize = vchData.size() == 20;
     bool fKnownVersion = vchVersion == params.Base58Prefix(CChainParams::PUBKEY_ADDRESS) ||
@@ -257,7 +257,7 @@ bool CLUAAddress::IsValid(const CChainParams& params) const
     return fCorrectSize && fKnownVersion;
 }
 
-CTxDestination CLUAAddress::Get() const
+CTxDestination CLUASCOINAddress::Get() const
 {
     if (!IsValid())
         return CNoDestination();
@@ -271,7 +271,7 @@ CTxDestination CLUAAddress::Get() const
         return CNoDestination();
 }
 
-bool CLUAAddress::GetIndexKey(uint160& hashBytes, int& type) const
+bool CLUASCOINAddress::GetIndexKey(uint160& hashBytes, int& type) const
 {
     if (!IsValid()) {
         return false;
@@ -288,7 +288,7 @@ bool CLUAAddress::GetIndexKey(uint160& hashBytes, int& type) const
     return false;
 }
 
-bool CLUAAddress::GetKeyID(CKeyID& keyID) const
+bool CLUASCOINAddress::GetKeyID(CKeyID& keyID) const
 {
     if (!IsValid() || vchVersion != Params().Base58Prefix(CChainParams::PUBKEY_ADDRESS))
         return false;
@@ -298,12 +298,12 @@ bool CLUAAddress::GetKeyID(CKeyID& keyID) const
     return true;
 }
 
-bool CLUAAddress::IsScript() const
+bool CLUASCOINAddress::IsScript() const
 {
     return IsValid() && vchVersion == Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS);
 }
 
-void CLUASecret::SetKey(const CKey& vchSecret)
+void CLUASCOINSecret::SetKey(const CKey& vchSecret)
 {
     assert(vchSecret.IsValid());
     SetData(Params().Base58Prefix(CChainParams::SECRET_KEY), vchSecret.begin(), vchSecret.size());
@@ -311,7 +311,7 @@ void CLUASecret::SetKey(const CKey& vchSecret)
         vchData.push_back(1);
 }
 
-CKey CLUASecret::GetKey()
+CKey CLUASCOINSecret::GetKey()
 {
     CKey ret;
     assert(vchData.size() >= 32);
@@ -319,19 +319,19 @@ CKey CLUASecret::GetKey()
     return ret;
 }
 
-bool CLUASecret::IsValid() const
+bool CLUASCOINSecret::IsValid() const
 {
     bool fExpectedFormat = vchData.size() == 32 || (vchData.size() == 33 && vchData[32] == 1);
     bool fCorrectVersion = vchVersion == Params().Base58Prefix(CChainParams::SECRET_KEY);
     return fExpectedFormat && fCorrectVersion;
 }
 
-bool CLUASecret::SetString(const char* pszSecret)
+bool CLUASCOINSecret::SetString(const char* pszSecret)
 {
     return CBase58Data::SetString(pszSecret) && IsValid();
 }
 
-bool CLUASecret::SetString(const std::string& strSecret)
+bool CLUASCOINSecret::SetString(const std::string& strSecret)
 {
     return SetString(strSecret.c_str());
 }

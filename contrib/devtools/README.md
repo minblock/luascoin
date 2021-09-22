@@ -30,9 +30,9 @@ the commit it claims to have been updated to.
 
 To use, make sure that you have fetched the upstream repository branch in which the subtree is
 maintained:
-* for `src/secp256k1`: https://github.com/lua/secp256k1.git (branch master)
-* for `src/leveldb`: https://github.com/lua/leveldb.git (branch lua-fork)
-* for `src/univalue`: https://github.com/lua/univalue.git (branch master)
+* for `src/secp256k1`: https://github.com/luascoin/secp256k1.git (branch master)
+* for `src/leveldb`: https://github.com/luascoin/leveldb.git (branch luascoin-fork)
+* for `src/univalue`: https://github.com/luascoin/univalue.git (branch master)
 
 Usage: `git-subtree-check.sh DIR COMMIT`
 
@@ -45,10 +45,10 @@ A small script to automate merging pull-requests securely and sign them with GPG
 
 For example:
 
-  ./github-merge.sh lua/lua 3077
+  ./github-merge.sh luascoin/luascoin 3077
 
 (in any git repository) will help you merge pull request #3077 for the
-lua/lua repository.
+luascoin/luascoin repository.
 
 What it does:
 * Fetch master and the pull request.
@@ -66,16 +66,16 @@ couldn't mess with the sources.
 
 Setup
 ---------
-Configuring the github-merge tool for the lua repository is done in the following way:
+Configuring the github-merge tool for the luascoin repository is done in the following way:
 
-    git config githubmerge.repository lua/lua
+    git config githubmerge.repository luascoin/luascoin
     git config githubmerge.testcmd "make -j4 check" (adapt to whatever you want to use for testing)
     git config --global user.signingkey mykeyid (if you want to GPG sign)
 
 optimize-pngs.py
 ================
 
-A script to optimize png files in the lua
+A script to optimize png files in the luascoin
 repository (requires pngcrush).
 
 security-check.py and test-security-check.py
@@ -98,10 +98,10 @@ If only supported symbols are used the return value will be 0 and the output wil
 
 If there are 'unsupported' symbols, the return value will be 1 a list like this will be printed:
 
-    .../64/test_lua: symbol memcpy from unsupported version GLIBC_2.14
-    .../64/test_lua: symbol __fdelt_chk from unsupported version GLIBC_2.15
-    .../64/test_lua: symbol std::out_of_range::~out_of_range() from unsupported version GLIBCXX_3.4.15
-    .../64/test_lua: symbol _ZNSt8__detail15_List_nod from unsupported version GLIBCXX_3.4.15
+    .../64/test_luascoin: symbol memcpy from unsupported version GLIBC_2.14
+    .../64/test_luascoin: symbol __fdelt_chk from unsupported version GLIBC_2.15
+    .../64/test_luascoin: symbol std::out_of_range::~out_of_range() from unsupported version GLIBCXX_3.4.15
+    .../64/test_luascoin: symbol _ZNSt8__detail15_List_nod from unsupported version GLIBCXX_3.4.15
 
 update-translations.py
 ======================

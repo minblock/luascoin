@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_CHECKQUEUE_H
-#define LUA_CHECKQUEUE_H
+#ifndef LUASCOIN_CHECKQUEUE_H
+#define LUASCOIN_CHECKQUEUE_H
 
 #include <algorithm>
 #include <vector>
@@ -212,4 +212,4 @@ public:
     }
 };
 
-#endif // LUA_CHECKQUEUE_H
+#endif // LUASCOIN_CHECKQUEUE_H

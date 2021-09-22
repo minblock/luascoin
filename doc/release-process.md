@@ -1,7 +1,7 @@
 Release Process
 ====================
 
-* Update translations, see [translation_process.md](https://github.com/minblock/lua/blob/master/doc/translation_process.md#syncing-with-transifex)
+* Update translations, see [translation_process.md](https://github.com/luascoincrypto/luascoin/blob/master/doc/translation_process.md#syncing-with-transifex)
 * Update hardcoded [seeds](/contrib/seeds)
 
 * * *
@@ -10,14 +10,14 @@ Release Process
 Check out the source code in the following directory hierarchy.
 
 	cd /path/to/your/toplevel/build
-	git clone https://github.com/minblock/gitian.sigs.git
-	git clone https://github.com/minblock/lua-detached-sigs.git
+	git clone https://github.com/luascoincrypto/gitian.sigs.git
+	git clone https://github.com/luascoincrypto/luascoin-detached-sigs.git
 	git clone https://github.com/devrandom/gitian-builder.git
-	git clone https://github.com/minblock/lua.git
+	git clone https://github.com/luascoincrypto/luascoin.git
 
-### LUA Core maintainers/release engineers, update (commit) version in sources
+### LUASCOIN Core maintainers/release engineers, update (commit) version in sources
 
-	pushd ./lua
+	pushd ./luascoin
 	contrib/verifysfbinaries/verify.sh
 	configure.ac
 	doc/README*
@@ -40,7 +40,7 @@ Check out the source code in the following directory hierarchy.
 
  Setup Gitian descriptors:
 
-	pushd ./lua
+	pushd ./luascoin
 	export SIGNER=(your Gitian key, ie bluematt, sipa, etc)
 	export VERSION=(new version, e.g. 0.8.0)
 	git fetch
@@ -61,7 +61,7 @@ Check out the source code in the following directory hierarchy.
 ### Fetch and create inputs: (first time, or when dependency versions change)
 
 	mkdir -p inputs
-	wget -P inputs https://luacore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
+	wget -P inputs https://luascoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
 	wget -P inputs http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
 
  Register and download the Apple SDK: see [OS X readme](README_osx.txt) for details.
@@ -76,52 +76,52 @@ Check out the source code in the following directory hierarchy.
 
 By default, Gitian will fetch source files as needed. To cache them ahead of time:
 
-	make -C ../lua/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../luascoin/depends download SOURCES_PATH=`pwd`/cache/common
 
 Only missing files will be fetched, so this is safe to re-run for each build.
 
 NOTE: Offline builds must use the --url flag to ensure Gitian fetches only from local URLs. For example:
 ```
-./bin/gbuild --url lua=/path/to/lua,signature=/path/to/sigs {rest of arguments}
+./bin/gbuild --url luascoin=/path/to/luascoin,signature=/path/to/sigs {rest of arguments}
 ```
 The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
-### Build and sign LUA Core for Linux, Windows, and OS X:
+### Build and sign LUASCOIN Core for Linux, Windows, and OS X:
 
-	./bin/gbuild --commit lua=v${VERSION} ../lua/contrib/gitian-descriptors/gitian-linux.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../lua/contrib/gitian-descriptors/gitian-linux.yml
-	mv build/out/lua-*.tar.gz build/out/src/lua-*.tar.gz ../
+	./bin/gbuild --commit luascoin=v${VERSION} ../luascoin/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../luascoin/contrib/gitian-descriptors/gitian-linux.yml
+	mv build/out/luascoin-*.tar.gz build/out/src/luascoin-*.tar.gz ../
 
-	./bin/gbuild --commit lua=v${VERSION} ../lua/contrib/gitian-descriptors/gitian-win.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../lua/contrib/gitian-descriptors/gitian-win.yml
-	mv build/out/lua-*-win-unsigned.tar.gz inputs/lua-win-unsigned.tar.gz
-	mv build/out/lua-*.zip build/out/lua-*.exe ../
+	./bin/gbuild --commit luascoin=v${VERSION} ../luascoin/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../luascoin/contrib/gitian-descriptors/gitian-win.yml
+	mv build/out/luascoin-*-win-unsigned.tar.gz inputs/luascoin-win-unsigned.tar.gz
+	mv build/out/luascoin-*.zip build/out/luascoin-*.exe ../
 
-	./bin/gbuild --commit lua=v${VERSION} ../lua/contrib/gitian-descriptors/gitian-osx.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../lua/contrib/gitian-descriptors/gitian-osx.yml
-	mv build/out/lua-*-osx-unsigned.tar.gz inputs/lua-osx-unsigned.tar.gz
-	mv build/out/lua-*.tar.gz build/out/lua-*.dmg ../
+	./bin/gbuild --commit luascoin=v${VERSION} ../luascoin/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../luascoin/contrib/gitian-descriptors/gitian-osx.yml
+	mv build/out/luascoin-*-osx-unsigned.tar.gz inputs/luascoin-osx-unsigned.tar.gz
+	mv build/out/luascoin-*.tar.gz build/out/luascoin-*.dmg ../
 	popd
 
   Build output expected:
 
-  1. source tarball (lua-${VERSION}.tar.gz)
-  2. linux 32-bit and 64-bit dist tarballs (lua-${VERSION}-linux[32|64].tar.gz)
-  3. windows 32-bit and 64-bit unsigned installers and dist zips (lua-${VERSION}-win[32|64]-setup-unsigned.exe, lua-${VERSION}-win[32|64].zip)
-  4. OS X unsigned installer and dist tarball (lua-${VERSION}-osx-unsigned.dmg, lua-${VERSION}-osx64.tar.gz)
+  1. source tarball (luascoin-${VERSION}.tar.gz)
+  2. linux 32-bit and 64-bit dist tarballs (luascoin-${VERSION}-linux[32|64].tar.gz)
+  3. windows 32-bit and 64-bit unsigned installers and dist zips (luascoin-${VERSION}-win[32|64]-setup-unsigned.exe, luascoin-${VERSION}-win[32|64].zip)
+  4. OS X unsigned installer and dist tarball (luascoin-${VERSION}-osx-unsigned.dmg, luascoin-${VERSION}-osx64.tar.gz)
   5. Gitian signatures (in gitian.sigs/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/
 
 ### Verify other gitian builders signatures to your own. (Optional)
 
   Add other gitian builders keys to your gpg keyring
 
-	gpg --import ../lua/contrib/gitian-downloader/*.pgp
+	gpg --import ../luascoin/contrib/gitian-downloader/*.pgp
 
   Verify the signatures
 
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../lua/contrib/gitian-descriptors/gitian-linux.yml
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../lua/contrib/gitian-descriptors/gitian-win.yml
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../lua/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../luascoin/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../luascoin/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../luascoin/contrib/gitian-descriptors/gitian-osx.yml
 
 	popd
 
@@ -139,25 +139,25 @@ Commit your signature to gitian.sigs:
 
   Wait for Windows/OS X detached signatures:
 	Once the Windows/OS X builds each have 3 matching signatures, they will be signed with their respective release keys.
-	Detached signatures will then be committed to the [lua-detached-sigs](https://github.com/minblock/lua-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+	Detached signatures will then be committed to the [luascoin-detached-sigs](https://github.com/luascoincrypto/luascoin-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
   Create (and optionally verify) the signed OS X binary:
 
 	pushd ./gitian-builder
-	./bin/gbuild -i --commit signature=v${VERSION} ../lua/contrib/gitian-descriptors/gitian-osx-signer.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../lua/contrib/gitian-descriptors/gitian-osx-signer.yml
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../lua/contrib/gitian-descriptors/gitian-osx-signer.yml
-	mv build/out/lua-osx-signed.dmg ../lua-${VERSION}-osx.dmg
+	./bin/gbuild -i --commit signature=v${VERSION} ../luascoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../luascoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../luascoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	mv build/out/luascoin-osx-signed.dmg ../luascoin-${VERSION}-osx.dmg
 	popd
 
   Create (and optionally verify) the signed Windows binaries:
 
 	pushd ./gitian-builder
-	./bin/gbuild -i --commit signature=v${VERSION} ../lua/contrib/gitian-descriptors/gitian-win-signer.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../lua/contrib/gitian-descriptors/gitian-win-signer.yml
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../lua/contrib/gitian-descriptors/gitian-win-signer.yml
-	mv build/out/lua-*win64-setup.exe ../lua-${VERSION}-win64-setup.exe
-	mv build/out/lua-*win32-setup.exe ../lua-${VERSION}-win32-setup.exe
+	./bin/gbuild -i --commit signature=v${VERSION} ../luascoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../luascoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../luascoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	mv build/out/luascoin-*win64-setup.exe ../luascoin-${VERSION}-win64-setup.exe
+	mv build/out/luascoin-*win32-setup.exe ../luascoin-${VERSION}-win32-setup.exe
 	popd
 
 Commit your signature for the signed OS X/Windows binaries:
@@ -182,21 +182,21 @@ rm SHA256SUMS
 (the digest algorithm is forced to sha256 to avoid confusion of the `Hash:` header that GPG adds with the SHA256 used for the files)
 Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spurious/nonsensical entry.
 
-- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the lua.org server
+- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the luascoin.org server
 
-- Update lua.org
+- Update luascoin.org
 
 - Announce the release:
 
-  - Release on LUA forum: https://www.lua.org/forum/topic/official-announcements.54/
+  - Release on LUASCOIN forum: https://www.luascoin.org/forum/topic/official-announcements.54/
 
-  - LUA-development mailing list
+  - LUASCOIN-development mailing list
 
-  - Update title of #minblock on Freenode IRC
+  - Update title of #luascoincrypto on Freenode IRC
 
-  - Optionally reddit /r/minblock, ... but this will usually sort out itself
+  - Optionally reddit /r/luascoincrypto, ... but this will usually sort out itself
 
-- Notify flare so that he can start building [the PPAs](https://launchpad.net/~lua.org/+archive/ubuntu/lua)
+- Notify flare so that he can start building [the PPAs](https://launchpad.net/~luascoin.org/+archive/ubuntu/luascoin)
 
 - Add release notes for the new version to the directory `doc/release-notes` in git master
 

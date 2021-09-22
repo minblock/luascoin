@@ -6,7 +6,7 @@
 
 #include "addressbookpage.h"
 #include "askpassphrasedialog.h"
-#include "luagui.h"
+#include "luascoingui.h"
 #include "clientmodel.h"
 #include "guiutil.h"
 #include "masternodeconfig.h"
@@ -121,7 +121,7 @@ WalletView::~WalletView()
 {
 }
 
-void WalletView::setLUAGUI(LUAGUI *gui)
+void WalletView::setLUASCOINGUI(LUASCOINGUI *gui)
 {
     if (gui)
     {

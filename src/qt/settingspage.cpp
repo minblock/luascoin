@@ -1,13 +1,13 @@
 #include "settingspage.h"
 #include "util.h" // for GetBoolArg
 #if defined(HAVE_CONFIG_H)
-#include "config/lua-config.h"
+#include "config/luascoin-config.h"
 #endif
 
 #include "optionsdialog.h"
 #include "ui_optionsdialog.h"
 
-#include "luaunits.h"
+#include "luascoinunits.h"
 #include "guiutil.h"
 #include "optionsmodel.h"
 
@@ -126,7 +126,7 @@ SettingsPage::SettingsPage(const PlatformStyle *platformStyle, QWidget *parent) 
         }
     }
 
-    ui->unit->setModel(new LUAUnits(this));
+    ui->unit->setModel(new LUASCOINUnits(this));
 
     /* Widget-to-option mapper */
     mapper = new QDataWidgetMapper(this);
@@ -176,7 +176,7 @@ SettingsPage::SettingsPage(const PlatformStyle *platformStyle, QWidget *parent) 
 void SettingsPage::setMapper()
 {
     /* Main */
-    mapper->addMapping(ui->luaAtStartup, OptionsModel::StartAtStartup);
+    mapper->addMapping(ui->luascoinAtStartup, OptionsModel::StartAtStartup);
     mapper->addMapping(ui->threadsScriptVerif, OptionsModel::ThreadsScriptVerif);
     mapper->addMapping(ui->databaseCache, OptionsModel::DatabaseCache);
 

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_SPLASHSCREEN_H
-#define LUA_QT_SPLASHSCREEN_H
+#ifndef LUASCOIN_QT_SPLASHSCREEN_H
+#define LUASCOIN_QT_SPLASHSCREEN_H
 
 #include <QSplashScreen>
 
@@ -46,4 +46,4 @@ private:
     int curAlignment;
 };
 
-#endif // LUA_QT_SPLASHSCREEN_H
+#endif // LUASCOIN_QT_SPLASHSCREEN_H

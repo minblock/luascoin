@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_ADDRESSINDEX_H
-#define LUA_ADDRESSINDEX_H
+#ifndef LUASCOIN_ADDRESSINDEX_H
+#define LUASCOIN_ADDRESSINDEX_H
 
 #include "uint256.h"
 #include "amount.h"
@@ -79,4 +79,4 @@ struct CMempoolAddressDeltaKeyCompare
     }
 };
 
-#endif // LUA_ADDRESSINDEX_H
+#endif // LUASCOIN_ADDRESSINDEX_H

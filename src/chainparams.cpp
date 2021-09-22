@@ -55,7 +55,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "2:44AM EST September 08, 2021 Provigen Networks: Now accepting PearandAppleCiderFlavouredrubberhandlesIsufferfrompoorgripmyatoshishandeyeshityspreadlogicZ'ssucceringandsabatoshies#2X3doublewhoopZskizisandWampconfigsthatworkwithPHPbbv3's!";
+    const char* pszTimestamp = "Provigen Networks: Now accepting NorweiganThunderPolesbitocins!";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -96,7 +96,7 @@ public:
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
         consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("0x00000dbf523d5e02b42181258be59f5cf779feae789efb72383b4f69e274e9bc");
+        consensus.BIP34Hash = uint256S("0x00000abf4866ba7c1bf1dbf44861783e5e2f5dc16e14014e5444d9e7ac1cb29a");
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
         consensus.nZawyLwmaAveragingWindow = 65;
@@ -151,10 +151,50 @@ public:
         nDelayGetHeadersTime = 24 * 60 * 60;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1631097884, 382986, 0x1e0ffff0, 1, 50 * COIN);
-
-        assert(consensus.hashGenesisBlock == uint256S("00000dbf523d5e02b42181258be59f5cf779feae789efb72383b4f69e274e9bc"));
-        assert(genesis.hashMerkleRoot == uint256S("621d7395fb0cfa4cf6e6e5c783c620587ec4779482a3cf6193ef5e39a432f206"));
+        genesis = CreateGenesisBlock(1632235719, 2002843, 0x1e0ffff0, 1, 50 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+/*
+        //////////////
+                // calculate Genesis Block
+                // Reset genesis
+                consensus.hashGenesisBlock = uint256S("0x");
+                std::cout << std::string("Begin calculating Mainnet Genesis Block:\n");
+                if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
+                    LogPrintf("Calculating Mainnet Genesis Block:\n");
+                    arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
+                    uint256 hash;
+                    genesis.nNonce = 0;
+                    // This will figure out a valid hash and Nonce if you're
+                    // creating a different genesis block:
+                    // uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+                    // hashTarget.SetCompact(genesis.nBits, &fNegative, &fOverflow).getuint256();
+                    // while (genesis.GetHash() > hashTarget)
+                    while (UintToArith256(genesis.GetHash()) > hashTarget)
+                    {
+                        ++genesis.nNonce;
+                        if (genesis.nNonce == 0)
+                        {
+                            LogPrintf("NONCE WRAPPED, incrementing time");
+                            std::cout << std::string("NONCE WRAPPED, incrementing time:\n");
+                            ++genesis.nTime;
+                        }
+                        if (genesis.nNonce % 10000 == 0)
+                        {
+                            LogPrintf("Mainnet: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
+                            // std::cout << strNetworkID << " nonce: " << genesis.nNonce << " time: " << genesis.nTime << " hash: " << genesis.GetHash().ToString().c_str() << "\n";
+                        }
+                    }
+                    std::cout << "Mainnet ---\n";
+                    std::cout << "  nonce: " << genesis.nNonce <<  "\n";
+                    std::cout << "   time: " << genesis.nTime << "\n";
+                    std::cout << "   hash: " << genesis.GetHash().ToString().c_str() << "\n";
+                    std::cout << "   merklehash: "  << genesis.hashMerkleRoot.ToString().c_str() << "\n";
+                    // Mainnet --- nonce: 296277 time: 1390095618 hash: 000000bdd771b14e5a031806292305e563956ce2584278de414d9965f6ab54b0
+                }
+                std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
+*/
+        assert(consensus.hashGenesisBlock == uint256S("00000abf4866ba7c1bf1dbf44861783e5e2f5dc16e14014e5444d9e7ac1cb29a"));
+        assert(genesis.hashMerkleRoot == uint256S("69781ad0a46b9f9ad0c69f52304ac65af5b309399784b537210348e166efc367"));
 
         vSeeds.push_back(CDNSSeedData("192.3.3.28", "193.3.3.28"));        // vFixedSeeds.clear();
         // vSeeds.clear();
@@ -185,14 +225,14 @@ public:
         nFulfilledRequestExpireTime = 60*60; // fulfilled requests expire in 1 hour
         strSporkPubKey = "0406d43be70bd276010ad0ca49c6ad33564a9b8bc7f5461f97182e2f14cd0608f71e31b45112f98ff2ddca58ab9855be5bcf17fb7c71aca006cec7280da1379415";
 
-        // checkpointData = (CCheckpointData) {
-        //    boost::assign::map_list_of      
-        //    (  0, uint256S("00000dbf523d5e02b42181258be59f5cf779feae789efb72383b4f69e274e9bc")),
-        // 1630049154, // * UNIX timestamp of last checkpoint block
-        //    0,    // * total number of transactions between genesis and last checkpoint
-        //                //   (the tx=... number in the SetBestChain debug.log lines)
-        //500        // * estimated number of transactions per day after checkpoint
-        //};
+         checkpointData = (CCheckpointData) {
+           boost::assign::map_list_of      
+            (  0, uint256S("00000abf4866ba7c1bf1dbf44861783e5e2f5dc16e14014e5444d9e7ac1cb29a")),
+      1632235719, // * UNIX timestamp of last checkpoint block
+               0, // * total number of transactions between genesis and last checkpoint
+                  //   (the tx=... number in the SetBestChain debug.log lines)
+             500  // * estimated number of transactions per day after checkpoint
+        };
     }
 };
 
@@ -275,8 +315,7 @@ public:
        // assert(consensus.hashGenesisBlock == uint256S("0x00000ba049e5c1f95474ea3fc62d5f1b1632a294c20c22fea701134a43cf3068"));
         //assert(genesis.hashMerkleRoot == uint256S("0xd5dec0980d7b84cc1c048eb8706afe68bbbdb07fdefab76de8d176dfcb858ae8"));
 
-        vSeeds.push_back(CDNSSeedData("testnet.luaproject.org", "testnet.seed.luaproject.org"));
-        vSeeds.push_back(CDNSSeedData("fixed-seeds.luaproject.org", "testnet.fixed-seeds.luaproject.org"));
+        vSeeds.push_back(CDNSSeedData("192.3.3.18", "192.3.3.18"));
         // vFixedSeeds.clear();
         // vSeeds.clear();
 
@@ -447,3 +486,4 @@ void SelectParams(const std::string& network)
     SelectBaseParams(network);
     pCurrentParams = &Params(network);
 }
+

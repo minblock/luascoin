@@ -109,9 +109,9 @@ am__aclocal_m4_deps = $(top_srcdir)/build-aux/m4/ax_boost_base.m4 \
 	$(top_srcdir)/build-aux/m4/ltsugar.m4 \
 	$(top_srcdir)/build-aux/m4/ltversion.m4 \
 	$(top_srcdir)/build-aux/m4/lt~obsolete.m4 \
-	$(top_srcdir)/build-aux/m4/lua_find_bdb48.m4 \
-	$(top_srcdir)/build-aux/m4/lua_qt.m4 \
-	$(top_srcdir)/build-aux/m4/lua_subdir_to_include.m4 \
+	$(top_srcdir)/build-aux/m4/luascoin_find_bdb48.m4 \
+	$(top_srcdir)/build-aux/m4/luascoin_qt.m4 \
+	$(top_srcdir)/build-aux/m4/luascoin_subdir_to_include.m4 \
 	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
@@ -121,10 +121,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/src/config/lua-config.h
-CONFIG_CLEAN_FILES = libluaconsensus.pc share/setup.nsi \
+CONFIG_HEADER = $(top_builddir)/src/config/luascoin-config.h
+CONFIG_CLEAN_FILES = libluascoinconsensus.pc share/setup.nsi \
 	share/qt/Info.plist src/test/buildenv.py \
-	qa/pull-tester/run-luad-for-test.sh \
+	qa/pull-tester/run-luascoind-for-test.sh \
 	qa/pull-tester/tests_config.py
 CONFIG_CLEAN_VPATH_FILES =
 SCRIPTS = $(dist_noinst_SCRIPTS)
@@ -214,18 +214,18 @@ CTAGS = ctags
 CSCOPE = cscope
 DIST_SUBDIRS = $(SUBDIRS)
 am__DIST_COMMON = $(srcdir)/Makefile.in \
-	$(srcdir)/libluaconsensus.pc.in \
+	$(srcdir)/libluascoinconsensus.pc.in \
 	$(top_srcdir)/build-aux/compile \
 	$(top_srcdir)/build-aux/config.guess \
 	$(top_srcdir)/build-aux/config.sub \
 	$(top_srcdir)/build-aux/install-sh \
 	$(top_srcdir)/build-aux/ltmain.sh \
 	$(top_srcdir)/build-aux/missing \
-	$(top_srcdir)/qa/pull-tester/run-luad-for-test.sh.in \
+	$(top_srcdir)/qa/pull-tester/run-luascoind-for-test.sh.in \
 	$(top_srcdir)/qa/pull-tester/tests_config.py.in \
 	$(top_srcdir)/share/qt/Info.plist.in \
 	$(top_srcdir)/share/setup.nsi.in \
-	$(top_srcdir)/src/config/lua-config.h.in \
+	$(top_srcdir)/src/config/luascoin-config.h.in \
 	$(top_srcdir)/src/test/buildenv.py.in COPYING INSTALL \
 	build-aux/compile build-aux/config.guess build-aux/config.sub \
 	build-aux/install-sh build-aux/ltmain.sh build-aux/missing
@@ -508,26 +508,26 @@ top_srcdir = @top_srcdir@
 ACLOCAL_AMFLAGS = -I build-aux/m4
 SUBDIRS = src
 GZIP_ENV = "-9n"
-@BUILD_LUA_LIBS_TRUE@pkgconfigdir = $(libdir)/pkgconfig
-@BUILD_LUA_LIBS_TRUE@pkgconfig_DATA = libluaconsensus.pc
-LUAD_BIN = $(top_builddir)/src/luad$(EXEEXT)
-LUA_QT_BIN = $(top_builddir)/src/qt/lua-qt$(EXEEXT)
-LUA_CLI_BIN = $(top_builddir)/src/lua-cli$(EXEEXT)
-LUA_WIN_INSTALLER = $(PACKAGE)-$(PACKAGE_VERSION)-win$(WINDOWS_BITS)-setup$(EXEEXT)
-OSX_APP = LUA-Qt.app
-OSX_DMG = LUA-Core.dmg
+@BUILD_LUASCOIN_LIBS_TRUE@pkgconfigdir = $(libdir)/pkgconfig
+@BUILD_LUASCOIN_LIBS_TRUE@pkgconfig_DATA = libluascoinconsensus.pc
+LUASCOIND_BIN = $(top_builddir)/src/luascoind$(EXEEXT)
+LUASCOIN_QT_BIN = $(top_builddir)/src/qt/luascoin-qt$(EXEEXT)
+LUASCOIN_CLI_BIN = $(top_builddir)/src/luascoin-cli$(EXEEXT)
+LUASCOIN_WIN_INSTALLER = $(PACKAGE)-$(PACKAGE_VERSION)-win$(WINDOWS_BITS)-setup$(EXEEXT)
+OSX_APP = LUASCOIN-Qt.app
+OSX_DMG = LUASCOIN-Core.dmg
 OSX_BACKGROUND_IMAGE = background.tiff
 OSX_DEPLOY_SCRIPT = $(top_srcdir)/contrib/macdeploy/macdeployqtplus
 OSX_FANCY_PLIST = $(top_srcdir)/contrib/macdeploy/fancy.plist
 OSX_BASE_LPROJ_DIR = $(top_srcdir)/contrib/macdeploy/Base.lproj/InfoPlist.strings
-OSX_INSTALLER_ICONS = $(top_srcdir)/src/qt/res/icons/lua.icns
+OSX_INSTALLER_ICONS = $(top_srcdir)/src/qt/res/icons/luascoin.icns
 OSX_PLIST = $(top_srcdir)/share/qt/Info.plist #not installed
 OSX_QT_TRANSLATIONS = da,de,es,hu,ru,uk,zh_CN,zh_TW
 DIST_DOCS = $(wildcard doc/*.md) $(wildcard doc/release-notes/*.md)
 BIN_CHECKS = $(top_srcdir)/contrib/devtools/symbol-check.py \
            $(top_srcdir)/contrib/devtools/security-check.py
 
-WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/lua.ico \
+WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/luascoin.ico \
   $(top_srcdir)/share/pixmaps/nsis-header.bmp \
   $(top_srcdir)/share/pixmaps/nsis-wizard.bmp \
   $(top_srcdir)/doc/README_windows.txt
@@ -539,19 +539,19 @@ OSX_PACKAGING = $(OSX_DEPLOY_SCRIPT) $(OSX_FANCY_PLIST) $(OSX_INSTALLER_ICONS) $
   $(top_srcdir)/contrib/macdeploy/detached-sig-create.sh
 
 COVERAGE_INFO = baseline_filtered_combined.info baseline.info block_test.info \
-  leveldb_baseline.info test_lua_filtered.info total_coverage.info \
+  leveldb_baseline.info test_luascoin_filtered.info total_coverage.info \
   baseline_filtered.info block_test_filtered.info rpc_test.info rpc_test_filtered.info \
-  leveldb_baseline_filtered.info test_lua_coverage.info test_lua.info
+  leveldb_baseline_filtered.info test_luascoin_coverage.info test_luascoin.info
 
 OSX_APP_BUILT = $(OSX_APP)/Contents/PkgInfo $(OSX_APP)/Contents/Resources/empty.lproj \
-  $(OSX_APP)/Contents/Resources/lua.icns $(OSX_APP)/Contents/Info.plist \
-  $(OSX_APP)/Contents/MacOS/LUA-Qt $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings
+  $(OSX_APP)/Contents/Resources/luascoin.icns $(OSX_APP)/Contents/Info.plist \
+  $(OSX_APP)/Contents/MacOS/LUASCOIN-Qt $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings
 
 @BUILD_DARWIN_FALSE@APP_DIST_DIR = $(top_builddir)/dist
 @BUILD_DARWIN_FALSE@APP_DIST_EXTRAS = $(APP_DIST_DIR)/.background/$(OSX_BACKGROUND_IMAGE) $(APP_DIST_DIR)/.DS_Store $(APP_DIST_DIR)/Applications
 dist_noinst_SCRIPTS = autogen.sh
 EXTRA_DIST = $(top_srcdir)/share/genbuild.sh qa/pull-tester/rpc-tests.py qa/rpc-tests $(DIST_DOCS) $(WINDOWS_PACKAGING) $(OSX_PACKAGING) $(BIN_CHECKS)
-CLEANFILES = $(OSX_DMG) $(LUA_WIN_INSTALLER)
+CLEANFILES = $(OSX_DMG) $(LUASCOIN_WIN_INSTALLER)
 all: all-recursive
 
 .SUFFIXES:
@@ -589,21 +589,21 @@ $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
 
-src/config/lua-config.h: src/config/stamp-h1
+src/config/luascoin-config.h: src/config/stamp-h1
 	@test -f $@ || rm -f src/config/stamp-h1
 	@test -f $@ || $(MAKE) $(AM_MAKEFLAGS) src/config/stamp-h1
 
-src/config/stamp-h1: $(top_srcdir)/src/config/lua-config.h.in $(top_builddir)/config.status
+src/config/stamp-h1: $(top_srcdir)/src/config/luascoin-config.h.in $(top_builddir)/config.status
 	@rm -f src/config/stamp-h1
-	cd $(top_builddir) && $(SHELL) ./config.status src/config/lua-config.h
-$(top_srcdir)/src/config/lua-config.h.in: @MAINTAINER_MODE_TRUE@ $(am__configure_deps) 
+	cd $(top_builddir) && $(SHELL) ./config.status src/config/luascoin-config.h
+$(top_srcdir)/src/config/luascoin-config.h.in: @MAINTAINER_MODE_TRUE@ $(am__configure_deps) 
 	($(am__cd) $(top_srcdir) && $(AUTOHEADER))
 	rm -f src/config/stamp-h1
 	touch $@
 
 distclean-hdr:
-	-rm -f src/config/lua-config.h src/config/stamp-h1
-libluaconsensus.pc: $(top_builddir)/config.status $(srcdir)/libluaconsensus.pc.in
+	-rm -f src/config/luascoin-config.h src/config/stamp-h1
+libluascoinconsensus.pc: $(top_builddir)/config.status $(srcdir)/libluascoinconsensus.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 share/setup.nsi: $(top_builddir)/config.status $(top_srcdir)/share/setup.nsi.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
@@ -611,7 +611,7 @@ share/qt/Info.plist: $(top_builddir)/config.status $(top_srcdir)/share/qt/Info.p
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 src/test/buildenv.py: $(top_builddir)/config.status $(top_srcdir)/src/test/buildenv.py.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-qa/pull-tester/run-luad-for-test.sh: $(top_builddir)/config.status $(top_srcdir)/qa/pull-tester/run-luad-for-test.sh.in
+qa/pull-tester/run-luascoind-for-test.sh: $(top_builddir)/config.status $(top_srcdir)/qa/pull-tester/run-luascoind-for-test.sh.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 qa/pull-tester/tests_config.py: $(top_builddir)/config.status $(top_srcdir)/qa/pull-tester/tests_config.py.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
@@ -1083,11 +1083,11 @@ distcheck-hook:
 distcleancheck:
 	@:
 
-$(LUA_WIN_INSTALLER): all-recursive
+$(LUASCOIN_WIN_INSTALLER): all-recursive
 	$(MKDIR_P) $(top_builddir)/release
-	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(LUAD_BIN) $(top_builddir)/release
-	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(LUA_QT_BIN) $(top_builddir)/release
-	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(LUA_CLI_BIN) $(top_builddir)/release
+	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(LUASCOIND_BIN) $(top_builddir)/release
+	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(LUASCOIN_QT_BIN) $(top_builddir)/release
+	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(LUASCOIN_CLI_BIN) $(top_builddir)/release
 	@test -f $(MAKENSIS) && $(MAKENSIS) -V2 $(top_builddir)/share/setup.nsi || \
 	  echo error: could not build $@
 	@echo built $@
@@ -1107,11 +1107,11 @@ $(OSX_APP)/Contents/Info.plist: $(OSX_PLIST)
 	$(MKDIR_P) $(@D)
 	$(INSTALL_DATA) $< $@
 
-$(OSX_APP)/Contents/Resources/lua.icns: $(OSX_INSTALLER_ICONS)
+$(OSX_APP)/Contents/Resources/luascoin.icns: $(OSX_INSTALLER_ICONS)
 	$(MKDIR_P) $(@D)
 	$(INSTALL_DATA) $< $@
 
-$(OSX_APP)/Contents/MacOS/LUA-Qt: $(LUA_QT_BIN)
+$(OSX_APP)/Contents/MacOS/LUASCOIN-Qt: $(LUASCOIN_QT_BIN)
 	$(MKDIR_P) $(@D)
 	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM)  $< $@
 
@@ -1128,10 +1128,10 @@ $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings: $(OSX_BASE_LPROJ_DIR
 @BUILD_DARWIN_FALSE@	@rm -f $@
 @BUILD_DARWIN_FALSE@	@cd $(@D); $(LN_S) /Applications $(@F)
 
-@BUILD_DARWIN_FALSE@$(APP_DIST_EXTRAS): $(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/LUA-Qt
+@BUILD_DARWIN_FALSE@$(APP_DIST_EXTRAS): $(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/LUASCOIN-Qt
 
 @BUILD_DARWIN_FALSE@$(OSX_DMG): $(APP_DIST_EXTRAS)
-@BUILD_DARWIN_FALSE@	$(GENISOIMAGE) -no-cache-inodes -D -l -probe -V "LUA-Core" -no-pad -r -dir-mode 0755 -apple -o $@ dist
+@BUILD_DARWIN_FALSE@	$(GENISOIMAGE) -no-cache-inodes -D -l -probe -V "LUASCOIN-Core" -no-pad -r -dir-mode 0755 -apple -o $@ dist
 
 @BUILD_DARWIN_FALSE@$(APP_DIST_DIR)/.background/$(OSX_BACKGROUND_IMAGE): contrib/macdeploy/$(OSX_BACKGROUND_IMAGE)
 @BUILD_DARWIN_FALSE@	$(MKDIR_P) $(@D)
@@ -1139,22 +1139,22 @@ $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings: $(OSX_BASE_LPROJ_DIR
 @BUILD_DARWIN_FALSE@$(APP_DIST_DIR)/.DS_Store: contrib/macdeploy/DS_Store
 @BUILD_DARWIN_FALSE@	$(INSTALL) $< $@
 
-@BUILD_DARWIN_FALSE@$(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/LUA-Qt: $(OSX_APP_BUILT) $(OSX_PACKAGING)
+@BUILD_DARWIN_FALSE@$(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/LUASCOIN-Qt: $(OSX_APP_BUILT) $(OSX_PACKAGING)
 @BUILD_DARWIN_FALSE@	INSTALLNAMETOOL=$(INSTALLNAMETOOL)  OTOOL=$(OTOOL) STRIP=$(STRIP) $(OSX_DEPLOY_SCRIPT) $(OSX_APP) -translations-dir=$(QT_TRANSLATION_DIR) -add-qt-tr $(OSX_QT_TRANSLATIONS) -verbose 2
 
 @BUILD_DARWIN_FALSE@deploydir: $(APP_DIST_EXTRAS)
 
 @TARGET_DARWIN_TRUE@appbundle: $(OSX_APP_BUILT)
 @TARGET_DARWIN_TRUE@deploy: $(OSX_DMG)
-@TARGET_WINDOWS_TRUE@deploy: $(LUA_WIN_INSTALLER)
+@TARGET_WINDOWS_TRUE@deploy: $(LUASCOIN_WIN_INSTALLER)
 
-$(LUA_QT_BIN): FORCE
+$(LUASCOIN_QT_BIN): FORCE
 	$(MAKE) -C src qt/$(@F)
 
-$(LUAD_BIN): FORCE
+$(LUASCOIND_BIN): FORCE
 	$(MAKE) -C src $(@F)
 
-$(LUA_CLI_BIN): FORCE
+$(LUASCOIN_CLI_BIN): FORCE
 	$(MAKE) -C src $(@F)
 
 @USE_LCOV_TRUE@baseline.info:
@@ -1172,26 +1172,26 @@ $(LUA_CLI_BIN): FORCE
 @USE_LCOV_TRUE@baseline_filtered_combined.info: leveldb_baseline_filtered.info baseline_filtered.info
 @USE_LCOV_TRUE@	$(LCOV) -a leveldb_baseline_filtered.info -a baseline_filtered.info -o $@
 
-@USE_LCOV_TRUE@test_lua.info: baseline_filtered_combined.info
+@USE_LCOV_TRUE@test_luascoin.info: baseline_filtered_combined.info
 @USE_LCOV_TRUE@	$(MAKE) -C src/ check
-@USE_LCOV_TRUE@	$(LCOV) -c -d $(abs_builddir)/src -t test_lua -o $@
+@USE_LCOV_TRUE@	$(LCOV) -c -d $(abs_builddir)/src -t test_luascoin -o $@
 @USE_LCOV_TRUE@	$(LCOV) -z -d $(abs_builddir)/src
 @USE_LCOV_TRUE@	$(LCOV) -z -d $(abs_builddir)/src/leveldb
 
-@USE_LCOV_TRUE@test_lua_filtered.info: test_lua.info
+@USE_LCOV_TRUE@test_luascoin_filtered.info: test_luascoin.info
 @USE_LCOV_TRUE@	$(LCOV) -r $< "/usr/include/*" -o $@
 
-@USE_LCOV_TRUE@block_test.info: test_lua_filtered.info
+@USE_LCOV_TRUE@block_test.info: test_luascoin_filtered.info
 @USE_LCOV_TRUE@	$(MKDIR_P) qa/tmp
-@USE_LCOV_TRUE@	-@TIMEOUT=15 qa/pull-tester/run-luad-for-test.sh $(JAVA) -jar $(JAVA_COMPARISON_TOOL) qa/tmp/compTool $(COMPARISON_TOOL_REORG_TESTS)
-@USE_LCOV_TRUE@	$(LCOV) -c -d $(abs_builddir)/src --t LUAJBlockTest -o $@
+@USE_LCOV_TRUE@	-@TIMEOUT=15 qa/pull-tester/run-luascoind-for-test.sh $(JAVA) -jar $(JAVA_COMPARISON_TOOL) qa/tmp/compTool $(COMPARISON_TOOL_REORG_TESTS)
+@USE_LCOV_TRUE@	$(LCOV) -c -d $(abs_builddir)/src --t LUASCOINJBlockTest -o $@
 @USE_LCOV_TRUE@	$(LCOV) -z -d $(abs_builddir)/src
 @USE_LCOV_TRUE@	$(LCOV) -z -d $(abs_builddir)/src/leveldb
 
 @USE_LCOV_TRUE@block_test_filtered.info: block_test.info
 @USE_LCOV_TRUE@	$(LCOV) -r $< "/usr/include/*" -o $@
 
-@USE_LCOV_TRUE@rpc_test.info: test_lua_filtered.info
+@USE_LCOV_TRUE@rpc_test.info: test_luascoin_filtered.info
 @USE_LCOV_TRUE@	-@TIMEOUT=15 python qa/pull-tester/rpc-tests.py $(EXTENDED_RPC_TESTS)
 @USE_LCOV_TRUE@	$(LCOV) -c -d $(abs_builddir)/src --t rpc-tests -o $@
 @USE_LCOV_TRUE@	$(LCOV) -z -d $(abs_builddir)/src
@@ -1200,13 +1200,13 @@ $(LUA_CLI_BIN): FORCE
 @USE_LCOV_TRUE@rpc_test_filtered.info: rpc_test.info
 @USE_LCOV_TRUE@	$(LCOV) -r $< "/usr/include/*" -o $@
 
-@USE_LCOV_TRUE@test_lua_coverage.info: baseline_filtered_combined.info test_lua_filtered.info
-@USE_LCOV_TRUE@	$(LCOV) -a baseline_filtered.info -a leveldb_baseline_filtered.info -a test_lua_filtered.info -o $@
+@USE_LCOV_TRUE@test_luascoin_coverage.info: baseline_filtered_combined.info test_luascoin_filtered.info
+@USE_LCOV_TRUE@	$(LCOV) -a baseline_filtered.info -a leveldb_baseline_filtered.info -a test_luascoin_filtered.info -o $@
 
-@USE_LCOV_TRUE@total_coverage.info: baseline_filtered_combined.info test_lua_filtered.info block_test_filtered.info rpc_test_filtered.info
-@USE_LCOV_TRUE@	$(LCOV) -a baseline_filtered.info -a leveldb_baseline_filtered.info -a test_lua_filtered.info -a block_test_filtered.info -a rpc_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
+@USE_LCOV_TRUE@total_coverage.info: baseline_filtered_combined.info test_luascoin_filtered.info block_test_filtered.info rpc_test_filtered.info
+@USE_LCOV_TRUE@	$(LCOV) -a baseline_filtered.info -a leveldb_baseline_filtered.info -a test_luascoin_filtered.info -a block_test_filtered.info -a rpc_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
 
-@USE_LCOV_TRUE@test_lua.coverage/.dirstamp:  test_lua_coverage.info
+@USE_LCOV_TRUE@test_luascoin.coverage/.dirstamp:  test_luascoin_coverage.info
 @USE_LCOV_TRUE@	$(GENHTML) -s $< -o $(@D)
 @USE_LCOV_TRUE@	@touch $@
 
@@ -1214,16 +1214,16 @@ $(LUA_CLI_BIN): FORCE
 @USE_LCOV_TRUE@	$(GENHTML) -s $< -o $(@D)
 @USE_LCOV_TRUE@	@touch $@
 
-@USE_LCOV_TRUE@cov: test_lua.coverage/.dirstamp total.coverage/.dirstamp
+@USE_LCOV_TRUE@cov: test_luascoin.coverage/.dirstamp total.coverage/.dirstamp
 
-# LUA: disable the test until upstream switches from convoluted comparison tool
-# Ref https://github.com/lua/lua/issues/4545
+# LUASCOIN: disable the test until upstream switches from convoluted comparison tool
+# Ref https://github.com/luascoin/luascoin/issues/4545
 @USE_COMPARISON_TOOL_TRUE@check-local:
 
 .INTERMEDIATE: $(COVERAGE_INFO)
 
 clean-local:
-	rm -rf coverage_percent.txt test_lua.coverage/ total.coverage/ qa/tmp/ cache/ $(OSX_APP)
+	rm -rf coverage_percent.txt test_luascoin.coverage/ total.coverage/ qa/tmp/ cache/ $(OSX_APP)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

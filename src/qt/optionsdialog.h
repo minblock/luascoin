@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_OPTIONSDIALOG_H
-#define LUA_QT_OPTIONSDIALOG_H
+#ifndef LUASCOIN_QT_OPTIONSDIALOG_H
+#define LUASCOIN_QT_OPTIONSDIALOG_H
 
 #include <QDialog>
 #include <QValidator>
@@ -67,4 +67,4 @@ private:
     QDataWidgetMapper *mapper;
 };
 
-#endif // LUA_QT_OPTIONSDIALOG_H
+#endif // LUASCOIN_QT_OPTIONSDIALOG_H

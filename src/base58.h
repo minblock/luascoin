@@ -11,8 +11,8 @@
  * - E-mail usually won't line-break if there's no punctuation to break at.
  * - Double-clicking selects the whole string as one word if it's all alphanumeric.
  */
-#ifndef LUA_BASE58_H
-#define LUA_BASE58_H
+#ifndef LUASCOIN_BASE58_H
+#define LUASCOIN_BASE58_H
 
 #include "chainparams.h"
 #include "key.h"
@@ -95,13 +95,13 @@ public:
     bool operator> (const CBase58Data& b58) const { return CompareTo(b58) >  0; }
 };
 
-/** base58-encoded LUA addresses.
+/** base58-encoded LUASCOIN addresses.
  * Public-key-hash-addresses have version 76 (or 140 testnet).
  * The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
  * Script-hash-addresses have version 16 (or 19 testnet).
  * The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
  */
-class CLUAAddress : public CBase58Data {
+class CLUASCOINAddress : public CBase58Data {
 public:
     bool Set(const CKeyID &id);
     bool Set(const CScriptID &id);
@@ -109,10 +109,10 @@ public:
     bool IsValid() const;
     bool IsValid(const CChainParams &params) const;
 
-    CLUAAddress() {}
-    CLUAAddress(const CTxDestination &dest) { Set(dest); }
-    CLUAAddress(const std::string& strAddress) { SetString(strAddress); }
-    CLUAAddress(const char* pszAddress) { SetString(pszAddress); }
+    CLUASCOINAddress() {}
+    CLUASCOINAddress(const CTxDestination &dest) { Set(dest); }
+    CLUASCOINAddress(const std::string& strAddress) { SetString(strAddress); }
+    CLUASCOINAddress(const char* pszAddress) { SetString(pszAddress); }
 
     CTxDestination Get() const;
     bool GetKeyID(CKeyID &keyID) const;
@@ -123,7 +123,7 @@ public:
 /**
  * A base58-encoded secret key
  */
-class CLUASecret : public CBase58Data
+class CLUASCOINSecret : public CBase58Data
 {
 public:
     void SetKey(const CKey& vchSecret);
@@ -132,11 +132,11 @@ public:
     bool SetString(const char* pszSecret);
     bool SetString(const std::string& strSecret);
 
-    CLUASecret(const CKey& vchSecret) { SetKey(vchSecret); }
-    CLUASecret() {}
+    CLUASCOINSecret(const CKey& vchSecret) { SetKey(vchSecret); }
+    CLUASCOINSecret() {}
 };
 
-template<typename K, int Size, CChainParams::Base58Type Type> class CLUAExtKeyBase : public CBase58Data
+template<typename K, int Size, CChainParams::Base58Type Type> class CLUASCOINExtKeyBase : public CBase58Data
 {
 public:
     void SetKey(const K &key) {
@@ -154,18 +154,18 @@ public:
         return ret;
     }
 
-    CLUAExtKeyBase(const K &key) {
+    CLUASCOINExtKeyBase(const K &key) {
         SetKey(key);
     }
 
-    CLUAExtKeyBase(const std::string& strBase58c) {
+    CLUASCOINExtKeyBase(const std::string& strBase58c) {
         SetString(strBase58c.c_str(), Params().Base58Prefix(Type).size());
     }
 
-    CLUAExtKeyBase() {}
+    CLUASCOINExtKeyBase() {}
 };
 
-typedef CLUAExtKeyBase<CExtKey, 74, CChainParams::EXT_SECRET_KEY> CLUAExtKey;
-typedef CLUAExtKeyBase<CExtPubKey, 74, CChainParams::EXT_PUBLIC_KEY> CLUAExtPubKey;
+typedef CLUASCOINExtKeyBase<CExtKey, 74, CChainParams::EXT_SECRET_KEY> CLUASCOINExtKey;
+typedef CLUASCOINExtKeyBase<CExtPubKey, 74, CChainParams::EXT_PUBLIC_KEY> CLUASCOINExtPubKey;
 
-#endif // LUA_BASE58_H
+#endif // LUASCOIN_BASE58_H

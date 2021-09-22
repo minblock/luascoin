@@ -8,7 +8,7 @@
 #
 
 from collections import OrderedDict
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 
 # Construct 2 trivial P2SH's and the ScriptSigs that spend them
@@ -165,7 +165,7 @@ def check_estimates(node, fees_seen, max_invalid, print_estimates = True):
     return all_estimates
 
 
-class EstimateFeeTest(LUATestFramework):
+class EstimateFeeTest(LUASCOINTestFramework):
 
     def setup_network(self):
         '''

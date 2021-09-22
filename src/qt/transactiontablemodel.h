@@ -2,10 +2,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_TRANSACTIONTABLEMODEL_H
-#define LUA_QT_TRANSACTIONTABLEMODEL_H
+#ifndef LUASCOIN_QT_TRANSACTIONTABLEMODEL_H
+#define LUASCOIN_QT_TRANSACTIONTABLEMODEL_H
 
-#include "luaunits.h"
+#include "luascoinunits.h"
 
 #include <QAbstractTableModel>
 #include <QStringList>
@@ -98,7 +98,7 @@ private:
     QString formatTxDate(const TransactionRecord *wtx) const;
     QString formatTxType(const TransactionRecord *wtx) const;
     QString formatTxToAddress(const TransactionRecord *wtx, bool tooltip) const;
-    QString formatTxAmount(const TransactionRecord *wtx, bool showUnconfirmed=true, LUAUnits::SeparatorStyle separators=LUAUnits::separatorStandard) const;
+    QString formatTxAmount(const TransactionRecord *wtx, bool showUnconfirmed=true, LUASCOINUnits::SeparatorStyle separators=LUASCOINUnits::separatorStandard) const;
     QString formatTooltip(const TransactionRecord *rec) const;
     QVariant txStatusDecoration(const TransactionRecord *wtx) const;
     QVariant txWatchonlyDecoration(const TransactionRecord *wtx) const;
@@ -117,4 +117,4 @@ public Q_SLOTS:
     friend class TransactionTablePriv;
 };
 
-#endif // LUA_QT_TRANSACTIONTABLEMODEL_H
+#endif // LUASCOIN_QT_TRANSACTIONTABLEMODEL_H

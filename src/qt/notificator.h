@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_NOTIFICATOR_H
-#define LUA_QT_NOTIFICATOR_H
+#ifndef LUASCOIN_QT_NOTIFICATOR_H
+#define LUASCOIN_QT_NOTIFICATOR_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/lua-config.h"
+#include "config/luascoin-config.h"
 #endif
 
 #include <QIcon>
@@ -77,4 +77,4 @@ private:
 #endif
 };
 
-#endif // LUA_QT_NOTIFICATOR_H
+#endif // LUASCOIN_QT_NOTIFICATOR_H

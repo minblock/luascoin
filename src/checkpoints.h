@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_CHECKPOINTS_H
-#define LUA_CHECKPOINTS_H
+#ifndef LUASCOIN_CHECKPOINTS_H
+#define LUASCOIN_CHECKPOINTS_H
 
 #include "uint256.h"
 
@@ -26,4 +26,4 @@ double GuessVerificationProgress(const CCheckpointData& data, CBlockIndex* pinde
 
 } //namespace Checkpoints
 
-#endif // LUA_CHECKPOINTS_H
+#endif // LUASCOIN_CHECKPOINTS_H

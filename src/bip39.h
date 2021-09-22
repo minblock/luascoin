@@ -21,8 +21,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef LUA_BIP39_H
-#define LUA_BIP39_H
+#ifndef LUASCOIN_BIP39_H
+#define LUASCOIN_BIP39_H
 
 #include "support/allocators/secure.h"
 

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_RPCCONSOLE_H
-#define LUA_QT_RPCCONSOLE_H
+#ifndef LUASCOIN_QT_RPCCONSOLE_H
+#define LUASCOIN_QT_RPCCONSOLE_H
 
 #include "guiutil.h"
 #include "peertablemodel.h"
@@ -28,7 +28,7 @@ class QMenu;
 class QItemSelection;
 QT_END_NAMESPACE
 
-/** Local LUA RPC console. */
+/** Local LUASCOIN RPC console. */
 class RPCConsole: public QWidget
 {
     Q_OBJECT
@@ -168,4 +168,4 @@ private:
     void updateNetworkState();
 };
 
-#endif // LUA_QT_RPCCONSOLE_H
+#endif // LUASCOIN_QT_RPCCONSOLE_H

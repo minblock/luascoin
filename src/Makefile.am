@@ -14,19 +14,19 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-LUA_CONFIG_INCLUDES=-I$(builddir)/config
-LUA_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
+LUASCOIN_CONFIG_INCLUDES=-I$(builddir)/config
+LUASCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
-LUA_INCLUDES += -I$(srcdir)/secp256k1/include
-LUA_INCLUDES += $(UNIVALUE_CFLAGS)
+LUASCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
+LUASCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
-LIBLUA_SERVER=liblua_server.a
-LIBLUA_WALLET=liblua_wallet.a
-LIBLUA_COMMON=liblua_common.a
-LIBLUA_CLI=liblua_cli.a
-LIBLUA_UTIL=liblua_util.a
-LIBLUA_CRYPTO=crypto/liblua_crypto.a
-LIBLUAQT=qt/libluaqt.a
+LIBLUASCOIN_SERVER=libluascoin_server.a
+LIBLUASCOIN_WALLET=libluascoin_wallet.a
+LIBLUASCOIN_COMMON=libluascoin_common.a
+LIBLUASCOIN_CLI=libluascoin_cli.a
+LIBLUASCOIN_UTIL=libluascoin_util.a
+LIBLUASCOIN_CRYPTO=crypto/libluascoin_crypto.a
+LIBLUASCOINQT=qt/libluascoinqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
@@ -35,41 +35,41 @@ $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
 EXTRA_LIBRARIES += \
-  crypto/liblua_crypto.a \
-  liblua_util.a \
-  liblua_common.a \
-  liblua_server.a \
-  liblua_cli.a
+  crypto/libluascoin_crypto.a \
+  libluascoin_util.a \
+  libluascoin_common.a \
+  libluascoin_server.a \
+  libluascoin_cli.a
 if ENABLE_WALLET
-LUA_INCLUDES += $(BDB_CPPFLAGS)
-EXTRA_LIBRARIES += liblua_wallet.a
+LUASCOIN_INCLUDES += $(BDB_CPPFLAGS)
+EXTRA_LIBRARIES += libluascoin_wallet.a
 endif
 if ENABLE_ZMQ
-EXTRA_LIBRARIES += liblua_zmq.a
+EXTRA_LIBRARIES += libluascoin_zmq.a
 endif
 
-if BUILD_LUA_LIBS
-lib_LTLIBRARIES = libluaconsensus.la
-LIBLUA_CONSENSUS=libluaconsensus.la
+if BUILD_LUASCOIN_LIBS
+lib_LTLIBRARIES = libluascoinconsensus.la
+LIBLUASCOIN_CONSENSUS=libluascoinconsensus.la
 else
-LIBLUA_CONSENSUS=
+LIBLUASCOIN_CONSENSUS=
 endif
 
 bin_PROGRAMS =
 TESTS =
 BENCHMARKS =
 
-if BUILD_LUAD
-  bin_PROGRAMS += luad
+if BUILD_LUASCOIND
+  bin_PROGRAMS += luascoind
 endif
 
-if BUILD_LUA_UTILS
-  bin_PROGRAMS += lua-cli lua-tx
+if BUILD_LUASCOIN_UTILS
+  bin_PROGRAMS += luascoin-cli luascoin-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# lua core #
-LUA_CORE_H = \
+# luascoin core #
+LUASCOIN_CORE_H = \
   addrdb.h \
   activemasternode.h \
   addressindex.h \
@@ -205,12 +205,12 @@ obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh $(abs_top_builddir)/src/obj/build.h \
 	  $(abs_top_srcdir)
-liblua_util_a-clientversion.$(OBJEXT): obj/build.h
+libluascoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between luad and lua-qt
-liblua_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-liblua_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-liblua_server_a_SOURCES = \
+# server: shared between luascoind and luascoin-qt
+libluascoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libluascoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libluascoin_server_a_SOURCES = \
   activemasternode.cpp \
   addrman.cpp \
   addrdb.cpp \
@@ -266,25 +266,25 @@ liblua_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
-  $(LUA_CORE_H)
+  $(LUASCOIN_CORE_H)
 
 if ENABLE_ZMQ
-LIBLUA_ZMQ=liblua_zmq.a
+LIBLUASCOIN_ZMQ=libluascoin_zmq.a
 
-liblua_zmq_a_CPPFLAGS = $(LUA_INCLUDES) $(ZMQ_CFLAGS)
-liblua_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-liblua_zmq_a_SOURCES = \
+libluascoin_zmq_a_CPPFLAGS = $(LUASCOIN_INCLUDES) $(ZMQ_CFLAGS)
+libluascoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libluascoin_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp
 endif
 
 
-# wallet: shared between luad and lua-qt, but only linked
+# wallet: shared between luascoind and luascoin-qt, but only linked
 # when wallet enabled
-liblua_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDES)
-liblua_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-liblua_wallet_a_SOURCES = \
+libluascoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_INCLUDES)
+libluascoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libluascoin_wallet_a_SOURCES = \
   keepass.cpp \
   privatesend-client.cpp \
   privatesend-util.cpp \
@@ -296,12 +296,12 @@ liblua_wallet_a_SOURCES = \
   wallet/wallet_ismine.cpp \
   wallet/walletdb.cpp \
   policy/rbf.cpp \
-  $(LUA_CORE_H)
+  $(LUASCOIN_CORE_H)
 
 # crypto primitives library
-crypto_liblua_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_CONFIG_INCLUDES) $(PIC_FLAGS)
-crypto_liblua_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
-crypto_liblua_crypto_a_SOURCES = \
+crypto_libluascoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_CONFIG_INCLUDES) $(PIC_FLAGS)
+crypto_libluascoin_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
+crypto_libluascoin_crypto_a_SOURCES = \
   crypto/common.h \
   crypto/hmac_sha256.cpp \
   crypto/hmac_sha256.h \
@@ -318,7 +318,7 @@ crypto_liblua_crypto_a_SOURCES = \
   crypto/sha512.h
 
 # x16r
-crypto_liblua_crypto_a_SOURCES += \
+crypto_libluascoin_crypto_a_SOURCES += \
   crypto/blake.c \
   crypto/bmw.c \
   crypto/cubehash.c \
@@ -355,10 +355,10 @@ crypto_liblua_crypto_a_SOURCES += \
   crypto/sph_sha2.h \
   crypto/sph_types.h
 
-# common: shared between luad, and lua-qt and non-server tools
-liblua_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDES)
-liblua_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-liblua_common_a_SOURCES = \
+# common: shared between luascoind, and luascoin-qt and non-server tools
+libluascoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_INCLUDES)
+libluascoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libluascoin_common_a_SOURCES = \
   amount.cpp \
   arith_uint256.cpp \
   base58.cpp \
@@ -385,14 +385,14 @@ liblua_common_a_SOURCES = \
   script/script_error.cpp \
   script/sign.cpp \
   script/standard.cpp \
-  $(LUA_CORE_H)
+  $(LUASCOIN_CORE_H)
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-liblua_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDES)
-liblua_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-liblua_util_a_SOURCES = \
+libluascoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_INCLUDES)
+libluascoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libluascoin_util_a_SOURCES = \
   support/pagelocker.cpp \
   chainparamsbase.cpp \
   clientversion.cpp \
@@ -409,93 +409,93 @@ liblua_util_a_SOURCES = \
   utilmoneystr.cpp \
   utilstrencodings.cpp \
   utiltime.cpp \
-  $(LUA_CORE_H)
+  $(LUASCOIN_CORE_H)
 
 if GLIBC_BACK_COMPAT
-liblua_util_a_SOURCES += compat/glibc_compat.cpp
+libluascoin_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between lua-cli and lua-qt
-liblua_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDES)
-liblua_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-liblua_cli_a_SOURCES = \
+# cli: shared between luascoin-cli and luascoin-qt
+libluascoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_INCLUDES)
+libluascoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libluascoin_cli_a_SOURCES = \
   rpc/client.cpp \
-  $(LUA_CORE_H)
+  $(LUASCOIN_CORE_H)
 
-nodist_liblua_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libluascoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# luad binary #
-luad_SOURCES = luad.cpp
-luad_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDES)
-luad_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-luad_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# luascoind binary #
+luascoind_SOURCES = luascoind.cpp
+luascoind_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_INCLUDES)
+luascoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+luascoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-luad_SOURCES += luad-res.rc
+luascoind_SOURCES += luascoind-res.rc
 endif
 
-luad_LDADD = \
-  $(LIBLUA_SERVER) \
-  $(LIBLUA_COMMON) \
+luascoind_LDADD = \
+  $(LIBLUASCOIN_SERVER) \
+  $(LIBLUASCOIN_COMMON) \
   $(LIBUNIVALUE) \
-  $(LIBLUA_UTIL) \
-  $(LIBLUA_CRYPTO) \
+  $(LIBLUASCOIN_UTIL) \
+  $(LIBLUASCOIN_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-luad_LDADD += $(LIBLUA_ZMQ) $(ZMQ_LIBS)
+luascoind_LDADD += $(LIBLUASCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-luad_LDADD += liblua_wallet.a
+luascoind_LDADD += libluascoin_wallet.a
 endif
 
-luad_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+luascoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
 
-# lua-cli binary #
-lua_cli_SOURCES = lua-cli.cpp
-lua_cli_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDES) $(EVENT_CFLAGS)
-lua_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-lua_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# luascoin-cli binary #
+luascoin_cli_SOURCES = luascoin-cli.cpp
+luascoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_INCLUDES) $(EVENT_CFLAGS)
+luascoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+luascoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-lua_cli_SOURCES += lua-cli-res.rc
+luascoin_cli_SOURCES += luascoin-cli-res.rc
 endif
 
-lua_cli_LDADD = \
-  $(LIBLUA_CLI) \
+luascoin_cli_LDADD = \
+  $(LIBLUASCOIN_CLI) \
   $(LIBUNIVALUE) \
-  $(LIBLUA_UTIL)
-lua_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+  $(LIBLUASCOIN_UTIL)
+luascoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# lua-tx binary #
-lua_tx_SOURCES = lua-tx.cpp
-lua_tx_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDES)
-lua_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-lua_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# luascoin-tx binary #
+luascoin_tx_SOURCES = luascoin-tx.cpp
+luascoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_INCLUDES)
+luascoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+luascoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-lua_tx_SOURCES += lua-tx-res.rc
+luascoin_tx_SOURCES += luascoin-tx-res.rc
 endif
 
-lua_tx_LDADD = \
+luascoin_tx_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBLUA_COMMON) \
-  $(LIBLUA_UTIL) \
-  $(LIBLUA_CRYPTO) \
+  $(LIBLUASCOIN_COMMON) \
+  $(LIBLUASCOIN_UTIL) \
+  $(LIBLUASCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-lua_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+luascoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# luaconsensus library #
-if BUILD_LUA_LIBS
-include_HEADERS = script/luaconsensus.h
-libluaconsensus_la_SOURCES = \
+# luascoinconsensus library #
+if BUILD_LUASCOIN_LIBS
+include_HEADERS = script/luascoinconsensus.h
+libluascoinconsensus_la_SOURCES = \
   crypto/hmac_sha512.cpp \
   crypto/ripemd160.cpp \
   crypto/sha1.cpp \
@@ -504,20 +504,20 @@ libluaconsensus_la_SOURCES = \
   hash.cpp \
   primitives/transaction.cpp \
   pubkey.cpp \
-  script/luaconsensus.cpp \
+  script/luascoinconsensus.cpp \
   script/interpreter.cpp \
   script/script.cpp \
   uint256.cpp \
   utilstrencodings.cpp
 
 if GLIBC_BACK_COMPAT
-  libluaconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libluascoinconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libluaconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libluaconsensus_la_LIBADD = $(LIBSECP256K1)
-libluaconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_LUA_INTERNAL
-libluaconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libluascoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libluascoinconsensus_la_LIBADD = $(LIBSECP256K1)
+libluascoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_LUASCOIN_INTERNAL
+libluascoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #

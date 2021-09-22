@@ -7,7 +7,7 @@
 
 #include "ui_helpmessagedialog.h"
 
-#include "luagui.h"
+#include "luascoingui.h"
 #include "clientmodel.h"
 #include "guiconstants.h"
 #include "intro.h"
@@ -34,7 +34,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
 {
     ui->setupUi(this);
 
-    QString version = tr("LUA Core") + " " + tr("version") + " " + QString::fromStdString(FormatFullVersion());
+    QString version = tr("LUASCOIN Core") + " " + tr("version") + " " + QString::fromStdString(FormatFullVersion());
     /* On x86 add a bit specifier to the version so that users can distinguish between
      * 32 and 64 bit builds. On other architectures, 32/64 bit may be more ambigious.
      */
@@ -46,7 +46,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
 
     if (helpMode == about)
     {
-        setWindowTitle(tr("About LUA Core"));
+        setWindowTitle(tr("About LUASCOIN Core"));
 
         /// HTML-format the license message from the core
         QString licenseInfo = QString::fromStdString(LicenseInfo());
@@ -68,14 +68,14 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
     } else if (helpMode == cmdline) {
         setWindowTitle(tr("Command-line options"));
         QString header = tr("Usage:") + "\n" +
-            "  lua-qt [" + tr("command-line options") + "]                     " + "\n";
+            "  luascoin-qt [" + tr("command-line options") + "]                     " + "\n";
         QTextCursor cursor(ui->helpMessage->document());
         cursor.insertText(version);
         cursor.insertBlock();
         cursor.insertText(header);
         cursor.insertBlock();
 
-        std::string strUsage = HelpMessage(HMM_LUA_QT);
+        std::string strUsage = HelpMessage(HMM_LUASCOIN_QT);
         const bool showDebug = GetBoolArg("-help-debug", false);
         strUsage += HelpMessageGroup(tr("UI Options:").toStdString());
         if (showDebug) {
@@ -88,7 +88,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
         strUsage += HelpMessageOpt("-splash", strprintf(tr("Show splash screen on startup (default: %u)").toStdString(), DEFAULT_SPLASHSCREEN));
         strUsage += HelpMessageOpt("-resetguisettings", tr("Reset all settings changed in the GUI").toStdString());
         if (showDebug) {
-            strUsage += HelpMessageOpt("-uiplatform", strprintf("Select platform to customize UI for (one of windows, macosx, other; default: %s)", LUAGUI::DEFAULT_UIPLATFORM));
+            strUsage += HelpMessageOpt("-uiplatform", strprintf("Select platform to customize UI for (one of windows, macosx, other; default: %s)", LUASCOINGUI::DEFAULT_UIPLATFORM));
         }
         QString coreOptions = QString::fromStdString(strUsage);
         text = version + "\n" + header + "\n" + coreOptions;
@@ -135,13 +135,13 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, HelpMode helpMode) :
         ui->aboutMessage->setText(tr("\
 <h3>PrivateSend Basics</h3> \
 PrivateSend gives you true financial privacy by obscuring the origins of your funds. \
-All the LUA in your wallet is comprised of different \"inputs\" which you can think of as separate, discrete coins.<br> \
+All the LUASCOIN in your wallet is comprised of different \"inputs\" which you can think of as separate, discrete coins.<br> \
 PrivateSend uses an innovative process to mix your inputs with the inputs of two other people, without having your coins ever leave your wallet. \
 You retain control of your money at all times..<hr> \
 <b>The PrivateSend process works like this:</b>\
 <ol type=\"1\"> \
 <li>PrivateSend begins by breaking your transaction inputs down into standard denominations. \
-These denominations are 0.01 LUA, 0.1 LUA, 1 LUA and 10 LUA -- sort of like the paper money you use every day.</li> \
+These denominations are 0.01 LUASCOIN, 0.1 LUASCOIN, 1 LUASCOIN and 10 LUASCOIN -- sort of like the paper money you use every day.</li> \
 <li>Your wallet then sends requests to specially configured software nodes on the network, called \"masternodes.\" \
 These masternodes are informed then that you are interested in mixing a certain denomination. \
 No identifiable information is sent to the masternodes, so they never know \"who\" you are.</li> \
@@ -202,12 +202,12 @@ ShutdownWindow::ShutdownWindow(QWidget *parent, Qt::WindowFlags f):
 {
     QVBoxLayout *layout = new QVBoxLayout();
     layout->addWidget(new QLabel(
-        tr("LUA Core is shutting down...") + "<br /><br />" +
+        tr("LUASCOIN Core is shutting down...") + "<br /><br />" +
         tr("Do not shut down the computer until this window disappears.")));
     setLayout(layout);
 }
 
-QWidget *ShutdownWindow::showShutdownWindow(LUAGUI *window)
+QWidget *ShutdownWindow::showShutdownWindow(LUASCOINGUI *window)
 {
     if (!window)
         return nullptr;

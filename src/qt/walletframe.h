@@ -2,14 +2,14 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_WALLETFRAME_H
-#define LUA_QT_WALLETFRAME_H
+#ifndef LUASCOIN_QT_WALLETFRAME_H
+#define LUASCOIN_QT_WALLETFRAME_H
 
 #include "toolspage.h"
 #include <QFrame>
 #include <QMap>
 
-class LUAGUI;
+class LUASCOINGUI;
 class ClientModel;
 class PlatformStyle;
 class SendCoinsRecipient;
@@ -25,7 +25,7 @@ class WalletFrame : public QFrame
     Q_OBJECT
 
 public:
-    explicit WalletFrame(const PlatformStyle *platformStyle, LUAGUI *_gui = 0);
+    explicit WalletFrame(const PlatformStyle *platformStyle, LUASCOINGUI *_gui = 0);
     ~WalletFrame();
 
     void setClientModel(ClientModel *clientModel);
@@ -47,7 +47,7 @@ Q_SIGNALS:
 
 private:
     QStackedWidget *walletStack;
-    LUAGUI *gui;
+    LUASCOINGUI *gui;
     ClientModel *clientModel;
     QMap<QString, WalletView*> mapWalletViews;
 
@@ -95,4 +95,4 @@ public Q_SLOTS:
     void outOfSyncWarningClicked();
 };
 
-#endif // LUA_QT_WALLETFRAME_H
+#endif // LUASCOIN_QT_WALLETFRAME_H

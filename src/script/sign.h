@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_SCRIPT_SIGN_H
-#define LUA_SCRIPT_SIGN_H
+#ifndef LUASCOIN_SCRIPT_SIGN_H
+#define LUASCOIN_SCRIPT_SIGN_H
 
 #include "script/interpreter.h"
 
@@ -64,4 +64,4 @@ CScript CombineSignatures(const CScript& scriptPubKey, const BaseSignatureChecke
 /** Combine two script signatures on transactions. */
 CScript CombineSignatures(const CScript& scriptPubKey, const CTransaction& txTo, unsigned int nIn, const CScript& scriptSig1, const CScript& scriptSig2);
 
-#endif // LUA_SCRIPT_SIGN_H
+#endif // LUASCOIN_SCRIPT_SIGN_H

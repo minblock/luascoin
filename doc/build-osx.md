@@ -1,6 +1,6 @@
 Mac OS X Build Instructions and Notes
 ====================================
-This guide will show you how to build luad (headless client) for OSX.
+This guide will show you how to build luascoind (headless client) for OSX.
 
 Notes
 -----
@@ -36,15 +36,15 @@ Instructions: Homebrew
 
 NOTE: Building with Qt4 is still supported, however, doing so could result in a broken UI. Therefore, building with Qt5 is recommended. Be aware that Qt5 5.7+ requires C++11 compiler support.
 
-### Building LUA Core
+### Building LUASCOIN Core
 
 1. Clone the GitHub tree to get the source code and go into the directory.
 
-        git clone https://github.com/minblock/lua.git
-        cd lua
+        git clone https://github.com/luascoincrypto/luascoin.git
+        cd luascoin
 
-2.  Build LUA Core:
-    This will configure and build the headless lua binaries as well as the gui (if Qt is found).
+2.  Build LUASCOIN Core:
+    This will configure and build the headless luascoin binaries as well as the gui (if Qt is found).
     You can disable the gui build by passing `--without-gui` to configure.
 
         ./autogen.sh
@@ -55,7 +55,7 @@ NOTE: Building with Qt4 is still supported, however, doing so could result in a 
 
         make check
 
-4.  (Optional) You can also install luad to your path:
+4.  (Optional) You can also install luascoind to your path:
 
         make install
 
@@ -67,7 +67,7 @@ Download Qt Creator from https://www.qt.io/download/. Download the "community ed
 1. Make sure you installed everything through Homebrew mentioned above
 2. Do a proper ./configure --enable-debug
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "lua-qt" as project name, enter src/qt as location
+4. Enter "luascoin-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."
@@ -77,11 +77,11 @@ Download Qt Creator from https://www.qt.io/download/. Download the "community ed
 
 Creating a release build
 ------------------------
-You can ignore this section if you are building `luad` for your own use.
+You can ignore this section if you are building `luascoind` for your own use.
 
-luad/lua-cli binaries are not included in the LUA-Qt.app bundle.
+luascoind/luascoin-cli binaries are not included in the LUASCOIN-Qt.app bundle.
 
-If you are building `luad` or `LUA Core` for others, your build machine should be set up
+If you are building `luascoind` or `LUASCOIN Core` for others, your build machine should be set up
 as follows for maximum compatibility:
 
 All dependencies should be compiled with these flags:
@@ -90,30 +90,30 @@ All dependencies should be compiled with these flags:
  -arch x86_64
  -isysroot $(xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk
 
-Once dependencies are compiled, see [doc/release-process.md](release-process.md) for how the LUA Core
+Once dependencies are compiled, see [doc/release-process.md](release-process.md) for how the LUASCOIN Core
 bundle is packaged and signed to create the .dmg disk image that is distributed.
 
 Running
 -------
 
-It's now available at `./luad`, provided that you are still in the `src`
+It's now available at `./luascoind`, provided that you are still in the `src`
 directory. We have to first create the RPC configuration file, though.
 
-Run `./luad` to get the filename where it should be put, or just try these
+Run `./luascoind` to get the filename where it should be put, or just try these
 commands:
 
-    echo -e "rpcuser=luarpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/LUACore/lua.conf"
-    chmod 600 "/Users/${USER}/Library/Application Support/LUACore/lua.conf"
+    echo -e "rpcuser=luascoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/LUASCOINCore/luascoin.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/LUASCOINCore/luascoin.conf"
 
 The next time you run it, it will start downloading the blockchain, but it won't
 output anything while it's doing this. This process may take several hours;
 you can monitor its process by looking at the debug.log file, like this:
 
-    tail -f $HOME/Library/Application\ Support/LUACore/debug.log
+    tail -f $HOME/Library/Application\ Support/LUASCOINCore/debug.log
 
 Other commands:
 -------
 
-    ./luad -daemon # to start the lua daemon.
-    ./lua-cli --help  # for a list of command-line options.
-    ./lua-cli help    # When the daemon is running, to get a list of RPC commands
+    ./luascoind -daemon # to start the luascoin daemon.
+    ./luascoin-cli --help  # for a list of command-line options.
+    ./luascoin-cli help    # When the daemon is running, to get a list of RPC commands

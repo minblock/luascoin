@@ -5,8 +5,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_HASH_H
-#define LUA_HASH_H
+#ifndef LUASCOIN_HASH_H
+#define LUASCOIN_HASH_H
 
 #include <iostream>
 #include <chrono>
@@ -85,8 +85,8 @@ GLOBAL sph_sha512_context      z_sha;
 #define ZJH (memcpy(&ctx_jh, &z_jh, sizeof(z_jh)))
 #define ZKECCAK (memcpy(&ctx_keccak, &z_keccak, sizeof(z_keccak)))
 #define ZSKEIN (memcpy(&ctx_skein, &z_skein, sizeof(z_skein)))
-/* ----------- LUA Hash ------------------------------------------------- */
-/** A hasher class for LUA's 256-bit hash (double SHA-256). */
+/* ----------- LUASCOIN Hash ------------------------------------------------- */
+/** A hasher class for LUASCOIN's 256-bit hash (double SHA-256). */
 class CHash256 {
 private:
     CSHA256 sha;
@@ -110,7 +110,7 @@ public:
     }
 };
 
-/** A hasher class for LUA's 160-bit hash (SHA-256 + RIPEMD-160). */
+/** A hasher class for LUASCOIN's 160-bit hash (SHA-256 + RIPEMD-160). */
 class CHash160 {
 private:
     CSHA256 sha;
@@ -509,4 +509,4 @@ inline uint256 HashX16R(const T1 pbegin, const T1 pend, const uint256 PrevBlockH
     return hash[15].trim256();
 }
 
-#endif // LUA_HASH_H
+#endif // LUASCOIN_HASH_H

@@ -1,24 +1,24 @@
-bin_PROGRAMS += qt/lua-qt
-EXTRA_LIBRARIES += qt/libluaqt.a
+bin_PROGRAMS += qt/luascoin-qt
+EXTRA_LIBRARIES += qt/libluascoinqt.a
 
-# lua qt core #
+# luascoin qt core #
 QT_TS = \
-  qt/locale/lua_bg.ts \
-  qt/locale/lua_de.ts \
-  qt/locale/lua_en.ts \
-  qt/locale/lua_es.ts \
-  qt/locale/lua_fi.ts \
-  qt/locale/lua_fr.ts \
-  qt/locale/lua_it.ts \
-  qt/locale/lua_ja.ts \
-  qt/locale/lua_pl.ts \
-  qt/locale/lua_pt.ts \
-  qt/locale/lua_ru.ts \
-  qt/locale/lua_sk.ts \
-  qt/locale/lua_sv.ts \
-  qt/locale/lua_vi.ts \
-  qt/locale/lua_zh_CN.ts \
-  qt/locale/lua_zh_TW.ts
+  qt/locale/luascoin_bg.ts \
+  qt/locale/luascoin_de.ts \
+  qt/locale/luascoin_en.ts \
+  qt/locale/luascoin_es.ts \
+  qt/locale/luascoin_fi.ts \
+  qt/locale/luascoin_fr.ts \
+  qt/locale/luascoin_it.ts \
+  qt/locale/luascoin_ja.ts \
+  qt/locale/luascoin_pl.ts \
+  qt/locale/luascoin_pt.ts \
+  qt/locale/luascoin_ru.ts \
+  qt/locale/luascoin_sk.ts \
+  qt/locale/luascoin_sv.ts \
+  qt/locale/luascoin_vi.ts \
+  qt/locale/luascoin_zh_CN.ts \
+  qt/locale/luascoin_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -48,10 +48,10 @@ QT_MOC_CPP = \
   qt/moc_addresstablemodel.cpp \
   qt/moc_askpassphrasedialog.cpp \
   qt/moc_bantablemodel.cpp \
-  qt/moc_luaaddressvalidator.cpp \
-  qt/moc_luaamountfield.cpp \
-  qt/moc_luagui.cpp \
-  qt/moc_luaunits.cpp \
+  qt/moc_luascoinaddressvalidator.cpp \
+  qt/moc_luascoinamountfield.cpp \
+  qt/moc_luascoingui.cpp \
+  qt/moc_luascoinunits.cpp \
   qt/moc_clientmodel.cpp \
   qt/moc_coincontroldialog.cpp \
   qt/moc_coincontroltreewidget.cpp \
@@ -94,35 +94,35 @@ QT_MOC_CPP = \
   qt/moc_walletmodel.cpp \
   qt/moc_walletview.cpp
 
-LUA_MM = \
+LUASCOIN_MM = \
   qt/macdockiconhandler.mm \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/lua.moc \
-  qt/luaamountfield.moc \
+  qt/luascoin.moc \
+  qt/luascoinamountfield.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_lua.cpp
-QT_QRC = qt/lua.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_lua_locale.cpp
-QT_QRC_LOCALE = qt/lua_locale.qrc
+QT_QRC_CPP = qt/qrc_luascoin.cpp
+QT_QRC = qt/luascoin.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_luascoin_locale.cpp
+QT_QRC_LOCALE = qt/luascoin_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
 PROTOBUF_PROTO = qt/paymentrequest.proto
 
-LUA_QT_H = \
+LUASCOIN_QT_H = \
   qt/addressbookpage.h \
   qt/addresstablemodel.h \
   qt/askpassphrasedialog.h \
   qt/bantablemodel.h \
-  qt/luaaddressvalidator.h \
-  qt/luaamountfield.h \
-  qt/luagui.h \
-  qt/luaunits.h \
+  qt/luascoinaddressvalidator.h \
+  qt/luascoinamountfield.h \
+  qt/luascoingui.h \
+  qt/luascoinunits.h \
   qt/clientmodel.h \
   qt/coincontroldialog.h \
   qt/coincontroltreewidget.h \
@@ -174,8 +174,8 @@ LUA_QT_H = \
   qt/winshutdownmonitor.h
 
 RES_ICONS = \
-  qt/res/icons/lua.ico \
-  qt/res/icons/lua.png \
+  qt/res/icons/luascoin.ico \
+  qt/res/icons/luascoin.png \
   qt/res/icons/chevron.png \
   qt/res/icons/warning.png \
   qt/res/icons/drkblue/add.png \
@@ -410,12 +410,12 @@ RES_ICONS = \
   qt/res/icons/trad/transaction_abandoned.png \
   qt/res/icons/trad/network_disabled.png
 
-LUA_QT_CPP = \
+LUASCOIN_QT_CPP = \
   qt/bantablemodel.cpp \
-  qt/luaaddressvalidator.cpp \
-  qt/luaamountfield.cpp \
-  qt/luagui.cpp \
-  qt/luaunits.cpp \
+  qt/luascoinaddressvalidator.cpp \
+  qt/luascoinamountfield.cpp \
+  qt/luascoingui.cpp \
+  qt/luascoinunits.cpp \
   qt/clientmodel.cpp \
   qt/csvmodelwriter.cpp \
   qt/guiutil.cpp \
@@ -436,11 +436,11 @@ LUA_QT_CPP = \
   qt/utilitydialog.cpp
 
 if TARGET_WINDOWS
-LUA_QT_CPP += qt/winshutdownmonitor.cpp
+LUASCOIN_QT_CPP += qt/winshutdownmonitor.cpp
 endif
 
 if ENABLE_WALLET
-LUA_QT_CPP += \
+LUASCOIN_QT_CPP += \
   qt/addressbookpage.cpp \
   qt/addresstablemodel.cpp \
   qt/askpassphrasedialog.cpp \
@@ -477,7 +477,7 @@ RES_IMAGES = \
   qt/res/images/drkblue/about.png \
   qt/res/images/drkblue/splash.png \
   qt/res/images/drkblue/splash_testnet.png \
-  qt/res/images/drkblue/lua_logo_horizontal.png \
+  qt/res/images/drkblue/luascoin_logo_horizontal.png \
   qt/res/images/drkblue/unchecked.png \
   qt/res/images/drkblue/checked.png \
   qt/res/images/drkblue/drkblue_downArrow.png \
@@ -490,7 +490,7 @@ RES_IMAGES = \
   qt/res/images/crownium/about.png \
   qt/res/images/crownium/splash.png \
   qt/res/images/crownium/splash_testnet.png \
-  qt/res/images/crownium/lua_logo_horizontal.png \
+  qt/res/images/crownium/luascoin_logo_horizontal.png \
   qt/res/images/crownium/unchecked.png \
   qt/res/images/crownium/checked.png \
   qt/res/images/crownium/drkblue_downArrow.png \
@@ -503,7 +503,7 @@ RES_IMAGES = \
   qt/res/images/light/about.png \
   qt/res/images/light/splash.png \
   qt/res/images/light/splash_testnet.png \
-  qt/res/images/light/lua_logo_horizontal.png \
+  qt/res/images/light/luascoin_logo_horizontal.png \
   qt/res/images/light/unchecked.png \
   qt/res/images/light/checked.png \
   qt/res/images/light/drkblue_downArrow.png \
@@ -522,7 +522,7 @@ RES_IMAGES = \
   qt/res/images/trad/about.png \
   qt/res/images/trad/splash.png \
   qt/res/images/trad/splash_testnet.png \
-  qt/res/images/trad/lua_logo_horizontal.png \
+  qt/res/images/trad/luascoin_logo_horizontal.png \
   qt/res/images/trad/drkblue_downArrow.png \
   qt/res/images/trad/drkblue_downArrow_small.png \
   qt/res/images/trad/drkblue_upArrow_small.png \
@@ -539,19 +539,19 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard qt/res/movies/spinner-*.png)
 
-LUA_RC = qt/res/lua-qt-res.rc
+LUASCOIN_RC = qt/res/luascoin-qt-res.rc
 
-LUA_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+LUASCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
 
-qt_libluaqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDES) $(LUA_QT_INCLUDES) \
+qt_libluascoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_INCLUDES) $(LUASCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
-qt_libluaqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libluascoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_libluaqt_a_SOURCES = $(LUA_QT_CPP) $(LUA_QT_H) $(QT_FORMS_UI) \
+qt_libluascoinqt_a_SOURCES = $(LUASCOIN_QT_CPP) $(LUASCOIN_QT_H) $(QT_FORMS_UI) \
   $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES)
 
-nodist_qt_libluaqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+nodist_qt_libluascoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
   $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
 
 # forms/foo.h -> forms/ui_foo.h
@@ -560,70 +560,70 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libluaqt_a_OBJECTS) $(qt_lua_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libluascoinqt_a_OBJECTS) $(qt_luascoin_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# lua-qt binary #
-qt_lua_qt_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDES) $(LUA_QT_INCLUDES) \
+# luascoin-qt binary #
+qt_luascoin_qt_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_INCLUDES) $(LUASCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
-qt_lua_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_luascoin_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_lua_qt_SOURCES = qt/lua.cpp
+qt_luascoin_qt_SOURCES = qt/luascoin.cpp
 if TARGET_DARWIN
-  qt_lua_qt_SOURCES += $(LUA_MM)
+  qt_luascoin_qt_SOURCES += $(LUASCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_lua_qt_SOURCES += $(LUA_RC)
+  qt_luascoin_qt_SOURCES += $(LUASCOIN_RC)
 endif
-qt_lua_qt_LDADD = qt/libluaqt.a $(LIBLUA_SERVER)
+qt_luascoin_qt_LDADD = qt/libluascoinqt.a $(LIBLUASCOIN_SERVER)
 if ENABLE_WALLET
-qt_lua_qt_LDADD += $(LIBLUA_WALLET)
+qt_luascoin_qt_LDADD += $(LIBLUASCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_lua_qt_LDADD += $(LIBLUA_ZMQ) $(ZMQ_LIBS)
+qt_luascoin_qt_LDADD += $(LIBLUASCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_lua_qt_LDADD += $(LIBLUA_CLI) $(LIBLUA_COMMON) $(LIBLUA_UTIL) $(LIBLUA_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
+qt_luascoin_qt_LDADD += $(LIBLUASCOIN_CLI) $(LIBLUASCOIN_COMMON) $(LIBLUASCOIN_UTIL) $(LIBLUASCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_lua_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_lua_qt_LIBTOOLFLAGS = --tag CXX
+qt_luascoin_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_luascoin_qt_LIBTOOLFLAGS = --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 SECONDARY: $(QT_QM)
 
-qt/luastrings.cpp: $(liblua_server_a_SOURCES) $(liblua_wallet_a_SOURCES) $(liblua_common_a_SOURCES) $(liblua_zmq_a_SOURCES) $(liblua_consensus_a_SOURCES) $(liblua_util_a_SOURCES)
+qt/luascoinstrings.cpp: $(libluascoin_server_a_SOURCES) $(libluascoin_wallet_a_SOURCES) $(libluascoin_common_a_SOURCES) $(libluascoin_zmq_a_SOURCES) $(libluascoin_consensus_a_SOURCES) $(libluascoin_util_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) ../share/qt/extract_strings_qt.py $^
 
-translate: qt/luastrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(LUA_QT_CPP) qt/lua.cpp $(LUA_QT_H) $(LUA_MM)
+translate: qt/luascoinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(LUASCOIN_QT_CPP) qt/luascoin.cpp $(LUASCOIN_QT_H) $(LUASCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/lua_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/luascoin_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@test -f $(@D)/$(<F) || cp -f $< $(@D)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) $(RCCFLAGS) -name lua_locale $(@D)/$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) $(RCCFLAGS) -name luascoin_locale $(@D)/$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) $(RCCFLAGS) -name lua $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) $(RCCFLAGS) -name luascoin $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-CLEAN_QT = $(nodist_qt_libluaqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
+CLEAN_QT = $(nodist_qt_libluascoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
 
 CLEANFILES += $(CLEAN_QT)
 
-lua_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libluaqt_a_OBJECTS) $(qt_lua_qt_OBJECTS) qt/lua-qt$(EXEEXT) $(LIBLUAQT)
+luascoin_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libluascoinqt_a_OBJECTS) $(qt_luascoin_qt_OBJECTS) qt/luascoin-qt$(EXEEXT) $(LIBLUASCOINQT)
 
-lua_qt : qt/lua-qt$(EXEEXT)
+luascoin_qt : qt/luascoin-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

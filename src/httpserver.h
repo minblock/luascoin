@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_HTTPSERVER_H
-#define LUA_HTTPSERVER_H
+#ifndef LUASCOIN_HTTPSERVER_H
+#define LUASCOIN_HTTPSERVER_H
 
 #include <string>
 #include <stdint.h>
@@ -146,4 +146,4 @@ private:
     struct event* ev;
 };
 
-#endif // LUA_HTTPSERVER_H
+#endif // LUASCOIN_HTTPSERVER_H

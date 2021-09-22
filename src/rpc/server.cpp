@@ -243,11 +243,11 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop LUA Core server.");
+            "\nStop LUASCOIN Core server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "LUA Core server stopping";
+    return "LUASCOIN Core server stopping";
 }
 
 /**
@@ -343,20 +343,20 @@ static const CRPCCommand vRPCCommands[] =
     { "hidden",             "resendwallettransactions", &resendwallettransactions, true},
 #endif
 
-    /* LUA features */
-    { "lua",               "masternode",             &masternode,             true  },
-    { "lua",               "masternodelist",         &masternodelist,         true  },
-    { "lua",               "masternodebroadcast",    &masternodebroadcast,    true  },
-    { "lua",               "gobject",                &gobject,                true  },
-    { "lua",               "getgovernanceinfo",      &getgovernanceinfo,      true  },
-    { "lua",               "getsuperblockbudget",    &getsuperblockbudget,    true  },
-    { "lua",               "voteraw",                &voteraw,                true  },
-    { "lua",               "mnsync",                 &mnsync,                 true  },
-    { "lua",               "spork",                  &spork,                  true  },
-    { "lua",               "getpoolinfo",            &getpoolinfo,            true  },
-    { "lua",               "sentinelping",           &sentinelping,           true  },
+    /* LUASCOIN features */
+    { "luascoin",               "masternode",             &masternode,             true  },
+    { "luascoin",               "masternodelist",         &masternodelist,         true  },
+    { "luascoin",               "masternodebroadcast",    &masternodebroadcast,    true  },
+    { "luascoin",               "gobject",                &gobject,                true  },
+    { "luascoin",               "getgovernanceinfo",      &getgovernanceinfo,      true  },
+    { "luascoin",               "getsuperblockbudget",    &getsuperblockbudget,    true  },
+    { "luascoin",               "voteraw",                &voteraw,                true  },
+    { "luascoin",               "mnsync",                 &mnsync,                 true  },
+    { "luascoin",               "spork",                  &spork,                  true  },
+    { "luascoin",               "getpoolinfo",            &getpoolinfo,            true  },
+    { "luascoin",               "sentinelping",           &sentinelping,           true  },
 #ifdef ENABLE_WALLET
-    { "lua",               "privatesend",            &privatesend,            false },
+    { "luascoin",               "privatesend",            &privatesend,            false },
 
     /* Wallet */
     { "wallet",             "keepass",                &keepass,                true },
@@ -580,7 +580,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(const std::string& methodname, const std::string& args)
 {
-    return "> lua-cli " + methodname + " " + args + "\n";
+    return "> luascoin-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(const std::string& methodname, const std::string& args)

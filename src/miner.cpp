@@ -36,7 +36,7 @@ using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// LUAMiner
+// LUASCOINMiner
 //
 
 //
@@ -282,7 +282,7 @@ CBlockTemplate* CreateNewBlock(const CChainParams& chainparams, const CScript& s
 
         }
 
-        // NOTE: unlike in lua, we need to pass PREVIOUS block height here
+        // NOTE: unlike in luascoin, we need to pass PREVIOUS block height here
         CAmount blockReward = nFees + GetBlockSubsidy(pindexPrev->nBits, pindexPrev->nHeight, Params().GetConsensus());
 
         // Compute regular coinbase transaction.
@@ -343,7 +343,7 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
 // Internal miner
 //
 
-// ***TODO*** ScanHash is not yet used in LUA
+// ***TODO*** ScanHash is not yet used in LUASCOIN
 //
 // ScanHash scans nonces looking for a hash with at least some zero bits.
 // The nonce is usually preserved between calls, but periodically or if the
@@ -399,12 +399,12 @@ static bool ProcessBlockFound(const CBlock* pblock, const CChainParams& chainpar
     return true;
 }
 
-// ***TODO*** that part changed in lua, we are using a mix with old one here for now
-void static LUAMiner(const CChainParams& chainparams, CConnman& connman)
+// ***TODO*** that part changed in luascoin, we are using a mix with old one here for now
+void static LUASCOINMiner(const CChainParams& chainparams, CConnman& connman)
 {
-    LogPrintf("LUAMiner -- started\n");
+    LogPrintf("LUASCOINMiner -- started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
-    RenameThread("lua-miner");
+    RenameThread("luascoin-miner");
 
     unsigned int nExtraNonce = 0;
 
@@ -441,13 +441,13 @@ void static LUAMiner(const CChainParams& chainparams, CConnman& connman)
             std::unique_ptr<CBlockTemplate> pblocktemplate(CreateNewBlock(chainparams, coinbaseScript->reserveScript));
             if (!pblocktemplate.get())
             {
-                LogPrintf("LUAMiner -- Keypool ran out, please call keypoolrefill before restarting the mining thread\n");
+                LogPrintf("LUASCOINMiner -- Keypool ran out, please call keypoolrefill before restarting the mining thread\n");
                 return;
             }
             CBlock *pblock = &pblocktemplate->block;
             IncrementExtraNonce(pblock, pindexPrev, nExtraNonce);
 
-            LogPrintf("LUAMiner -- Running miner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
+            LogPrintf("LUASCOINMiner -- Running miner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
                 ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
             //
@@ -467,7 +467,7 @@ void static LUAMiner(const CChainParams& chainparams, CConnman& connman)
                     {
                         // Found a solution
                         SetThreadPriority(THREAD_PRIORITY_NORMAL);
-                        LogPrintf("LUAMiner:\n  proof-of-work found\n  hash: %s\n  target: %s\n", hash.GetHex(), hashTarget.GetHex());
+                        LogPrintf("LUASCOINMiner:\n  proof-of-work found\n  hash: %s\n  target: %s\n", hash.GetHex(), hashTarget.GetHex());
                         ProcessBlockFound(pblock, chainparams);
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
                         coinbaseScript->KeepScript();
@@ -511,17 +511,17 @@ void static LUAMiner(const CChainParams& chainparams, CConnman& connman)
     }
     catch (const boost::thread_interrupted&)
     {
-        LogPrintf("LUAMiner -- terminated\n");
+        LogPrintf("LUASCOINMiner -- terminated\n");
         throw;
     }
     catch (const std::runtime_error &e)
     {
-        LogPrintf("LUAMiner -- runtime error: %s\n", e.what());
+        LogPrintf("LUASCOINMiner -- runtime error: %s\n", e.what());
         return;
     }
 }
 
-void GenerateLUAs(bool fGenerate, int nThreads, const CChainParams& chainparams, CConnman& connman)
+void GenerateLUASCOINs(bool fGenerate, int nThreads, const CChainParams& chainparams, CConnman& connman)
 {
     static boost::thread_group* minerThreads = NULL;
 
@@ -540,5 +540,5 @@ void GenerateLUAs(bool fGenerate, int nThreads, const CChainParams& chainparams,
 
     minerThreads = new boost::thread_group();
     for (int i = 0; i < nThreads; i++)
-        minerThreads->create_thread(boost::bind(&LUAMiner, boost::cref(chainparams), boost::ref(connman)));
+        minerThreads->create_thread(boost::bind(&LUASCOINMiner, boost::cref(chainparams), boost::ref(connman)));
 }

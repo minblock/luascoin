@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_WINSHUTDOWNMONITOR_H
-#define LUA_QT_WINSHUTDOWNMONITOR_H
+#ifndef LUASCOIN_QT_WINSHUTDOWNMONITOR_H
+#define LUASCOIN_QT_WINSHUTDOWNMONITOR_H
 
 #ifdef WIN32
 #include <QByteArray>
@@ -26,4 +26,4 @@ public:
 #endif
 #endif
 
-#endif // LUA_QT_WINSHUTDOWNMONITOR_H
+#endif // LUASCOIN_QT_WINSHUTDOWNMONITOR_H

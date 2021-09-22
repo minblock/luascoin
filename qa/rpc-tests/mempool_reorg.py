@@ -8,11 +8,11 @@
 # that spend (directly or indirectly) coinbase transactions.
 #
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 
 # Create one-input, one-output, no-fee transaction:
-class MempoolCoinbaseTest(LUATestFramework):
+class MempoolCoinbaseTest(LUASCOINTestFramework):
 
     alert_filename = None  # Set by setup_network
 

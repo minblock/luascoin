@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_UI_INTERFACE_H
-#define LUA_UI_INTERFACE_H
+#ifndef LUASCOIN_UI_INTERFACE_H
+#define LUASCOIN_UI_INTERFACE_H
 
 #include <stdint.h>
 #include <string>
@@ -121,4 +121,4 @@ public:
 
 extern CClientUIInterface uiInterface;
 
-#endif // LUA_UI_INTERFACE_H
+#endif // LUASCOIN_UI_INTERFACE_H

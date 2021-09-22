@@ -2,15 +2,15 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_CHAINPARAMSBASE_H
-#define LUA_CHAINPARAMSBASE_H
+#ifndef LUASCOIN_CHAINPARAMSBASE_H
+#define LUASCOIN_CHAINPARAMSBASE_H
 
 #include <string>
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between lua-cli and luad)
- * of a given instance of the LUA system.
+ * CBaseChainParams defines the base parameters (shared between luascoin-cli and luascoind)
+ * of a given instance of the LUASCOIN system.
  */
 class CBaseChainParams
 {
@@ -59,4 +59,4 @@ std::string ChainNameFromCommandLine();
  */
 bool AreBaseParamsConfigured();
 
-#endif // LUA_CHAINPARAMSBASE_H
+#endif // LUASCOIN_CHAINPARAMSBASE_H

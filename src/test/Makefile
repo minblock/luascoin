@@ -1,6 +1,6 @@
 all:
-	$(MAKE) -C .. lua_test
+	$(MAKE) -C .. luascoin_test
 clean:
-	$(MAKE) -C .. lua_test_clean
+	$(MAKE) -C .. luascoin_test_clean
 check:
-	$(MAKE) -C .. lua_test_check
+	$(MAKE) -C .. luascoin_test_check

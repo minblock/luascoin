@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_HTTPRPC_H
-#define LUA_HTTPRPC_H
+#ifndef LUASCOIN_HTTPRPC_H
+#define LUASCOIN_HTTPRPC_H
 
 #include <string>
 #include <map>

@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_MERKLEBLOCK_H
-#define LUA_MERKLEBLOCK_H
+#ifndef LUASCOIN_MERKLEBLOCK_H
+#define LUASCOIN_MERKLEBLOCK_H
 
 #include "serialize.h"
 #include "uint256.h"
@@ -153,4 +153,4 @@ public:
     }
 };
 
-#endif // LUA_MERKLEBLOCK_H
+#endif // LUASCOIN_MERKLEBLOCK_H

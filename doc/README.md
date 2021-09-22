@@ -1,36 +1,36 @@
-LUA Core 0.12.1
+LUASCOIN Core 0.12.1
 =====================
 
-This is the official reference wallet for LUA digital currency and comprises the backbone of the LUA peer-to-peer network. You can [download LUA Core](https://www.lua.org/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for LUASCOIN digital currency and comprises the backbone of the LUASCOIN peer-to-peer network. You can [download LUASCOIN Core](https://www.luascoin.org/downloads/) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
-The following are some helpful notes on how to run LUA on your native platform.
+The following are some helpful notes on how to run LUASCOIN on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/lua-qt` (GUI) or
-- `bin/luad` (headless)
+- `bin/luascoin-qt` (GUI) or
+- `bin/luascoind` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run lua-qt.exe.
+Unpack the files into a directory, and then run luascoin-qt.exe.
 
 ### OS X
 
-Drag LUA-Qt to your applications folder, and then run LUA-Qt.
+Drag LUASCOIN-Qt to your applications folder, and then run LUASCOIN-Qt.
 
 ### Need Help?
 
-* See the [LUA documentation](https://dashpay.atlassian.net/wiki/display/DOC)
+* See the [LUASCOIN documentation](https://dashpay.atlassian.net/wiki/display/DOC)
 for help and more information.
 * Ask for help on the [BitcoinTalk](https://bitcointalk.org/) forums.
 
 Building
 ---------------------
-The following are developer notes on how to build LUA Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build LUASCOIN Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OS X Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -40,7 +40,7 @@ The following are developer notes on how to build LUA Core on your native platfo
 
 Development
 ---------------------
-The LUA Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The LUASCOIN Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -56,8 +56,8 @@ The LUA Core repo's [root README](/README.md) contains relevant information on t
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [LUATalk](https://luatalk.org/) forums, in the Development & Technical Discussion board.
-* Discuss on [#minblock](http://webchat.freenode.net/?channels=minblock) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=minblock).
+* Discuss on the [LUASCOINTalk](https://luascointalk.org/) forums, in the Development & Technical Discussion board.
+* Discuss on [#luascoincrypto](http://webchat.freenode.net/?channels=luascoincrypto) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=luascoincrypto).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

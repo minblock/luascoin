@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_OPENURIDIALOG_H
-#define LUA_QT_OPENURIDIALOG_H
+#ifndef LUASCOIN_QT_OPENURIDIALOG_H
+#define LUASCOIN_QT_OPENURIDIALOG_H
 
 #include <QDialog>
 
@@ -31,4 +31,4 @@ private:
     Ui::OpenURIDialog *ui;
 };
 
-#endif // LUA_QT_OPENURIDIALOG_H
+#endif // LUASCOIN_QT_OPENURIDIALOG_H

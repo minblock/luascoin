@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_PRIMITIVES_TRANSACTION_H
-#define LUA_PRIMITIVES_TRANSACTION_H
+#ifndef LUASCOIN_PRIMITIVES_TRANSACTION_H
+#define LUASCOIN_PRIMITIVES_TRANSACTION_H
 
 #include "amount.h"
 #include "script/script.h"
@@ -167,13 +167,13 @@ public:
 
     CAmount GetDustThreshold(const CFeeRate &minRelayTxFee) const
     {
-        // "Dust" is defined in terms of CTransaction::minRelayTxFee, which has units capes-per-kilobyte.
+        // "Dust" is defined in terms of CTransaction::minRelayTxFee, which has units duffs-per-kilobyte.
         // If you'd pay more than 1/3 in fees to spend something, then we consider it dust.
         // A typical spendable txout is 34 bytes big, and will need a CTxIn of at least 148 bytes to spend
-        // i.e. total is 148 + 32 = 182 bytes. Default -minrelaytxfee is 10000 capes per kB
-        // and that means that fee per spendable txout is 182 * 10000 / 1000 = 1820 capes.
-        // So dust is a spendable txout less than 546 * minRelayTxFee / 1000 (in capes)
-        // i.e. 1820 * 3 = 5460 capes with default -minrelaytxfee = minRelayTxFee = 10000 capes per kB.
+        // i.e. total is 148 + 32 = 182 bytes. Default -minrelaytxfee is 10000 duffs per kB
+        // and that means that fee per spendable txout is 182 * 10000 / 1000 = 1820 duffs.
+        // So dust is a spendable txout less than 546 * minRelayTxFee / 1000 (in duffs)
+        // i.e. 1820 * 3 = 5460 duffs with default -minrelaytxfee = minRelayTxFee = 10000 duffs per kB.
         if (scriptPubKey.IsUnspendable())
             return 0;
 
@@ -340,7 +340,7 @@ struct CMutableTransaction
 };
 
 /** Implementation of BIP69
- * https://github.com/lua/bips/blob/master/bip-0069.mediawiki
+ * https://github.com/luascoin/bips/blob/master/bip-0069.mediawiki
  */
 struct CompareInputBIP69
 {
@@ -367,4 +367,4 @@ struct CompareOutputBIP69
     }
 };
 
-#endif // LUA_PRIMITIVES_TRANSACTION_H
+#endif // LUASCOIN_PRIMITIVES_TRANSACTION_H

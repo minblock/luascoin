@@ -107,7 +107,7 @@ UniValue getgenerate(const UniValue& params, bool fHelp)
         throw runtime_error(
             "getgenerate\n"
             "\nReturn if the server is set to generate coins or not. The default is false.\n"
-            "It is set with the command line argument -gen (or " + std::string(LUA_CONF_FILENAME) + " setting gen)\n"
+            "It is set with the command line argument -gen (or " + std::string(LUASCOIN_CONF_FILENAME) + " setting gen)\n"
             "It can also be set with the setgenerate call.\n"
             "\nResult\n"
             "true|false      (boolean) If the server is set to generate coins or not\n"
@@ -228,7 +228,7 @@ UniValue setgenerate(const UniValue& params, bool fHelp)
 
     mapArgs["-gen"] = (fGenerate ? "1" : "0");
     mapArgs ["-genproclimit"] = itostr(nGenProcLimit);
-    GenerateLUAs(fGenerate, nGenProcLimit, Params(), *g_connman);
+    GenerateLUASCOINs(fGenerate, nGenProcLimit, Params(), *g_connman);
 
     return NullUniValue;
 }
@@ -277,7 +277,7 @@ UniValue getmininginfo(const UniValue& params, bool fHelp)
 }
 
 
-// NOTE: Unlike wallet RPC (which use LUA values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
+// NOTE: Unlike wallet RPC (which use LUASCOIN values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
 UniValue prioritisetransaction(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 3)
@@ -288,8 +288,8 @@ UniValue prioritisetransaction(const UniValue& params, bool fHelp)
             "1. \"txid\"       (string, required) The transaction id.\n"
             "2. priority delta (numeric, required) The priority to add or subtract.\n"
             "                  The transaction selection algorithm considers the tx as it would have a higher priority.\n"
-            "                  (priority of a transaction is calculated: coinage * value_in_capes / txsize) \n"
-            "3. fee delta      (numeric, required) The fee value (in capes) to add (or subtract, if negative).\n"
+            "                  (priority of a transaction is calculated: coinage * value_in_duffs / txsize) \n"
+            "3. fee delta      (numeric, required) The fee value (in duffs) to add (or subtract, if negative).\n"
             "                  The fee is not actually paid, only the algorithm for selecting transactions into a block\n"
             "                  considers the transaction as it would have paid a higher (or lower) fee.\n"
             "\nResult\n"
@@ -344,8 +344,8 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
             "\nIf the request parameters include a 'mode' key, that is used to explicitly select between the default 'template' request or a 'proposal'.\n"
             "It returns data needed to construct a block to work on.\n"
             "For full specification, see BIPs 22 and 9:\n"
-            "    https://github.com/lua/bips/blob/master/bip-0022.mediawiki\n"
-            "    https://github.com/lua/bips/blob/master/bip-0009.mediawiki#getblocktemplate_changes\n"
+            "    https://github.com/luascoin/bips/blob/master/bip-0022.mediawiki\n"
+            "    https://github.com/luascoin/bips/blob/master/bip-0009.mediawiki#getblocktemplate_changes\n"
 
             "\nArguments:\n"
             "1. \"jsonrequestobject\"       (string, optional) A json object in the following spec\n"
@@ -377,7 +377,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
             "             n                        (numeric) transactions before this one (by 1-based index in 'transactions' list) that must be present in the final block if this one is\n"
             "             ,...\n"
             "         ],\n"
-            "         \"fee\": n,                   (numeric) difference in value between transaction inputs and outputs (in capes); for coinbase transactions, this is a negative Number of the total collected block fees (ie, not including the block subsidy); if key is not present, fee is unknown and clients MUST NOT assume there isn't one\n"
+            "         \"fee\": n,                   (numeric) difference in value between transaction inputs and outputs (in duffs); for coinbase transactions, this is a negative Number of the total collected block fees (ie, not including the block subsidy); if key is not present, fee is unknown and clients MUST NOT assume there isn't one\n"
             "         \"sigops\" : n,               (numeric) total number of SigOps, as counted for purposes of block limits; if key is not present, sigop count is unknown and clients MUST NOT assume there aren't any\n"
             "         \"required\" : true|false     (boolean) if provided and true, this transaction must be in the final block\n"
             "      }\n"
@@ -386,7 +386,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
             "  \"coinbaseaux\" : {                  (json object) data that should be included in the coinbase's scriptSig content\n"
             "      \"flags\" : \"flags\"            (string) \n"
             "  },\n"
-            "  \"coinbasevalue\" : n,               (numeric) maximum allowable input to coinbase transaction, including the generation award and transaction fees (in capes)\n"
+            "  \"coinbasevalue\" : n,               (numeric) maximum allowable input to coinbase transaction, including the generation award and transaction fees (in duffs)\n"
             "  \"coinbasetxn\" : { ... },           (json object) information for coinbase transaction\n"
             "  \"target\" : \"xxxx\",               (string) The hash target\n"
             "  \"mintime\" : xxx,                   (numeric) The minimum timestamp appropriate for next block time in seconds since epoch (Jan 1 1970 GMT)\n"
@@ -496,23 +496,23 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
     if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "LUA Core is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "LUASCOIN Core is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "LUA Core is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "LUASCOIN Core is downloading blocks...");
 
     // when enforcement is on we need information about a masternode payee or otherwise our block is going to be orphaned by the network
     CScript payee;
     if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT)
         && !masternodeSync.IsWinnersListSynced()
         && !mnpayments.GetBlockPayee(chainActive.Height() + 1, payee))
-            throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "LUA Core is downloading masternode winners...");
+            throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "LUASCOIN Core is downloading masternode winners...");
 
     // next bock is a superblock and we need governance info to correctly construct it
     if (sporkManager.IsSporkActive(SPORK_9_SUPERBLOCKS_ENABLED)
         && !masternodeSync.IsSynced()
         && CSuperblock::IsValidBlockHeight(chainActive.Height() + 1))
-            throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "LUA Core is syncing with network...");
+            throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "LUASCOIN Core is syncing with network...");
 
     static unsigned int nTransactionsUpdatedLast;
 
@@ -718,7 +718,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     if(pblock->txoutMasternode != CTxOut()) {
         CTxDestination address1;
         ExtractDestination(pblock->txoutMasternode.scriptPubKey, address1);
-        CLUAAddress address2(address1);
+        CLUASCOINAddress address2(address1);
         masternodeObj.push_back(Pair("payee", address2.ToString().c_str()));
         masternodeObj.push_back(Pair("script", HexStr(pblock->txoutMasternode.scriptPubKey.begin(), pblock->txoutMasternode.scriptPubKey.end())));
         masternodeObj.push_back(Pair("amount", pblock->txoutMasternode.nValue));
@@ -733,7 +733,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
             UniValue entry(UniValue::VOBJ);
             CTxDestination address1;
             ExtractDestination(txout.scriptPubKey, address1);
-            CLUAAddress address2(address1);
+            CLUASCOINAddress address2(address1);
             entry.push_back(Pair("payee", address2.ToString().c_str()));
             entry.push_back(Pair("script", HexStr(txout.scriptPubKey.begin(), txout.scriptPubKey.end())));
             entry.push_back(Pair("amount", txout.nValue));
@@ -772,7 +772,7 @@ UniValue submitblock(const UniValue& params, bool fHelp)
             "submitblock \"hexdata\" ( \"jsonparametersobject\" )\n"
             "\nAttempts to submit new block to network.\n"
             "The 'jsonparametersobject' parameter is currently ignored.\n"
-            "See https://en.lua.it/wiki/BIP_0022 for full specification.\n"
+            "See https://en.luascoin.it/wiki/BIP_0022 for full specification.\n"
 
             "\nArguments\n"
             "1. \"hexdata\"    (string, required) the hex-encoded block data to submit\n"
@@ -892,7 +892,7 @@ UniValue estimatesmartfee(const UniValue& params, bool fHelp)
             "1. nblocks     (numeric)\n"
             "\nResult:\n"
             "{\n"
-            "  \"feerate\" : x.x,     (numeric) estimate fee-per-kilobyte (in LUA)\n"
+            "  \"feerate\" : x.x,     (numeric) estimate fee-per-kilobyte (in LUASCOIN)\n"
             "  \"blocks\" : n         (numeric) block number where estimate was found\n"
             "}\n"
             "\n"

@@ -5,7 +5,7 @@
 #
 
 from test_framework.mininode import *
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 from test_framework.blocktools import create_block, create_coinbase
 
@@ -208,7 +208,7 @@ class TestNode(BaseNode):
     def __init__(self):
         BaseNode.__init__(self)
 
-class SendHeadersTest(LUATestFramework):
+class SendHeadersTest(LUASCOINTestFramework):
     def setup_chain(self):
         initialize_chain_clean(self.options.tmpdir, 2)
 

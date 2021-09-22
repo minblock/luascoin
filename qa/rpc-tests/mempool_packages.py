@@ -5,14 +5,14 @@
 
 # Test descendant package tracking code
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 from test_framework.mininode import COIN
 
 MAX_ANCESTORS = 25
 MAX_DESCENDANTS = 25
 
-class MempoolPackagesTest(LUATestFramework):
+class MempoolPackagesTest(LUASCOINTestFramework):
 
     def setup_network(self):
         self.nodes = []

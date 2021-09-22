@@ -8,11 +8,11 @@
  * Server/client environment: argument handling, config file parsing,
  * logging, thread wrappers
  */
-#ifndef LUA_UTIL_H
-#define LUA_UTIL_H
+#ifndef LUASCOIN_UTIL_H
+#define LUASCOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/lua-config.h"
+#include "config/luascoin-config.h"
 #endif
 
 #include "compat.h"
@@ -34,14 +34,14 @@
 
 // Uncomment the following line to enable debugging messages
 // or enable on a per file basis prior to inclusion of util.h
-//#define ENABLE_LUA_DEBUG
-#ifdef ENABLE_LUA_DEBUG
+//#define ENABLE_LUASCOIN_DEBUG
+#ifdef ENABLE_LUASCOIN_DEBUG
 #define DBG( x ) x
 #else
 #define DBG( x ) 
 #endif
 
-//LUA only features
+//LUASCOIN only features
 
 extern bool fMasterNode;
 extern bool fLiteMode;
@@ -74,8 +74,8 @@ extern bool fLogIPs;
 extern volatile bool fReopenDebugLog;
 extern CTranslationInterface translationInterface;
 
-extern const char * const LUA_CONF_FILENAME;
-extern const char * const LUA_PID_FILENAME;
+extern const char * const LUASCOIN_CONF_FILENAME;
+extern const char * const LUASCOIN_PID_FILENAME;
 
 /**
  * Translation function: Call Translate signal on UI interface, which returns a boost::optional result.
@@ -248,7 +248,7 @@ std::string GetThreadName();
  */
 template <typename Callable> void TraceThread(const char* name,  Callable func)
 {
-    std::string s = strprintf("lua-%s", name);
+    std::string s = strprintf("luascoin-%s", name);
     RenameThread(s.c_str());
     try
     {
@@ -300,4 +300,4 @@ std::string IntVersionToString(uint32_t nVersion);
 std::string SafeIntVersionToString(uint32_t nVersion);
 
 
-#endif // LUA_UTIL_H
+#endif // LUASCOIN_UTIL_H

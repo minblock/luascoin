@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=LUASCOIN
+Comment=LUASCOIN P2P Cryptocurrency
+Comment[fr]=LUASCOIN, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=LUASCOIN, eşten eşe kriptografik sanal para birimi
+Exec=luascoin-qt %u
+Terminal=false
+Type=Application
+Icon=luascoin128
+MimeType=x-scheme-handler/luascoin;
+Categories=Office;Finance;

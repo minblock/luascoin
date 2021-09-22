@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_TEST_COMPATTESTS_H
-#define LUA_QT_TEST_COMPATTESTS_H
+#ifndef LUASCOIN_QT_TEST_COMPATTESTS_H
+#define LUASCOIN_QT_TEST_COMPATTESTS_H
 
 #include <QObject>
 #include <QTest>
@@ -16,4 +16,4 @@ private Q_SLOTS:
     void bswapTests();
 };
 
-#endif // LUA_QT_TEST_COMPATTESTS_H
+#endif // LUASCOIN_QT_TEST_COMPATTESTS_H

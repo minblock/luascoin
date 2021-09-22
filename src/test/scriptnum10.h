@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_TEST_SCRIPTNUM10_H
-#define LUA_TEST_SCRIPTNUM10_H
+#ifndef LUASCOIN_TEST_SCRIPTNUM10_H
+#define LUASCOIN_TEST_SCRIPTNUM10_H
 
 #include <algorithm>
 #include <limits>
@@ -23,7 +23,7 @@ public:
 class CScriptNum10
 {
 /**
- * The ScriptNum implementation from LUA Core 0.10.0, for cross-comparison.
+ * The ScriptNum implementation from LUASCOIN Core 0.10.0, for cross-comparison.
  */
 public:
 
@@ -180,4 +180,4 @@ private:
 };
 
 
-#endif // LUA_TEST_BIGNUM_H
+#endif // LUASCOIN_TEST_BIGNUM_H

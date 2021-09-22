@@ -5,7 +5,7 @@
 #
 
 from test_framework.mininode import *
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 import logging
 
@@ -71,10 +71,10 @@ class TestManager(NodeConnCB):
         self.connection.disconnect_node()
 
 
-class MaxBlocksInFlightTest(LUATestFramework):
+class MaxBlocksInFlightTest(LUASCOINTestFramework):
     def add_options(self, parser):
         parser.add_option("--testbinary", dest="testbinary",
-                          default=os.getenv("LUAD", "luad"),
+                          default=os.getenv("LUASCOIND", "luascoind"),
                           help="Binary to test max block requests behavior")
 
     def setup_chain(self):

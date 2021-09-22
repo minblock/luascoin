@@ -5,10 +5,10 @@
 
 # Test mempool limiting together/eviction with the wallet
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 
-class MempoolLimitTest(LUATestFramework):
+class MempoolLimitTest(LUASCOINTestFramework):
 
     def __init__(self):
         self.txouts = gen_return_txouts()

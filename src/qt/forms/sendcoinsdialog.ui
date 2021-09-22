@@ -941,7 +941,7 @@
 																		</widget>
 																	</item>
 																	<item>
-																		<widget class="LUAAmountField" name="customFee"/>
+																		<widget class="LUASCOINAmountField" name="customFee"/>
 																	</item>
 																	<item>
 																		<spacer name="horizontalSpacer_6">
@@ -963,7 +963,7 @@
 																	<item>
 																		<widget class="QCheckBox" name="checkBoxMinimumFee">
 																			<property name="toolTip">
-																				<string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for lua transactions than the network can process.</string>
+																				<string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for luascoin transactions than the network can process.</string>
 																			</property>
 																			<property name="text">
 																				<string/>
@@ -976,7 +976,7 @@
 																				<bool>true</bool>
 																			</property>
 																			<property name="toolTip">
-																				<string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for lua transactions than the network can process.</string>
+																				<string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for luascoin transactions than the network can process.</string>
 																			</property>
 																			<property name="text">
 																				<string>(read the tooltip)</string>
@@ -1432,14 +1432,14 @@
 			<header>qvalidatedlineedit.h</header>
 		</customwidget>
 		<customwidget>
-			<class>LUAAmountField</class>
+			<class>LUASCOINAmountField</class>
 			<extends>QLineEdit</extends>
-			<header>luaamountfield.h</header>
+			<header>luascoinamountfield.h</header>
 			<container>1</container>
 		</customwidget>
 	</customwidgets>
 	<resources>
-		<include location="../lua.qrc"/>
+		<include location="../luascoin.qrc"/>
 	</resources>
 	<connections/>
 	<buttongroups>

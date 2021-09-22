@@ -2,10 +2,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_COMPAT_SANITY_H
-#define LUA_COMPAT_SANITY_H
+#ifndef LUASCOIN_COMPAT_SANITY_H
+#define LUASCOIN_COMPAT_SANITY_H
 
 bool glibc_sanity_test();
 bool glibcxx_sanity_test();
 
-#endif // LUA_COMPAT_SANITY_H
+#endif // LUASCOIN_COMPAT_SANITY_H

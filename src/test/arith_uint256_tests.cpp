@@ -12,7 +12,7 @@
 #include "arith_uint256.h"
 #include <string>
 #include "version.h"
-#include "test/test_lua.h"
+#include "test/test_luascoin.h"
 
 BOOST_FIXTURE_TEST_SUITE(arith_uint256_tests, BasicTestingSetup)
 

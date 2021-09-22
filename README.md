@@ -1,35 +1,35 @@
-LUA Core 2.0.1
+LUASCOIN Core 2.0.1
 ===============================
 
-Website: https://www.luacore.org
-Explorer: http://explorer.luacore.org/
-Exchange: https://crex24.com/exchange/LUA-BTC
+Website: https://www.luascoincore.org
+Explorer: http://explorer.luascoincore.org/
+Exchange: https://crex24.com/exchange/LUASCOIN-BTC
 
-What is LUA?
+What is LUASCOIN?
 ----------------
 
-LUA is an experimental new digital currency that enables anonymous, instant
-payments to anyone, anywhere in the world. LUA uses peer-to-peer technology
+LUASCOIN is an experimental new digital currency that enables anonymous, instant
+payments to anyone, anywhere in the world. LUASCOIN uses peer-to-peer technology
 to operate with no central authority: managing transactions and issuing money
-are carried out collectively by the network. LUA Core is the name of the open
+are carried out collectively by the network. LUASCOIN Core is the name of the open
 source software which enables the use of this currency.
 
 For more information, as well as an immediately useable, binary version of
-the LUA Core software, see https://www.luacore.org/.
+the LUASCOIN Core software, see https://www.luascoincore.org/.
 
 
 License
 -------
 
-LUA Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+LUASCOIN Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
 The `master` branch is meant to be stable. Development is normally done in separate branches.
-[Tags](https://github.com/minblock/luacoin/tags) are created to indicate new official,
-stable release versions of LUA Core.
+[Tags](https://github.com/LuascoinCoinX/LuascoinCoin/tags) are created to indicate new official,
+stable release versions of LUASCOIN Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 

@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  luascoind The LUASCOIN Core server.
+#
+#
+# chkconfig: 345 80 20
+# description: luascoind
+# processname: luascoind
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/luascoind, see below
+if [ -f /etc/sysconfig/luascoind ]; then
+        . /etc/sysconfig/luascoind
+fi
+
+RETVAL=0
+
+prog=luascoind
+# you can override the lockfile via LUASCOIND_LOCKFILE in /etc/sysconfig/luascoind
+lockfile=${LUASCOIND_LOCKFILE-/var/lock/subsys/luascoind}
+
+# luascoind defaults to /usr/bin/luascoind, override with LUASCOIND_BIN
+luascoind=${LUASCOIND_BIN-/usr/bin/luascoind}
+
+# luascoind opts default to -disablewallet, override with LUASCOIND_OPTS
+luascoind_opts=${LUASCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $luascoind $luascoind_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

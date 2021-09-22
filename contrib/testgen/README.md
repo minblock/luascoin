@@ -1,6 +1,6 @@
 ### TestGen ###
 
-Utilities to generate test vectors for the data-driven LUA tests.
+Utilities to generate test vectors for the data-driven LUASCOIN tests.
 
 Usage: 
 

@@ -5,12 +5,12 @@
 
 # Exercise the wallet keypool, and interaction with wallet encryption/locking
 
-# Add python-luarpc to module search path:
+# Add python-luascoinrpc to module search path:
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 
-class KeyPoolTest(LUATestFramework):
+class KeyPoolTest(LUASCOINTestFramework):
 
     def run_test(self):
         nodes = self.nodes
@@ -21,7 +21,7 @@ class KeyPoolTest(LUATestFramework):
 
         # Encrypt wallet and wait to terminate
         nodes[0].encryptwallet('test')
-        luad_processes[0].wait()
+        luascoind_processes[0].wait()
         # Restart node 0
         nodes[0] = start_node(0, self.options.tmpdir, ['-usehd=1'])
         # Keep creating keys

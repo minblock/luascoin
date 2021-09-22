@@ -5,8 +5,8 @@
 
 #include "guiutil.h"
 
-#include "luaaddressvalidator.h"
-#include "luaunits.h"
+#include "luascoinaddressvalidator.h"
+#include "luascoinunits.h"
 #include "qvalidatedlineedit.h"
 #include "walletmodel.h"
 
@@ -117,10 +117,10 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a LUA address (e.g. %1)").arg("MbWMQqUNEosjjEb9WAGuJ5KGN9h4WL5bqf"));
+    widget->setPlaceholderText(QObject::tr("Enter a LUASCOIN address (e.g. %1)").arg("MbWMQqUNEosjjEb9WAGuJ5KGN9h4WL5bqf"));
 #endif
-    widget->setValidator(new LUAAddressEntryValidator(parent));
-    widget->setCheckValidator(new LUAAddressCheckValidator(parent));
+    widget->setValidator(new LUASCOINAddressEntryValidator(parent));
+    widget->setCheckValidator(new LUASCOINAddressCheckValidator(parent));
 }
 
 void setupAmountWidget(QLineEdit *widget, QWidget *parent)
@@ -132,10 +132,10 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
     widget->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
 }
 
-bool parseLUAURI(const QUrl &uri, SendCoinsRecipient *out)
+bool parseLUASCOINURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no lua: URI
-    if(!uri.isValid() || uri.scheme() != QString("lua"))
+    // return if URI is not valid or is no luascoin: URI
+    if(!uri.isValid() || uri.scheme() != QString("luascoin"))
         return false;
 
     SendCoinsRecipient rv;
@@ -184,7 +184,7 @@ bool parseLUAURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!LUAUnits::parse(LUAUnits::LUA, i->second, &rv.amount))
+                if(!LUASCOINUnits::parse(LUASCOINUnits::LUASCOIN, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -202,28 +202,28 @@ bool parseLUAURI(const QUrl &uri, SendCoinsRecipient *out)
     return true;
 }
 
-bool parseLUAURI(QString uri, SendCoinsRecipient *out)
+bool parseLUASCOINURI(QString uri, SendCoinsRecipient *out)
 {
-    // Convert lua:// to lua:
+    // Convert luascoin:// to luascoin:
     //
-    //    Cannot handle this later, because lua:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because luascoin:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("lua://", Qt::CaseInsensitive))
+    if(uri.startsWith("luascoin://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 7, "lua:");
+        uri.replace(0, 7, "luascoin:");
     }
     QUrl uriInstance(uri);
-    return parseLUAURI(uriInstance, out);
+    return parseLUASCOINURI(uriInstance, out);
 }
 
-QString formatLUAURI(const SendCoinsRecipient &info)
+QString formatLUASCOINURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("lua:%1").arg(info.address);
+    QString ret = QString("luascoin:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(LUAUnits::format(LUAUnits::LUA, info.amount, false, LUAUnits::separatorNever));
+        ret += QString("?amount=%1").arg(LUASCOINUnits::format(LUASCOINUnits::LUASCOIN, info.amount, false, LUASCOINUnits::separatorNever));
         paramCount++;
     }
 
@@ -252,7 +252,7 @@ QString formatLUAURI(const SendCoinsRecipient &info)
 
 bool isDust(const QString& address, const CAmount& amount)
 {
-    CTxDestination dest = CLUAAddress(address.toStdString()).Get();
+    CTxDestination dest = CLUASCOINAddress(address.toStdString()).Get();
     CScript script = GetScriptForDestination(dest);
     CTxOut txOut(amount, script);
     return txOut.IsDust(::minRelayTxFee);
@@ -424,7 +424,7 @@ void openConfigfile()
 {
     boost::filesystem::path pathConfig = GetConfigFile();
 
-    /* Open lua.conf with the associated application */
+    /* Open luascoin.conf with the associated application */
     if (boost::filesystem::exists(pathConfig))
         QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 }
@@ -634,15 +634,15 @@ boost::filesystem::path static StartupShortcutPath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "LUA Core.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "LUASCOIN Core.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "LUA Core (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("LUA Core (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "LUASCOIN Core (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("LUASCOIN Core (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for "LUA Core*.lnk"
+    // check for "LUASCOIN Core*.lnk"
     return boost::filesystem::exists(StartupShortcutPath());
 }
 
@@ -734,8 +734,8 @@ boost::filesystem::path static GetAutostartFilePath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "luacore.desktop";
-    return GetAutostartDir() / strprintf("luacore-%s.lnk", chain);
+        return GetAutostartDir() / "luascoincore.desktop";
+    return GetAutostartDir() / strprintf("luascoincore-%s.lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -774,13 +774,13 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         if (!optionFile.good())
             return false;
         std::string chain = ChainNameFromCommandLine();
-        // Write a luacore.desktop file to the autostart directory:
+        // Write a luascoincore.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=LUA Core\n";
+            optionFile << "Name=LUASCOIN Core\n";
         else
-            optionFile << strprintf("Name=LUA Core (%s)\n", chain);
+            optionFile << strprintf("Name=LUASCOIN Core (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", GetBoolArg("-testnet", false), GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -799,7 +799,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl);
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl)
 {
-    // loop through the list of startup items and try to find the LUA Core app
+    // loop through the list of startup items and try to find the LUASCOIN Core app
     CFArrayRef listSnapshot = LSSharedFileListCopySnapshot(list, NULL);
     for(int i = 0; i < CFArrayGetCount(listSnapshot); i++) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(listSnapshot, i);
@@ -831,21 +831,21 @@ LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef
 
 bool GetStartOnSystemStartup()
 {
-    CFURLRef luaAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
+    CFURLRef luascoinAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
     LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, luaAppUrl);
+    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, luascoinAppUrl);
     return !!foundItem; // return boolified object
 }
 
 bool SetStartOnSystemStartup(bool fAutoStart)
 {
-    CFURLRef luaAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
+    CFURLRef luascoinAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
     LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, luaAppUrl);
+    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, luascoinAppUrl);
 
     if(fAutoStart && !foundItem) {
-        // add LUA Core app to startup item list
-        LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, NULL, NULL, luaAppUrl, NULL, NULL);
+        // add LUASCOIN Core app to startup item list
+        LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, NULL, NULL, luascoinAppUrl, NULL, NULL);
     }
     else if(!fAutoStart && foundItem) {
         // remove item

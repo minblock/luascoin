@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_SCHEDULER_H
-#define LUA_SCHEDULER_H
+#ifndef LUASCOIN_SCHEDULER_H
+#define LUASCOIN_SCHEDULER_H
 
 //
 // NOTE:

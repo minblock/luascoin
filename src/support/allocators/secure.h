@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_SUPPORT_ALLOCATORS_SECURE_H
-#define LUA_SUPPORT_ALLOCATORS_SECURE_H
+#ifndef LUASCOIN_SUPPORT_ALLOCATORS_SECURE_H
+#define LUASCOIN_SUPPORT_ALLOCATORS_SECURE_H
 
 #include "support/pagelocker.h"
 
@@ -62,4 +62,4 @@ typedef std::basic_string<char, std::char_traits<char>, secure_allocator<char> >
 
 typedef std::vector<unsigned char, secure_allocator<unsigned char> > SecureVector;
 
-#endif // LUA_SUPPORT_ALLOCATORS_SECURE_H
+#endif // LUASCOIN_SUPPORT_ALLOCATORS_SECURE_H

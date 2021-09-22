@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_MEMUSAGE_H
-#define LUA_MEMUSAGE_H
+#ifndef LUASCOIN_MEMUSAGE_H
+#define LUASCOIN_MEMUSAGE_H
 
 #include <stdlib.h>
 
@@ -143,4 +143,4 @@ static inline size_t DynamicUsage(const std::unordered_map<X, Y, Z>& m)
 
 }
 
-#endif // LUA_MEMUSAGE_H
+#endif // LUASCOIN_MEMUSAGE_H

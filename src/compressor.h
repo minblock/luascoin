@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_COMPRESSOR_H
-#define LUA_COMPRESSOR_H
+#ifndef LUASCOIN_COMPRESSOR_H
+#define LUASCOIN_COMPRESSOR_H
 
 #include "primitives/transaction.h"
 #include "script/script.h"
@@ -126,4 +126,4 @@ public:
     }
 };
 
-#endif // LUA_COMPRESSOR_H
+#endif // LUASCOIN_COMPRESSOR_H

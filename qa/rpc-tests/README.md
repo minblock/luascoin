@@ -2,7 +2,7 @@ Regression tests
 ================
 
 ### [test_framework/authproxy.py](test_framework/authproxy.py)
-Taken from the [python-luarpc repository](https://github.com/jgarzik/python-luarpc).
+Taken from the [python-luascoinrpc repository](https://github.com/jgarzik/python-luascoinrpc).
 
 ### [test_framework/test_framework.py](test_framework/test_framework.py)
 Base class for new regression tests.
@@ -11,19 +11,19 @@ Base class for new regression tests.
 Generally useful functions.
 
 ### [test_framework/mininode.py](test_framework/mininode.py)
-Basic code to support p2p connectivity to a luad.
+Basic code to support p2p connectivity to a luascoind.
 
 ### [test_framework/comptool.py](test_framework/comptool.py)
 Framework for comparison-tool style, p2p tests.
 
 ### [test_framework/script.py](test_framework/script.py)
-Utilities for manipulating transaction scripts (originally from python-lualib)
+Utilities for manipulating transaction scripts (originally from python-luascoinlib)
 
 ### [test_framework/blockstore.py](test_framework/blockstore.py)
 Implements disk-backed block and tx storage.
 
 ### [test_framework/key.py](test_framework/key.py)
-Wrapper around OpenSSL EC_Key (originally from python-lualib)
+Wrapper around OpenSSL EC_Key (originally from python-luascoinlib)
 
 ### [test_framework/bignum.py](test_framework/bignum.py)
 Helpers for script.py
@@ -41,10 +41,10 @@ over the network (```CBlock```, ```CTransaction```, etc, along with the network-
 wrappers for them, ```msg_block```, ```msg_tx```, etc).
 
 * P2P tests have two threads.  One thread handles all network communication
-with the luad(s) being tested (using python's asyncore package); the other
+with the luascoind(s) being tested (using python's asyncore package); the other
 implements the test logic.
 
-* ```NodeConn``` is the class used to connect to a luad.  If you implement
+* ```NodeConn``` is the class used to connect to a luascoind.  If you implement
 a callback class that derives from ```NodeConnCB``` and pass that to the
 ```NodeConn``` object, your code will receive the appropriate callbacks when
 events of interest arrive.
@@ -64,13 +64,13 @@ is tested.  Examples: ```p2p-accept-block.py```, ```maxblocksinflight.py```.
 ## Comptool
 
 * Testing framework for writing tests that compare the block/tx acceptance
-behavior of a luad against 1 or more other luad instances, or against
+behavior of a luascoind against 1 or more other luascoind instances, or against
 known outcomes, or both.
 
 * Set the ```num_nodes``` variable (defined in ```ComparisonTestFramework```) to start up
 1 or more nodes.  If using 1 node, then ```--testbinary``` can be used as a command line
-option to change the luad binary used by the test.  If using 2 or more nodes,
-then ```--refbinary``` can be optionally used to change the luad that will be used
+option to change the luascoind binary used by the test.  If using 2 or more nodes,
+then ```--refbinary``` can be optionally used to change the luascoind that will be used
 on nodes 2 and up.
 
 * Implement a (generator) function called ```get_tests()``` which yields ```TestInstance```s.
@@ -79,13 +79,13 @@ Each ```TestInstance``` consists of:
     * ```object``` is a ```CBlock```, ```CTransaction```, or
     ```CBlockHeader```.  ```CBlock```'s and ```CTransaction```'s are tested for
     acceptance.  ```CBlockHeader```s can be used so that the test runner can deliver
-    complete headers-chains when requested from the luad, to allow writing
+    complete headers-chains when requested from the luascoind, to allow writing
     tests where blocks can be delivered out of order but still processed by
-    headers-first luad's.
+    headers-first luascoind's.
     * ```outcome``` is ```True```, ```False```, or ```None```.  If ```True```
     or ```False```, the tip is compared with the expected tip -- either the
     block passed in, or the hash specified as the optional 3rd entry.  If
-    ```None``` is specified, then the test will compare all the luad's
+    ```None``` is specified, then the test will compare all the luascoind's
     being tested to see if they all agree on what the best tip is.
     * ```hash``` is the block hash of the tip to compare against. Optional to
     specify; if left out then the hash of the block passed in will be used as
@@ -99,7 +99,7 @@ Each ```TestInstance``` consists of:
     sequence and synced (this is slower when processing many blocks).
   - ```sync_every_transaction```: ```True/False```.  Analogous to
     ```sync_every_block```, except if the outcome on the last tx is "None",
-    then the contents of the entire mempool are compared across all luad
+    then the contents of the entire mempool are compared across all luascoind
     connections.  If ```True``` or ```False```, then only the last tx's
     acceptance is tested against the given outcome.
 

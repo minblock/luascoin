@@ -4,7 +4,7 @@
 #ifndef GOVERNANCE_CLASSES_H
 #define GOVERNANCE_CLASSES_H
 
-//#define ENABLE_LUA_DEBUG
+//#define ENABLE_LUASCOIN_DEBUG
 
 #include "base58.h"
 #include "governance.h"
@@ -98,7 +98,7 @@ public:
          nAmount(0)
     {}
 
-    CGovernancePayment(CLUAAddress addrIn, CAmount nAmountIn)
+    CGovernancePayment(CLUASCOINAddress addrIn, CAmount nAmountIn)
         :fValid(false),
          script(),
          nAmount(0)

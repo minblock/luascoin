@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_TXMEMPOOL_H
-#define LUA_TXMEMPOOL_H
+#ifndef LUASCOIN_TXMEMPOOL_H
+#define LUASCOIN_TXMEMPOOL_H
 
 #include <list>
 #include <set>
@@ -679,4 +679,4 @@ struct TxCoinAgePriorityCompare
     }
 };
 
-#endif // LUA_TXMEMPOOL_H
+#endif // LUASCOIN_TXMEMPOOL_H

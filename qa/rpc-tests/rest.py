@@ -8,7 +8,7 @@
 #
 
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 from struct import *
 from io import BytesIO
@@ -51,7 +51,7 @@ def http_post_call(host, port, path, requestdata = '', response_object = 0):
 
     return conn.getresponse().read()
 
-class RESTTest (LUATestFramework):
+class RESTTest (LUASCOINTestFramework):
     FORMAT_SEPARATOR = "."
 
     def setup_chain(self):

@@ -5,7 +5,7 @@
 #include "serialize.h"
 #include "streams.h"
 #include "hash.h"
-#include "test/test_lua.h"
+#include "test/test_luascoin.h"
 
 #include <stdint.h>
 

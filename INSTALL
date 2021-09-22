@@ -1,7 +1,7 @@
-Building LUA Core
+Building LUASCOIN Core
 
 After you install the usual build tools and C++ development tools,
-LUA Core also needs some build dependencies which are not always provided
+LUASCOIN Core also needs some build dependencies which are not always provided
 by default by the OS package manager
 (in particular BerkeleyDB 4.8 for building with wallet support).
 
@@ -21,10 +21,10 @@ use the autogen script to prepare the build environment.
     make
 
 Precompiled binaries are available at github, see
-https://github.com/minblock/lua-binaries
+https://github.com/luascoincrypto/luascoin-binaries
 
 Always verify the signatures and checksums.
 
-See doc/build-*.md for instructions on building luad,
+See doc/build-*.md for instructions on building luascoind,
 the intended-for-services, no-graphical-interface,
-reference implementation of LUA.
+reference implementation of LUASCOIN.

@@ -7,7 +7,7 @@
 #include <string>
 #include <map>
 #include <univalue.h>
-#include "test/test_lua.h"
+#include "test/test_luascoin.h"
 
 #include <boost/test/unit_test.hpp>
 

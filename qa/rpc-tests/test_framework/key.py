@@ -2,7 +2,7 @@
 #
 # key.py - OpenSSL wrapper
 #
-# This file is modified from python-lualib.
+# This file is modified from python-luascoinlib.
 #
 
 """ECC secp256k1 crypto routines

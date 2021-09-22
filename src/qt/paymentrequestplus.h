@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_PAYMENTREQUESTPLUS_H
-#define LUA_QT_PAYMENTREQUESTPLUS_H
+#ifndef LUASCOIN_QT_PAYMENTREQUESTPLUS_H
+#define LUASCOIN_QT_PAYMENTREQUESTPLUS_H
 
 #include "paymentrequest.pb.h"
 
@@ -45,4 +45,4 @@ private:
     payments::PaymentDetails details;
 };
 
-#endif // LUA_QT_PAYMENTREQUESTPLUS_H
+#endif // LUASCOIN_QT_PAYMENTREQUESTPLUS_H

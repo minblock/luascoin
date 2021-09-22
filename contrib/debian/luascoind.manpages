@@ -1,0 +1,3 @@
+debian/manpages/luascoind.1
+debian/manpages/luascoin.conf.5
+debian/manpages/luascoin-cli.1

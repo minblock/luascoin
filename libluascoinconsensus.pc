@@ -1,0 +1,11 @@
+prefix=/home/stevecat/luascoin/luascoin/depends/x86_64-pc-linux-gnu
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: LUASCOIN Core consensus library
+Description: Library for the LUASCOIN consensus protocol.
+Version: 2.0.1
+Libs: -L${libdir} -lluascoinconsensus
+Cflags: -I${includedir}
+Requires.private: libcrypto

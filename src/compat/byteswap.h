@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_COMPAT_BYTESWAP_H
-#define LUA_COMPAT_BYTESWAP_H
+#ifndef LUASCOIN_COMPAT_BYTESWAP_H
+#define LUASCOIN_COMPAT_BYTESWAP_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/lua-config.h"
+#include "config/luascoin-config.h"
 #endif
 
 #include <stdint.h>
@@ -63,4 +63,4 @@ inline uint64_t bswap_64(uint64_t x)
 
 #endif // defined(__APPLE__)
 
-#endif // LUA_COMPAT_BYTESWAP_H
+#endif // LUASCOIN_COMPAT_BYTESWAP_H

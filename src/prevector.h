@@ -1,5 +1,5 @@
-#ifndef _LUA_PREVECTOR_H_
-#define _LUA_PREVECTOR_H_
+#ifndef _LUASCOIN_PREVECTOR_H_
+#define _LUASCOIN_PREVECTOR_H_
 
 #include <stdlib.h>
 #include <stdint.h>

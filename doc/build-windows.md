@@ -1,7 +1,7 @@
 WINDOWS BUILD NOTES
 ====================
 
-Some notes on how to build LUA Core for Windows.
+Some notes on how to build LUASCOIN Core for Windows.
 
 Most developers use cross-compilation from Ubuntu to build executables for
 Windows. This is also used to build the release binaries.
@@ -28,9 +28,9 @@ First install the toolchains:
 
 Download the source:
     
-    mkdir lua
-    cd lua
-    git clone https://github.com/minblock/luacoin.git
+    mkdir luascoin
+    cd luascoin
+    git clone https://github.com/LuascoinCoinX/LuascoinCoin.git
     
 
 To build executables for Windows 32-bit:

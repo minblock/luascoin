@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_CLIENTMODEL_H
-#define LUA_QT_CLIENTMODEL_H
+#ifndef LUASCOIN_QT_CLIENTMODEL_H
+#define LUASCOIN_QT_CLIENTMODEL_H
 
 #include <QObject>
 #include <QDateTime>
@@ -38,7 +38,7 @@ enum NumConnections {
     CONNECTIONS_ALL  = (CONNECTIONS_IN | CONNECTIONS_OUT),
 };
 
-/** Model for LUA network client. */
+/** Model for LUASCOIN network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT
@@ -127,4 +127,4 @@ public Q_SLOTS:
     void updateBanlist();
 };
 
-#endif // LUA_QT_CLIENTMODEL_H
+#endif // LUASCOIN_QT_CLIENTMODEL_H

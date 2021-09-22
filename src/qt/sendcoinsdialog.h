@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LUA_QT_SENDCOINSDIALOG_H
-#define LUA_QT_SENDCOINSDIALOG_H
+#ifndef LUASCOIN_QT_SENDCOINSDIALOG_H
+#define LUASCOIN_QT_SENDCOINSDIALOG_H
 
 #include "walletmodel.h"
 
@@ -28,7 +28,7 @@ QT_END_NAMESPACE
 
 const int defaultConfirmTarget = 25;
 
-/** Dialog for sending luas */
+/** Dialog for sending luascoins */
 class SendCoinsDialog : public QDialog
 {
     Q_OBJECT
@@ -103,4 +103,4 @@ Q_SIGNALS:
     void message(const QString &title, const QString &message, unsigned int style);
 };
 
-#endif // LUA_QT_SENDCOINSDIALOG_H
+#endif // LUASCOIN_QT_SENDCOINSDIALOG_H

@@ -7,10 +7,10 @@
 # Test the BIP66 changeover logic
 #
 
-from test_framework.test_framework import LUATestFramework
+from test_framework.test_framework import LUASCOINTestFramework
 from test_framework.util import *
 
-class BIP66Test(LUATestFramework):
+class BIP66Test(LUASCOINTestFramework):
 
     def setup_network(self):
         self.nodes = []

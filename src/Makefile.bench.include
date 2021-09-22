@@ -1,45 +1,45 @@
-bin_PROGRAMS += bench/bench_lua
+bin_PROGRAMS += bench/bench_luascoin
 BENCH_SRCDIR = bench
-BENCH_BINARY = bench/bench_lua$(EXEEXT)
+BENCH_BINARY = bench/bench_luascoin$(EXEEXT)
 
 
-bench_bench_lua_SOURCES = \
-  bench/bench_lua.cpp \
+bench_bench_luascoin_SOURCES = \
+  bench/bench_luascoin.cpp \
   bench/bench.cpp \
   bench/bench.h \
   bench/Examples.cpp
 
-bench_bench_lua_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDES) $(EVENT_CLFAGS) $(EVENT_PTHREADS_CFLAGS) -I$(builddir)/bench/
-bench_bench_lua_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bench_bench_lua_LDADD = \
-  $(LIBLUA_SERVER) \
-  $(LIBLUA_COMMON) \
-  $(LIBLUA_UTIL) \
-  $(LIBLUA_CRYPTO) \
+bench_bench_luascoin_CPPFLAGS = $(AM_CPPFLAGS) $(LUASCOIN_INCLUDES) $(EVENT_CLFAGS) $(EVENT_PTHREADS_CFLAGS) -I$(builddir)/bench/
+bench_bench_luascoin_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+bench_bench_luascoin_LDADD = \
+  $(LIBLUASCOIN_SERVER) \
+  $(LIBLUASCOIN_COMMON) \
+  $(LIBLUASCOIN_UTIL) \
+  $(LIBLUASCOIN_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBMEMENV) \
   $(LIBSECP256K1) \
   $(LIBUNIVALUE)
 
 if ENABLE_ZMQ
-bench_bench_lua_LDADD += $(LIBLUA_ZMQ) $(ZMQ_LIBS)
+bench_bench_luascoin_LDADD += $(LIBLUASCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-bench_bench_lua_LDADD += $(LIBLUA_WALLET)
+bench_bench_luascoin_LDADD += $(LIBLUASCOIN_WALLET)
 endif
 
-bench_bench_lua_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-bench_bench_lua_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+bench_bench_luascoin_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+bench_bench_luascoin_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
-CLEAN_LUA_BENCH = bench/*.gcda bench/*.gcno
+CLEAN_LUASCOIN_BENCH = bench/*.gcda bench/*.gcno
 
-CLEANFILES += $(CLEAN_LUA_BENCH)
+CLEANFILES += $(CLEAN_LUASCOIN_BENCH)
 
-lua_bench: $(BENCH_BINARY)
+luascoin_bench: $(BENCH_BINARY)
 
 bench: $(BENCH_BINARY) FORCE
 	$(BENCH_BINARY)
 
-lua_bench_clean : FORCE
-	rm -f $(CLEAN_LUA_BENCH) $(bench_bench_lua_OBJECTS) $(BENCH_BINARY)
+luascoin_bench_clean : FORCE
+	rm -f $(CLEAN_LUASCOIN_BENCH) $(bench_bench_luascoin_OBJECTS) $(BENCH_BINARY)

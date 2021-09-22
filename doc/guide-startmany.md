@@ -16,9 +16,9 @@ Create a new wallet address for each Masternode.
 
 Close your QT Wallet.
 
-### Send 1000 LUA to New Addresses
+### Send 1000 LUASCOIN to New Addresses
 
-Send exactly 1000 LUA to each new address created above.
+Send exactly 1000 LUASCOIN to each new address created above.
 
 ### Create New Masternode Private Keys
 
@@ -38,9 +38,9 @@ Remember... this is local. Make sure your QT is not running.
 
 Create the `masternode.conf` file in the same directory as your `wallet.dat`.
 
-Copy the masternode private key and correspondig collateral output transaction that holds the 1000 LUA.
+Copy the masternode private key and correspondig collateral output transaction that holds the 1000 LUASCOIN.
 
-*Note: The masternode priviate key is **not** the same as a wallet private key. **Never** put your wallet private key in the masternode.conf file. That is almost equivalent to putting your 1000 LUA on the remote server and defeats the purpose of a hot/cold setup.*
+*Note: The masternode priviate key is **not** the same as a wallet private key. **Never** put your wallet private key in the masternode.conf file. That is almost equivalent to putting your 1000 LUASCOIN on the remote server and defeats the purpose of a hot/cold setup.*
 
 ### Get the collateral output
 
@@ -53,7 +53,7 @@ Issue the following:
 Make note of the hash (which is your collateral_output) and index.
 
 ### Enter your Masternode details into your masternode.conf file
-[From the lua github repo](https://github.com/minblock/lua/blob/master/doc/masternode_conf.md)
+[From the luascoin github repo](https://github.com/luascoincrypto/luascoin/blob/master/doc/masternode_conf.md)
 
 `masternode.conf` format is a space seperated text file. Each line consisting of an alias, IP address followed by port, masternode private key, collateral output transaction id and collateral output index.
 
@@ -68,16 +68,16 @@ mn01 127.0.0.1:9999 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84
 mn02 127.0.0.2:9999 93WaAb3htPJEV8E9aQcN23Jt97bPex7YvWfgMDTUdWJvzmrMqey aa9f1034d973377a5e733272c3d0eced1de22555ad45d6b24abadff8087948d4 0
 ```
 
-## Update lua.conf on server
+## Update luascoin.conf on server
 
-If you generated a new masternode private key, you will need to update the remote `lua.conf` files.
+If you generated a new masternode private key, you will need to update the remote `luascoin.conf` files.
 
 Shut down the daemon and then edit the file.
 
-```nano .luacore/lua.conf```
+```nano .luascoincore/luascoin.conf```
 
 ### Edit the masternodeprivkey
-If you generated a new masternode private key, you will need to update the `masternodeprivkey` value in your remote `lua.conf` file.
+If you generated a new masternode private key, you will need to update the `masternodeprivkey` value in your remote `luascoin.conf` file.
 
 ## Start your Masternodes
 
@@ -87,9 +87,9 @@ If your remote server is not running, start your remote daemon as you normally w
 
 You can confirm that remote server is on the correct block by issuing
 
-```lua-cli getinfo```
+```luascoin-cli getinfo```
 
-and comparing with the official explorer at https://explorer.lua.org/chain/LUA
+and comparing with the official explorer at https://explorer.luascoin.org/chain/LUASCOIN
 
 ### Local
 
@@ -116,11 +116,11 @@ Example ```masternode start-alias mn01```
 Issue command `masternode status`
 It should return you something like that:
 ```
-lua-cli masternode status
+luascoin-cli masternode status
 {
     "outpoint" : "<collateral_output>-<collateral_output_index>",
     "service" : "<ipaddress>:<port>",
-    "pubkey" : "<1000 LUA address>",
+    "pubkey" : "<1000 LUASCOIN address>",
     "status" : "Masternode successfully started"
 }
 ```
@@ -128,6 +128,6 @@ Command output should have "_Masternode successfully started_" in its `status` f
 
 ### Local
 
-Search your Masternodes on https://luaninja.pl/masternodes.html
+Search your Masternodes on https://luascoinninja.pl/masternodes.html
 
 _Hint: Bookmark it, you definitely will be using this site a lot._

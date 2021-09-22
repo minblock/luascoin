@@ -6,13 +6,13 @@ and tests weren't explicitly disabled.
 
 After configuring, they can be run with `make check`.
 
-To run the luad tests manually, launch `src/test/test_lua`.
+To run the luascoind tests manually, launch `src/test/test_luascoin`.
 
-To add more luad tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
+To add more luascoind tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the `test/` directory or add new .cpp files that
 implement new BOOST_AUTO_TEST_SUITE sections.
 
-To run the lua-qt tests manually, launch `src/qt/test/test_lua-qt`
+To run the luascoin-qt tests manually, launch `src/qt/test/test_luascoin-qt`
 
-To add more lua-qt tests, add them to the `src/qt/test/` directory and
+To add more luascoin-qt tests, add them to the `src/qt/test/` directory and
 the `src/qt/test/test_main.cpp` file.

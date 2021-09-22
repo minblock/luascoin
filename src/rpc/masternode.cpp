@@ -228,7 +228,7 @@ UniValue masternode(const UniValue& params, bool fHelp)
         obj.push_back(Pair("IP:port",       mnInfo.addr.ToString()));
         obj.push_back(Pair("protocol",      (int64_t)mnInfo.nProtocolVersion));
         obj.push_back(Pair("outpoint",      mnInfo.vin.prevout.ToStringShort()));
-        obj.push_back(Pair("payee",         CLUAAddress(mnInfo.pubKeyCollateralAddress.GetID()).ToString()));
+        obj.push_back(Pair("payee",         CLUASCOINAddress(mnInfo.pubKeyCollateralAddress.GetID()).ToString()));
         obj.push_back(Pair("lastseen",      mnInfo.nTimeLastPing));
         obj.push_back(Pair("activeseconds", mnInfo.nTimeLastPing - mnInfo.sigTime));
         return obj;
@@ -340,7 +340,7 @@ UniValue masternode(const UniValue& params, bool fHelp)
         CKey secret;
         secret.MakeNewKey(false);
 
-        return CLUASecret(secret).ToString();
+        return CLUASCOINSecret(secret).ToString();
     }
 
     if (strCommand == "list-conf")
@@ -394,7 +394,7 @@ UniValue masternode(const UniValue& params, bool fHelp)
 
         CMasternode mn;
         if(mnodeman.Get(activeMasternode.outpoint, mn)) {
-            mnObj.push_back(Pair("payee", CLUAAddress(mn.pubKeyCollateralAddress.GetID()).ToString()));
+            mnObj.push_back(Pair("payee", CLUASCOINAddress(mn.pubKeyCollateralAddress.GetID()).ToString()));
         }
 
         mnObj.push_back(Pair("status", activeMasternode.GetStatus()));
@@ -472,7 +472,7 @@ UniValue masternodelist(const UniValue& params, bool fHelp)
                 "  lastpaidblock  - Print the last block height a node was paid on the network\n"
                 "  lastpaidtime   - Print the last time a node was paid on the network\n"
                 "  lastseen       - Print timestamp of when a masternode was last seen on the network\n"
-                "  payee          - Print LUA address associated with a masternode (can be additionally filtered,\n"
+                "  payee          - Print LUASCOIN address associated with a masternode (can be additionally filtered,\n"
                 "                   partial match)\n"
                 "  protocol       - Print protocol of a masternode (can be additionally filtered, exact match)\n"
                 "  pubkey         - Print the masternode (not collateral) public key\n"
@@ -518,7 +518,7 @@ UniValue masternodelist(const UniValue& params, bool fHelp)
                 streamFull << std::setw(18) <<
                                mn.GetStatus() << " " <<
                                mn.nProtocolVersion << " " <<
-                               CLUAAddress(mn.pubKeyCollateralAddress.GetID()).ToString() << " " <<
+                               CLUASCOINAddress(mn.pubKeyCollateralAddress.GetID()).ToString() << " " <<
                                (int64_t)mn.lastPing.sigTime << " " << std::setw(8) <<
                                (int64_t)(mn.lastPing.sigTime - mn.sigTime) << " " << std::setw(10) <<
                                mn.GetLastPaidTime() << " "  << std::setw(6) <<
@@ -533,7 +533,7 @@ UniValue masternodelist(const UniValue& params, bool fHelp)
                 streamInfo << std::setw(18) <<
                                mn.GetStatus() << " " <<
                                mn.nProtocolVersion << " " <<
-                               CLUAAddress(mn.pubKeyCollateralAddress.GetID()).ToString() << " " <<
+                               CLUASCOINAddress(mn.pubKeyCollateralAddress.GetID()).ToString() << " " <<
                                (int64_t)mn.lastPing.sigTime << " " << std::setw(8) <<
                                (int64_t)(mn.lastPing.sigTime - mn.sigTime) << " " <<
                                SafeIntVersionToString(mn.lastPing.nSentinelVersion) << " "  <<
@@ -553,7 +553,7 @@ UniValue masternodelist(const UniValue& params, bool fHelp)
                 if (strFilter !="" && strOutpoint.find(strFilter) == std::string::npos) continue;
                 obj.push_back(Pair(strOutpoint, (int64_t)mn.lastPing.sigTime));
             } else if (strMode == "payee") {
-                CLUAAddress address(mn.pubKeyCollateralAddress.GetID());
+                CLUASCOINAddress address(mn.pubKeyCollateralAddress.GetID());
                 std::string strPayee = address.ToString();
                 if (strFilter !="" && strPayee.find(strFilter) == std::string::npos &&
                     strOutpoint.find(strFilter) == std::string::npos) continue;
@@ -746,8 +746,8 @@ UniValue masternodebroadcast(const UniValue& params, bool fHelp)
                 nSuccessful++;
                 resultObj.push_back(Pair("outpoint", mnb.vin.prevout.ToStringShort()));
                 resultObj.push_back(Pair("addr", mnb.addr.ToString()));
-                resultObj.push_back(Pair("pubKeyCollateralAddress", CLUAAddress(mnb.pubKeyCollateralAddress.GetID()).ToString()));
-                resultObj.push_back(Pair("pubKeyMasternode", CLUAAddress(mnb.pubKeyMasternode.GetID()).ToString()));
+                resultObj.push_back(Pair("pubKeyCollateralAddress", CLUASCOINAddress(mnb.pubKeyCollateralAddress.GetID()).ToString()));
+                resultObj.push_back(Pair("pubKeyMasternode", CLUASCOINAddress(mnb.pubKeyMasternode.GetID()).ToString()));
                 resultObj.push_back(Pair("vchSig", EncodeBase64(&mnb.vchSig[0], mnb.vchSig.size())));
                 resultObj.push_back(Pair("sigTime", mnb.sigTime));
                 resultObj.push_back(Pair("protocolVersion", mnb.nProtocolVersion));
