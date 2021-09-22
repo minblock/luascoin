@@ -197,6 +197,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("69781ad0a46b9f9ad0c69f52304ac65af5b309399784b537210348e166efc367"));
 
         vSeeds.push_back(CDNSSeedData("192.3.3.28", "193.3.3.28"));        // vFixedSeeds.clear();
+        vSeeds.push_back(CDNSSeedData("192.3.3.27", "193.3.3.27"));        // vFixedSeeds.clear();
         // vSeeds.clear();
 
         // LUA addresses start with '2'
