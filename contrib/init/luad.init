@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  luad The LUA Core server.
+#
+#
+# chkconfig: 345 80 20
+# description: luad
+# processname: luad
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/luad, see below
+if [ -f /etc/sysconfig/luad ]; then
+        . /etc/sysconfig/luad
+fi
+
+RETVAL=0
+
+prog=luad
+# you can override the lockfile via LUAD_LOCKFILE in /etc/sysconfig/luad
+lockfile=${LUAD_LOCKFILE-/var/lock/subsys/luad}
+
+# luad defaults to /usr/bin/luad, override with LUAD_BIN
+luad=${LUAD_BIN-/usr/bin/luad}
+
+# luad opts default to -disablewallet, override with LUAD_OPTS
+luad_opts=${LUAD_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $luad $luad_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

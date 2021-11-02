@@ -1,0 +1,92 @@
+#!/sbin/runscript
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/luacore/.luacore" ]; then
+	LUAD_DEFAULT_DATADIR="/var/lib/luacore/.luacore"
+else
+	LUAD_DEFAULT_DATADIR="/var/lib/luad"
+fi
+
+LUAD_CONFIGFILE=${LUAD_CONFIGFILE:-/etc/luacore/lua.conf}
+LUAD_PIDDIR=${LUAD_PIDDIR:-/var/run/luad}
+LUAD_PIDFILE=${LUAD_PIDFILE:-${LUAD_PIDDIR}/luad.pid}
+LUAD_DATADIR=${LUAD_DATADIR:-${LUAD_DEFAULT_DATADIR}}
+LUAD_USER=${LUAD_USER:-${LUA_USER:-luacore}}
+LUAD_GROUP=${LUAD_GROUP:-luacore}
+LUAD_BIN=${LUAD_BIN:-/usr/bin/luad}
+LUAD_NICE=${LUAD_NICE:-${NICELEVEL:-0}}
+LUAD_OPTS="${LUAD_OPTS:-${LUA_OPTS}}"
+
+name="LUA Core Daemon"
+description="LUA cryptocurrency P2P network daemon"
+
+command="/usr/bin/luad"
+command_args="-pid=\"${LUAD_PIDFILE}\" \
+		-conf=\"${LUAD_CONFIGFILE}\" \
+		-datadir=\"${LUAD_DATADIR}\" \
+		-daemon \
+		${LUAD_OPTS}"
+
+required_files="${LUAD_CONFIGFILE}"
+start_stop_daemon_args="-u ${LUAD_USER} \
+			-N ${LUAD_NICE} -w 2000"
+pidfile="${LUAD_PIDFILE}"
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${LUAD_SIGTERM_TIMEOUT}"
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${LUAD_USER}:${LUAD_GROUP}" \
+	"${LUAD_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${LUAD_USER}:${LUAD_GROUP}" \
+	"${LUAD_PIDDIR}"
+
+	checkpath -f \
+	-o ${LUAD_USER}:${LUAD_GROUP} \
+	-m 0660 \
+	${LUAD_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${LUAD_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run luad."
+		eerror "The setting must appear in ${LUAD_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following"
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is also recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"LUA Core Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}
