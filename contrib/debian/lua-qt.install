@@ -1,6 +1,0 @@
-usr/local/bin/lua-qt usr/bin
-share/pixmaps/lua32.xpm usr/share/pixmaps
-share/pixmaps/lua16.xpm usr/share/pixmaps
-share/pixmaps/lua128.png usr/share/pixmaps
-debian/lua-qt.desktop usr/share/applications
-debian/lua-qt.protocol usr/share/kde4/services/
