@@ -121,7 +121,7 @@ public:
         // Deployment of DIP0001
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].bit = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nStartTime = 1630150225; //  tomorrow
-        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nTimeout = 1661686225; // in 1 year   judgement day
+        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nTimeout = 1688223158; // Saturday july1, 2023
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nWindowSize = 4032;
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nThreshold = 3226; // 80% of 4032
 
@@ -487,4 +487,3 @@ void SelectParams(const std::string& network)
     SelectBaseParams(network);
     pCurrentParams = &Params(network);
 }
-
