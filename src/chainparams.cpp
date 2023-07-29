@@ -55,7 +55,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Provigen Networks: Now accepting NorweiganThunderPolesbitocins!";
+    const char* pszTimestamp = "Provigen Networks: Now accepting Reversearonis!";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -151,9 +151,9 @@ public:
         nDelayGetHeadersTime = 24 * 60 * 60;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1632287929, 106583, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1690590653, 106583, 0x1e0ffff0, 1, 50 * COIN); // in 2 minutes
         consensus.hashGenesisBlock = genesis.GetHash();
-/*
+
         //////////////
                 // calculate Genesis Block
                 // Reset genesis
@@ -192,7 +192,7 @@ public:
                     // Mainnet --- nonce: 296277 time: 1390095618 hash: 000000bdd771b14e5a031806292305e563956ce2584278de414d9965f6ab54b0
                 }
                 std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
-*/
+
         assert(consensus.hashGenesisBlock == uint256S("000009c4d82efa26d73d0bda6de2da301c0ce23205db900c50ec7b1733ce9728"));
         assert(genesis.hashMerkleRoot == uint256S("69781ad0a46b9f9ad0c69f52304ac65af5b309399784b537210348e166efc367"));
 
