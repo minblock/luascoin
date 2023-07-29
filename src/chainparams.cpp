@@ -193,8 +193,8 @@ public:
                 }
                 std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
 
-        assert(consensus.hashGenesisBlock == uint256S("000009c4d82efa26d73d0bda6de2da301c0ce23205db900c50ec7b1733ce9728"));
-        assert(genesis.hashMerkleRoot == uint256S("69781ad0a46b9f9ad0c69f52304ac65af5b309399784b537210348e166efc367"));
+        assert(consensus.hashGenesisBlock == uint256S(""));
+        assert(genesis.hashMerkleRoot == uint256S(""));
 
         vSeeds.push_back(CDNSSeedData("192.3.3.28", "193.3.3.28"));        // vFixedSeeds.clear();
         vSeeds.push_back(CDNSSeedData("192.3.3.27", "193.3.3.27"));        // vFixedSeeds.clear();
@@ -311,7 +311,7 @@ public:
         nDelayGetHeadersTime = 24 * 60 * 60;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1525413615UL, 1507179UL, 0x1e0ffff0, 1, 150000 * COIN);
+        genesis = CreateGenesisBlock(1690590653, 1507179UL, 0x1e0ffff0, 1, 150000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
        // assert(consensus.hashGenesisBlock == uint256S("0x00000ba049e5c1f95474ea3fc62d5f1b1632a294c20c22fea701134a43cf3068"));
         //assert(genesis.hashMerkleRoot == uint256S("0xd5dec0980d7b84cc1c048eb8706afe68bbbdb07fdefab76de8d176dfcb858ae8"));
@@ -423,7 +423,7 @@ public:
         nDefaultPort = 17978;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1522201627, 1282268, 0x1e0ffff0, 1, 150000 * COIN);
+        genesis = CreateGenesisBlock(1690590653, 1282268, 0x1e0ffff0, 1, 150000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
        // assert(consensus.hashGenesisBlock == uint256S("0x000005ec6d48ac579d697448a82e93127b94403770629399cf561caa216a694b"));
         //assert(genesis.hashMerkleRoot == uint256S("0xd5dec0980d7b84cc1c048eb8706afe68bbbdb07fdefab76de8d176dfcb858ae8"));
